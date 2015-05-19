@@ -1,0 +1,480 @@
+
+--
+-- Base de datos:  Cooperativa Electron 465
+--
+-- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla  t_personas
+--
+
+DROP TABLE IF EXISTS  t_personas;
+CREATE TABLE IF NOT EXISTS t_personas (
+   documento_id  int(11) NOT NULL,
+   primer_nombre  varchar(128) NOT NULL,
+   segundo_nombre  varchar(128) NOT NULL,
+   primer_apellido  varchar(128) NOT NULL,
+   segundo_apellido  varchar(128) NOT NULL,
+   apellido_casada  varchar(128) NOT NULL,
+   nro_documento  varchar(32) NOT NULL,
+   fecha_nacimiento  date NOT NULL,
+   nacionalidad  varchar(2) NOT NULL,
+   ciudad  varchar(128) NOT NULL, 
+   cargo_actual  varchar(255) NOT NULL,
+   sexo  varchar(1) NOT NULL,
+   estado_civil  varchar(32) NOT NULL,
+   telefono  varchar(64) NOT NULL,
+   celular  varchar(64) NOT NULL,
+   direccion  TEXT NOT NULL,
+   correo  varchar(128) NOT NULL,
+   vive  tinyint(1) NOT NULL,
+   observacion  varchar(255) NOT NULL,
+   codigo_nomina  varchar(32) NOT NULL,
+   codigo_nomina_aux  varchar(32) NOT NULL,
+   expediente_caja  varchar(32) NOT NULL,
+   codigo_gaceta  varchar(32) NOT NULL,
+   fecha_ingreso  date NOT NULL,
+   ubicacion  varchar(255) NOT NULL,
+   direccion_trabajo  varchar(255) NOT NULL,
+   copia_ci  tinyint(1) NOT NULL,
+   copia_ba  tinyint(1) NOT NULL,
+   titular  tinyint(1) NOT NULL,
+   fe_vida  tinyint(1) NOT NULL,
+   banco_1  varchar(32) NOT NULL,
+   cuenta_1 varchar(32) NOT NULL,
+   tipo_cuenta_1 varchar(32) NOT NULL,
+   banco_2  varchar(32) NOT NULL,
+   cuenta_2 varchar(32) NOT NULL,
+   tipo_cuenta_2 varchar(32) NOT NULL,
+   banco_3  varchar(32) NOT NULL,
+   cuenta_3 varchar(32) NOT NULL,
+   tipo_cuenta_3 varchar(32) NOT NULL,
+   disponibilidad  tinyint(1) NOT NULL,
+   rif  varchar(32) NOT NULL,
+   foto  int(11) NOT NULL,
+   gaceta  int(11) NOT NULL,
+   ente_procedencia  varchar(255) NOT NULL,
+   fecha_vacaciones  date NOT NULL,
+   copia_libreta  int(11) NOT NULL,
+   cargo_ocupaba  varchar(255) NOT NULL
+) ENGINE=MyISAM;
+
+
+
+-- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla  t_clientes
+--
+
+DROP TABLE IF EXISTS  t_clientes_creditos;
+CREATE TABLE IF NOT EXISTS t_clientes_creditos (
+   credito_id int(11) NOT NULL AUTO_INCREMENT,
+   documento_id  int(11) NOT NULL,
+   contrato_id  VARCHAR(32) NOT NULL,
+   fecha_solicitud date NOT NULL,
+   fecha_inicio_cobro date NOT NULL,
+   motivo text NOT NULL,
+   cantidad decimal(15,3) NOT NULL,
+   monto_total decimal(15,3) NOT NULL,
+   monto_vacaciones decimal NOT NULL,
+   mes_vacaciones VARCHAR(32) NOT NULL,
+   monto_aguinaldos decimal NOT NULL,
+   numero_cuotas int(11) NOT NULL,
+   periocidad int(11) NOT NULL,
+   nomina_procedencia TEXT NOT NULL,
+   monto_cuota decimal NOT NULL,
+   PRIMARY KEY (credito_id)
+) ENGINE=MyISAM;
+
+
+-- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla  t_banco
+--
+
+DROP TABLE IF EXISTS  t_banco;
+CREATE TABLE IF NOT EXISTS t_banco (
+   banco_id  int(11) NOT NULL AUTO_INCREMENT,
+   nombre varchar(255) NOT NULL,
+   tipo varchar(255) NOT NULL,
+   cuenta varchar(255) NOT NULL,
+   PRIMARY KEY (banco_id)
+) ENGINE=MyISAM;
+
+
+-- --------------------------------------------------------
+-- UN EMPLEADO TIENE UNA LISTA DE BANCOS
+-- Estructura de tabla para la tabla  t_des_banco
+--
+
+DROP TABLE IF EXISTS  t_lista_banco;
+CREATE TABLE IF NOT EXISTS t_des_banco (
+   documento_id  int(11) NOT NULL,
+   banco_id  int(11) DEFAULT NULL,
+   nombre varchar(255) NOT NULL,
+   tipo varchar(255) NOT NULL,
+   numero_contrato  int(11) NOT NULL,   
+   cuenta varchar(255) NOT NULL
+) ENGINE=MyISAM;
+
+
+-- --------------------------------------------------------
+-- UN EMPLEADO TIENE UNA LISTA DE CREDITOS
+-- Estructura de tabla para la tabla  t_lista_creditos
+--
+
+DROP TABLE IF EXISTS  t_lista_creditos;
+CREATE TABLE IF NOT EXISTS t_creditos (
+   credito_id  int(11) NOT NULL AUTO_INCREMENT,
+   nombre varchar(255) NOT NULL,
+   descripcion varchar(255) NOT NULL,
+   monto_minimo decimal(15,3) NOT NULL,   
+   monto_maximo decimal(15,3) NOT NULL,
+   PRIMARY KEY (credito_id) 
+) ENGINE=MyISAM;
+
+-- --------------------------------------------------------
+-- UN EMPLEADO EN UN CREDITO TIENE UNA LISTA DE COBROS
+-- Estructura de tabla para la tabla  t_lista_cobros
+--
+
+DROP TABLE IF EXISTS  t_lista_cobros;
+CREATE TABLE IF NOT EXISTS t_lista_cobros (
+   documento_id  int(11) NOT NULL,
+   credito_id  int(11) NOT NULL,
+   mes varchar(32) NOT NULL,
+   descripcion varchar(255) NOT NULL,
+   fecha date DEFAULT NULL,
+   monto decimal(15,3) NOT NULL
+) ENGINE=MyISAM;
+
+
+-- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla  t_usuarios
+--
+
+DROP TABLE IF EXISTS  t_usuarios;
+CREATE TABLE IF NOT EXISTS t_usuarios (
+   usuario_id int(11) NOT NULL AUTO_INCREMENT,
+   documento_id  int(11) DEFAULT NULL,
+   login varchar(64) NOT NULL,
+   clave varchar(255) NOT NULL,
+   fecha date DEFAULT NULL,
+   PRIMARY KEY(usuario_id)
+) ENGINE=MyISAM;
+INSERT INTO t_usuarios VALUES(NULL, '17522251', 'admin',md5('za63qj2p'),'2011-02-04');
+
+
+-- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla  t_usuarios_historial
+--
+
+DROP TABLE IF EXISTS  t_usuarios_historial;
+CREATE TABLE IF NOT EXISTS t_usuarios_historial (
+   usuario_id  int(11) NOT NULL,
+   descripcion TEXT NOT NULL,
+   fecha date DEFAULT NULL
+) ENGINE=MyISAM;
+
+
+-- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla  t_artefactos
+--
+
+DROP TABLE IF EXISTS t_artefactos;
+CREATE TABLE IF NOT EXISTS t_artefactos (
+   artefacto_id INT(11) NOT NULL AUTO_INCREMENT,
+   nombre VARCHAR(250) NOT NULL,
+   PRIMARY KEY (artefacto_id),
+   INDEX ( nombre )
+) ENGINE=MyISAM;
+
+-- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla  t_proveedores
+--
+
+DROP TABLE IF EXISTS  t_proveedores;
+CREATE TABLE IF NOT EXISTS t_proveedores (
+   proveedor_id  int(11) NOT NULL AUTO_INCREMENT,
+   nombre VARCHAR(250) NOT NULL,
+   PRIMARY KEY (proveedor_id),
+   INDEX ( nombre )
+) ENGINE=MyISAM;
+
+
+-- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla  t_inventario
+--
+
+DROP TABLE IF EXISTS  t_inventario;
+CREATE TABLE IF NOT EXISTS t_inventario (
+   inventario_id  int(11) NOT NULL AUTO_INCREMENT,
+   proveedor  int(11) NOT NULL,
+   artefacto  int(11) NOT NULL,
+   marca VARCHAR(250) NOT NULL,
+   modelo VARCHAR(250) NOT NULL,
+   PRIMARY KEY (inventario_id),
+   INDEX ( proveedor,artefacto )
+) ENGINE=MyISAM;
+
+-- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla  t_productos
+--
+
+DROP TABLE IF EXISTS  t_productos;
+CREATE TABLE IF NOT EXISTS t_productos (
+   serial VARCHAR(250) NOT NULL,
+   fecha_ingreso date NOT NULL,
+   inventario_id  int(11) NOT NULL,
+   descripcion VARCHAR(250) NOT NULL,
+   estatus int(11) NOT NULL,
+   compra decimal(15,3) NOT NULL,
+   venta decimal(15,3) NOT NULL,
+   ubicacion VARCHAR(255) NOT NULL,
+   cant_garantia int(11) NOT NULL,
+   tipo_garantia VARCHAR(32) NOT NULL,
+   PRIMARY KEY (serial),
+   INDEX ( serial,inventario_id )
+) ENGINE=MyISAM;
+
+
+DROP TABLE IF EXISTS  t_his_cancelados;
+CREATE TABLE IF NOT EXISTS t_his_cancelados (
+   documento_id  int(11) NOT NULL,
+   primer_nombre  varchar(128) NOT NULL,
+   segundo_nombre  varchar(128) NOT NULL,
+   primer_apellido  varchar(128) NOT NULL,
+   segundo_apellido  varchar(128) NOT NULL,
+   PRIMARY KEY (documento_id),
+   INDEX ( documento_id )
+) ENGINE=MyISAM;
+
+DROP TABLE IF EXISTS  t_his_contratos;
+CREATE TABLE IF NOT EXISTS t_his_contratos (
+   documento_id  int(11) NOT NULL,
+   n_contrato  varchar(128) NOT NULL,
+   cobrado  varchar(128) NOT NULL,
+   nomina  varchar(128) NOT NULL,
+   ubicacion  varchar(128) NOT NULL,
+   monto  varchar(128) NOT NULL,
+   fecha_i  date NOT NULL,
+   fecha_f  date NOT NULL,
+   descripcion  varchar(128) NOT NULL
+) ENGINE=MyISAM;
+
+DROP TABLE IF EXISTS  t_sugerencias;
+CREATE TABLE `t_sugerencias` (
+	`id` INT(5) NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(30) NOT NULL,
+	`descripcion` TEXT NOT NULL,
+	`estado` INT(1) NOT NULL,
+	`prioridad` INT(1) NOT NULL,
+	`de_usuario` VARCHAR(20) NOT NULL,
+	`para_usuario` VARCHAR(20) NOT NULL,
+	`nivel_usuario` INT(1) NOT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=356;
+
+DROP TABLE IF EXISTS  t_respuestas;
+CREATE TABLE `t_respuestas` (
+	`id` INT(4) NOT NULL AUTO_INCREMENT,
+	`id_sugerencia` INT(4) NOT NULL,
+	`respuesta` TEXT NOT NULL,
+	`respondio_usuario` VARCHAR(30) NOT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=32;
+
+
+ALTER TABLE t_clientes_creditos 
+	DROP monto_vacaciones, 
+	DROP monto_aguinaldos, 
+	DROP mes_vacaciones, 
+	DROP ano_vacaciones,
+	DROP ano_aguinaldos,
+	DROP mes_aguinaldos,
+	DROP contrato_vacaciones,
+	DROP contrato_aguinaldos;
+
+UPDATE t_clientes_creditos SET empresa=0 WHERE empresa='COOPERATIVA ELECTRON 465 RL.';
+UPDATE t_clientes_creditos SET empresa=1 WHERE empresa='GRUPO ELECTRON 465 C.A';
+UPDATE t_clientes_creditos SET empresa=0 WHERE empresa='';
+ALTER TABLE t_clientes_creditos CHANGE empresa empresa TINYINT(1) NOT NULL;
+
+UPDATE t_clientes_creditos SET motivo=0 WHERE motivo='----------';
+UPDATE t_clientes_creditos SET motivo=1 WHERE motivo='-- FINANCIAMIENTO --';
+UPDATE t_clientes_creditos SET motivo=1 WHERE motivo='CELULAR';
+UPDATE t_clientes_creditos SET motivo=1 WHERE motivo='NEVERA';
+UPDATE t_clientes_creditos SET motivo=1 WHERE motivo > 100;
+UPDATE t_clientes_creditos SET motivo=2 WHERE motivo='-- PRESTAMO --';
+UPDATE t_clientes_creditos SET motivo=3 WHERE motivo='-- PRESTAMO Y FINACIAMIENTO --';
+UPDATE t_clientes_creditos SET motivo=3 WHERE motivo='-- PRESTAMO Y VARIOS--';
+ALTER TABLE t_clientes_creditos CHANGE motivo motivo TINYINT(1) NOT NULL;
+
+UPDATE t_clientes_creditos SET condicion=4 WHERE condicion='----------';
+ALTER TABLE t_clientes_creditos CHANGE condicion condicion TINYINT(1) NOT NULL;
+
+ALTER TABLE t_clientes_creditos CHANGE num_operacion num_operacion CHAR(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ALTER TABLE t_clientes_creditos CHANGE numero_factura numero_factura CHAR(16) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+
+ALTER TABLE t_clientes_creditos CHANGE numero_cuotas numero_cuotas TINYINT(1) NOT NULL;
+ALTER TABLE t_clientes_creditos CHANGE periocidad periocidad TINYINT(1) NOT NULL;
+ALTER TABLE t_clientes_creditos CHANGE forma_contrato forma_contrato TINYINT(1) NOT NULL;
+ALTER TABLE t_clientes_creditos CHANGE estatus estatus TINYINT(1) NOT NULL;
+ALTER TABLE t_clientes_creditos CHANGE estado_verificado estado_verificado TINYINT(1) NOT NULL;
+
+
+CREATE TABLE IF NOT EXISTS `t_estados` (
+  `id` tinyint(2) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(32) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+-- Dumping data for table electron.t_estados: 4 rows
+/*!40000 ALTER TABLE `t_estados` DISABLE KEYS */;
+INSERT INTO `t_estados` (`id`, `nombre`) VALUES
+	(1, 'MERIDA'),
+	(2, 'BARINAS'),
+	(3, 'SAN CRISTOBAL'),
+	(4, 'ZULIA');
+/*!40000 ALTER TABLE `t_estados` ENABLE KEYS */;
+
+
+-- Dumping structure for table electron.t_zona_postal
+CREATE TABLE IF NOT EXISTS `t_zona_postal` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `estado` tinyint(2) NOT NULL,
+  `zona_postal` varchar(40) COLLATE latin1_spanish_ci NOT NULL,
+  `codigo` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=71 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+-- Dumping data for table electron.t_zona_postal: 69 rows
+/*!40000 ALTER TABLE `t_zona_postal` DISABLE KEYS */;
+INSERT INTO `t_zona_postal` (`id`, `estado`, `zona_postal`, `codigo`) VALUES
+	(1, 1, 'ACEQUIAS', 5110),
+	(2, 1, 'APARTADEROS', 5130),
+	(3, 1, 'ACARIGUA', 5101),
+	(4, 1, 'BAILADORES', 5133),
+	(5, 1, 'CANAGUA', 5154),
+	(6, 1, 'CAPAZON', 3137),
+	(7, 1, 'CAÑO ZANCUDO', 3137),
+	(8, 1, 'CHACHOPO', 3112),
+	(9, 1, 'CHIGUARA', 5138),
+	(10, 1, 'CHOCANTA', 5112),
+	(11, 1, 'EJIDO', 5111),
+	(12, 1, 'EL MORRO', 5101),
+	(13, 1, 'EL PEÑON', 5142),
+	(14, 1, 'EL VIGIA', 5145),
+	(15, 1, 'ESTANQUES', 5101),
+	(16, 1, 'GUARAQUE', 5134),
+	(17, 1, 'HUMBOLDT', 5101),
+	(18, 1, 'JAJI', 5107),
+	(19, 1, 'LA AZULITA', 5102),
+	(20, 1, 'LA BLANCA', 5145),
+	(21, 1, 'LA HECHICERA', 5101),
+	(22, 1, 'LA MESA', 5112),
+	(23, 1, 'LA MESA DE EJIDO', 5112),
+	(24, 1, 'LA PALMITA', 5145),
+	(25, 1, 'LA PARROQUIA', 5115),
+	(26, 1, 'LA PEDREGOSA', 5101),
+	(27, 1, 'LA PLAYA', 5143),
+	(28, 1, 'LA PLAYITA', 5145),
+	(29, 1, 'LA PUNTA', 5115),
+	(30, 1, 'LA TRAMPA', 5138),
+	(31, 1, 'LA VEGA', 5101),
+	(32, 1, 'LAGUNILAS', 5138),
+	(33, 1, 'LAS PIEDRAS', 5138),
+	(34, 1, 'LAS VIRTUDES', 3141),
+	(35, 1, 'LIBERTAD', 5145),
+	(36, 1, 'LOS GONZALEZ', 5111),
+	(37, 1, 'LOS SAUZALES', 5101),
+	(38, 1, 'MESA BOLIVAR', 5141),
+	(39, 1, 'MESA QUINTERO', 5134),
+	(40, 1, 'MUCUCHACHI', 5105),
+	(41, 1, 'MUCUCHIES', 5130),
+	(42, 1, 'MUCURUBA', 5129),
+	(43, 1, 'MUCUTUY', 5106),
+	(44, 1, 'MERIDA', 5101),
+	(45, 1, 'PIÑANGO', 5114),
+	(46, 1, 'PUEBLO LLANO', 5124),
+	(47, 1, 'PUEBLO NUEVO', 5108),
+	(48, 1, 'SAN JACINTO', 5101),
+	(49, 1, 'SAN JOSE', 5101),
+	(50, 1, 'SAN JUAN DE LAGUNILLAS', 5138),
+	(51, 1, 'SAN RAFAEL DE MUCUCHIES', 5130),
+	(52, 1, 'SANTA CRUZ DE MORA', 5142),
+	(53, 1, 'SANTA ELENA DE ARENALES', 5101),
+	(54, 1, 'SANTO DOMINGO', 5131),
+	(55, 1, 'TABAY', 5116),
+	(56, 1, 'TIMOTES', 3112),
+	(57, 1, 'TOVAR', 5143),
+	(58, 1, 'TUCANTOCANI', 5145),
+	(59, 1, 'UNION', 5101),
+	(60, 1, 'ZEA', 5144),
+	(61, 1, 'LA GONZALES', 5145),
+	(62, 1, 'MUCUJEPE', 5101),
+	(63, 1, 'SAN CRISTOBAL DE TORONDOY', 3101),
+	(64, 1, 'SANTA APOLONIA DE MERIDA', 3101),
+	(65, 1, 'TUCANI', 5141),
+	(66, 1, 'OTRAS', 5101),
+	(67, 2, 'PRUEBA PARA BARINAS', 4000),
+	(68, 2, 'OTRO', 4001),
+	(69, 3, 'PRIMERA PRUBA SAN CRISTOBAL', 6000);
+
+CREATE TABLE `chat` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `from` VARCHAR(255) NOT NULL DEFAULT '',
+  `to` VARCHAR(255) NOT NULL DEFAULT '',
+  `message` TEXT NOT NULL,
+  `sent` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `recd` INTEGER UNSIGNED NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+)
+ENGINE = InnoDB;
+
+
+UPDATE t_personas SET estado_civil=1 WHERE estado_civil='SOLTERO (A)';
+UPDATE t_personas SET estado_civil=2 WHERE estado_civil='CASADO (A)';
+UPDATE t_personas SET estado_civil=3 WHERE estado_civil='DIVORCIADO (A)';
+UPDATE t_personas SET estado_civil=4 WHERE estado_civil='VIUDO (A)';
+UPDATE t_personas SET estado_civil=1 WHERE estado_civil='';
+
+ALTER TABLE `t_personas` CHANGE `estado_civil` `estado_civil` INT( 1 ) NOT NULL 
+
+
+
+DROP TRIGGER IF EXISTS `d_estadoejecucion`;
+DELIMITER //
+CREATE TRIGGER `d_estadoejecucion` BEFORE INSERT ON `t_clientes_creditos`
+ FOR EACH ROW BEGIN
+   INSERT INTO t_estadoejecucion (oidc,oide,observacion,estatus) VALUES (NEW.contrato_id,1,'Creado Inicialmente',1);
+END
+//
+DELIMITER ;
+
+DROP TRIGGER IF EXISTS `d_contratos_estadoejecucion`;
+DELIMITER //
+CREATE TRIGGER `d_contratos_estadoejecucion` BEFORE UPDATE ON `t_estadoejecucion`
+ FOR EACH ROW BEGIN
+   INSERT INTO _tr_contratos_estadoejecucion (oidc,oide,observacion,estatus,modificacion) VALUES (OLD.oidc,OLD.oide,OLD.observacion,OLD.modificacion);
+END
+//
+DELIMITER ;
+
+
+
+
+
+
+
