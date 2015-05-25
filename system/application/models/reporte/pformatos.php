@@ -1646,7 +1646,7 @@ class PFormatos extends Model {
 						$ac = 75;
 						$at = 75;
 						$atd = 22;
-						$add = 120;
+						$add = 115;
 						$ato = 25;
 						$xd1 = 10;
 						$xd2 = 30;
@@ -1668,7 +1668,7 @@ class PFormatos extends Model {
 						$ac = 50;
 						$at = 50;
 						$atd = 30;
-						$add = 110;
+						$add = 115;
 						$ato = 35;
 						$xd1 = 10;
 						$xd2 = 27;
@@ -1725,7 +1725,7 @@ class PFormatos extends Model {
 				$sqlDetalle = "SELECT * FROM t_it_fcontrol WHERE factura ='".$factura."'";
 				$Detalle = $this -> db -> query($sqlDetalle);
 				$i = 0;
-				
+
 				foreach ($Detalle -> result() as $det) {
 					$i++;
 					//cantidad
@@ -1736,8 +1736,8 @@ class PFormatos extends Model {
 					$total = number_format($det -> monto * $det -> cantidad,2);
 					$pagina1['total'.$i] = array('texto' => $total, 'ancho' => 30, 'x' => $xd4, 'y' => $y4, 'estilo' => '');
 					//des
-					$pagina1['des'.$i] = array('texto' => $det -> descrip, 'ancho' => $add, 'x' => $xd2, 'y' => $y4, 'estilo' => '', 'multi' => 6, 'alto' => 6.7, 'alinea' => 'L');
-					$y4 += (6.7*10);
+					$pagina1['des'.$i] = array('texto' => $det -> descrip, 'ancho' => $add, 'x' => $xd2, 'y' => $y4, 'estilo' => '', 'multi' => 3, 'alto' => 6.7, 'alinea' => 'L','tam'=>10);
+					$y4 += (6.7*3);
 				}
 				$elemento = array($pagina1);
 				$this -> generar_formato($elemento, 'control', 12);
