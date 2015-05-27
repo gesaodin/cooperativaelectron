@@ -282,7 +282,7 @@ class MProcesar extends Model {
   	$fecha = explode("-", $arr['fecha']);
   	
   	
-  	if($arr['banco'] = 'bicentenario'){
+  	if($arr['banco'] == 'BICENTENARIO'){
   		$sQuery = $sInsert . "SELECT t_cargar_txt.cedula,t_clientes_creditos.contrato_id, 'CERT: " . $arr['clv'] . "','PROCESADO MEDIANTE LOTE',
 		 '" . $arr['fecha'] . "', SUM(t_cargar_txt.monto),'".$usuario."','" . $arr['fecha'] . "','" . $fecha[1] . 
 		 "','" . $fecha[0] . "','9'  FROM `t_cargar_txt`,t_clientes_creditos WHERE 
@@ -301,7 +301,7 @@ class MProcesar extends Model {
   	}
   	
 
-    //echo $sQuery;
+    //echo $sQuery.'--'.$arr['banco'];
     
     $this->db->query($sQuery);
     $sQuery = "UPDATE cpp_banco SET esta=2 WHERE tama='" . $arr['clv'] . "' LIMIT 1;";

@@ -219,7 +219,7 @@ function leer_txt() {
 	}
 }
 
-function Validar(archivo, banco) {
+function Validar(archivo, banco) {//alert(banco);
 	mensaje = 'OK';
 	if(archivo && banco != '') {
 		extensiones_permitidas = new Array(".txt", ".csv", ".dvr");
@@ -227,20 +227,20 @@ function Validar(archivo, banco) {
 		extension = (nombre.substring(nombre.lastIndexOf("."))).toLowerCase();
 		switch(extension) {
 			case ".txt":
-				if(banco == "Provincial" || banco == "Venezuela") {
-					mensaje = "Formato de Archivo Invalido Para El Banco Seleccionado";
+				if(banco == "PROVINCIAL" || banco == "VENEZUELA") {
+					mensaje = "Formato de Archivo Invalido Para El Banco provincial y venezueka";
 				}
 				break;
 			case ".dvr":
-				if(banco != "Provincial") {
-					mensaje = "Formato de Archivo Invalido Para El Banco Seleccionado";
+				if(banco != "PROVINCIAL") {
+					mensaje = "Formato de Archivo Invalido Para El Banco provincial";
 				}
 				break;
 			case ".DVR":
-				if(banco != "Provincial") mensaje = "Formato de Archivo Invalido Para El Banco Seleccionado";
+				if(banco != "PROVINCIAL") mensaje = "Formato de Archivo Invalido Para El Banco PROVINCIAL2";
 				break;
 			case ".csv":
-				if(banco != "Venezuela") {
+				if(banco != "VENEZUELA") {
 					mensaje = "Formato de Archivo Invalido Para El Banco Seleccionado";
 				}
 				break;
