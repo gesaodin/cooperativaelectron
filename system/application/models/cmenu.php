@@ -116,6 +116,12 @@ class CMenu extends Model {
 			';
 		}
 
+        if ($usu == 'alvaro' || $usu == 'carlos' || $usu == 'alvaroz' || $usu == 'judelvis') {
+            $Menu_B .= '<li class="active" ><a href="#" Onclick="N_Ventana(\'ccalculosCorreo\')"><span>Calculo Correo</span></a></li>
+
+			';
+        }
+
 		/*if ($this -> session -> userdata('ubicacion')=='Merida (Principal)' && ($intNivel == 4 || $intNivel == 5)) {
 			$Menu_B .= '<li class="active" ><a href="Asistente1"><span>Asistente</span></a></li>
 						<li id="ssoli" class="active"><a href="subir_solicitud"><span>Expedientes Solicitud</span></a></li>

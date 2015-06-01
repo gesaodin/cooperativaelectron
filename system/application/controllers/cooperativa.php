@@ -4379,6 +4379,13 @@ class cooperativa extends Controller {
 			$this->login ();
 		}
 	}
+    public function CCalculosCorreo() {
+        if ($this->session->userdata ( 'usuario' )) {
+            $this->load->view ( "calculocorreo" );
+        } else {
+            $this->login ();
+        }
+    }
 	public function CCalculos_Nuevo() {
 		if ($this->session->userdata ( 'usuario' )) {
 			$this->load->model ( 'CNomina' );
