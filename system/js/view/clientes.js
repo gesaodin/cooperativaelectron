@@ -316,6 +316,7 @@ function btnGuardar() {
 			
 			$("#msj_alertas").html("(+) POR FAVOR ESPERE MIENTRAS SE COMPLETA EL PROCESO...");
 			$("#msj_alertas").dialog("open");
+            //alert(sCadena);
 			$.ajax({
 				url : strUrl_Proceso,
 				type : 'POST',

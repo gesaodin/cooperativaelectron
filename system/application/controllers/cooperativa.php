@@ -1880,8 +1880,11 @@ class cooperativa extends Controller {
 		$CPersona->observacion = "";
 		$CPersona->codigo_nomina = "";
 		$CPersona->fecha_vacaciones = "";
+        $data_u ['fecha_vacaciones'] = trim ( $sexo );
 		$CPersona->fecha_ingreso = $fecha_Ingreso;
+        $data_u ['fecha_ingreso'] = trim ( $fecha_Ingreso );
 		$CPersona->foto = $vacaciones_mes;
+        $data_u ['foto'] = trim ( $vacaciones_mes );
 		// MES DE VACACIONES
 		$CPersona->sexo = $sexo;
 		$data_u ['sexo'] = trim ( $sexo );
@@ -1911,7 +1914,7 @@ class cooperativa extends Controller {
 		$data_u ['cargo_actual'] = trim ( $cargo );
 		
 		$zona_postal = trim ( $_POST ['zonapostal'] );
-		// $data_u['direccion'] = trim($direccionH);
+		$data_u['gaceta'] = trim ( $_POST ['zonapostal'] );
 		
 		$CPersona->municipio = trim ( $municipio );
 		$data_u ['municipio'] = trim ( $municipio );
@@ -1945,6 +1948,7 @@ class cooperativa extends Controller {
 		// fe de Vida Sera Afiliado
 		
 		$CPersona->ubicacion = trim ( $ubicacion_actual );
+        $data_u ['ubicacion'] = $ubicacion_actual;
 		$CPersona->banco_1 = trim ( $banco_1 );
 		$CPersona->cuenta_1 = trim ( $cuenta_1 );
 		$CPersona->tipo_cuenta_1 = trim ( $tipo_1 );
