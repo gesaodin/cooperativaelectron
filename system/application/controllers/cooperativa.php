@@ -5600,7 +5600,7 @@ class cooperativa extends Controller {
 							$msj .= 'NO SE SUBIO LA CEDULA, YA EXISTE<br>';
 						} else {
 							$subido = copy ( $_FILES [$archivo] ['tmp_name'], $$nombre );
-						}
+						}//0212-5011334 
 					}
 					if ($subido) {
 						$msj .= "EL ARCHIVO SE SUBIO CON EXITO <br>";

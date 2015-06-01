@@ -289,15 +289,15 @@ class MProcesar extends Model {
 		 t_cargar_txt.credito_id=t_clientes_creditos.credito_id AND t_cargar_txt.archivo='" . $arr['txt'] . "' GROUP BY t_cargar_txt.credito_id";
   	}else {  		
   		$sQuery = $sInsert . "SELECT A.cedula,t_control_pagos.contrato_id, CONCAT('CERT: ',cpp_banco.tama),'PROCESADO MEDIANTE LOTE',
-		 A.fech, A.abono,'".$usuario."',A.fech,month(A.fech),year(A.fech),'9'  FROM t_control_pagos JOIN
+		 A.fech, A.abono,'".$usuario."',A.fech,month(A.fech),year(A.fech),'9' FROM t_control_pagos JOIN
 		 (SELECT cedula,SUM(monto) AS abono,
 			cpp_archivo.crea,t_cargar_txt.procesada,cpp_archivo.fech,t_cargar_txt.monto FROM t_cargar_txt
 			JOIN t_personas ON t_personas.documento_id=t_cargar_txt.cedula
 			JOIN cpp_archivo ON cpp_archivo.nmbr = t_cargar_txt.archivo
 			WHERE archivo='" . $arr['txt'] . "' GROUP BY cedula) AS A ON A.cedula=t_control_pagos.documento_id
-			JOIN cpp_banco ON t_control_pagos.cobrado_en=cpp_banco.lina
+			JOIN cpp_banco ON t_control_pagos.cobrado_en=cpp_banco.lina AND t_control_pagos.empresa=cpp_banco.empr
 			AND  t_control_pagos.periocidad=cpp_banco.peri AND t_control_pagos.forma_contrato=cpp_banco.fcon
-			WHERE cpp_banco.tama='" . $arr['clv'] . "' AND cpp_banco.esta != 2;";
+			WHERE cpp_banco.tama='" . $arr['clv'] . "' AND cpp_banco.esta != 2 AND t_control_pagos.resta > 0;";
   	}
   	
 
@@ -313,6 +313,7 @@ class MProcesar extends Model {
     $this->db->query($sQuery);
      
     echo "FINALIZO EL PROCESO CON EXITO";
+    
   }
 
 }
