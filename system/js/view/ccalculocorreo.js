@@ -13,9 +13,9 @@ function enviar() {
     $.ajax({
         url : sUrlP + "EnviarCalculosCorreo",
         type : "POST",
-        data : "correo="+correo+"&respuesta="+respuesta;
+        data : "correo="+correo+"&respuesta="+respuesta,
         success : function(resp) {
-            alert(resp):
+            alert(resp);
         }
     });
     return false;
