@@ -7783,11 +7783,7 @@ class cooperativa extends Controller {
 	 	
 	 	$mail->AltBody    = "Texto Alternativo"; // optional, comment out and test
 	 	$mail->MsgHTML($cuerpo);
-<<<<<<< HEAD
-	 	//$address = $email;
-=======
 	 	$address = $correo;
->>>>>>> 55fb7194c77d506b52c34103dbdac7eef5c6438e
 	 	$mail->AddAddress($correo, "Plan de Pago");
 	 	if(!$mail->Send()) {
 	 		return "Error al enviar: " . $mail->ErrorInfo;
