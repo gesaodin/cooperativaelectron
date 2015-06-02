@@ -10,7 +10,7 @@
     <br><h2>PRESUPUESTO</h2><br>
 
     <center>
-        <form action="<?php echo __LOCALWWW__?>/index.php/cooperativa/buzon" method="POST" onsubmit="return Imprimir();">
+        <form action="<?php echo __LOCALWWW__?>/index.php/cooperativa/buzon" method="POST" onsubmit="return enviar();">
             <table>
                 <tr>
                     <td align="left"><label id="lblProforma"> Monto Proforma &nbsp;</label></td>
@@ -38,7 +38,20 @@
                     </td>
                     <td>
                         <input type="button" class="inputxt" value='Calcular' id='btnCalcular' onclick="verificar_montos();"/>
-                        <input type="submit" class="inputxt" value='Imprimir'  id='btnImprimir' />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left"><label id="lblProforma"> Correo &nbsp;</label></td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <div class="ui-widget">
+                            <input  type="text" value="" name="txtCorreo" id="txtCorreo" class="inputxt" style="width: 150px;"  />
+                        </div>
+                    </td>
+                    <td>
+                        <input type="submit" class="inputxt" value='Enviar'  id='btnImprimir' />
                     </td>
                 </tr>
             </table>
