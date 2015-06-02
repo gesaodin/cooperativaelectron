@@ -81,6 +81,11 @@ class CMenu extends Model {
 		if ($intNivel == 0 || $usu == 'carlos') {
 			$Menu_B .= '<li class="active" id="mbuzon"><span><a href="Liquidacion"><span id="iContador">Liquidacion</span></a></li>';
 		}
+        if ($usu == 'alvaro' || $usu == 'carlos' || $usu == 'alvaroz' || $usu == 'judelvis') {
+            $Menu_B .= '<li class="active" ><a href="#" Onclick="N_Ventana(\'ccalculosCorreo\')"><span>Calculo Correo</span></a></li>
+
+			';
+        }
 		if($ubica == 'Merida (Principal)' ||$ubica == 'Merida (Interet)'){
 		$Menu_B .= '</ul>		   			
 		   </li>
@@ -116,11 +121,6 @@ class CMenu extends Model {
 			';
 		}
 
-        if ($usu == 'alvaro' || $usu == 'carlos' || $usu == 'alvaroz' || $usu == 'judelvis') {
-            $Menu_B .= '<li class="active" ><a href="#" Onclick="N_Ventana(\'ccalculosCorreo\')"><span>Calculo Correo</span></a></li>
-
-			';
-        }
 
 		/*if ($this -> session -> userdata('ubicacion')=='Merida (Principal)' && ($intNivel == 4 || $intNivel == 5)) {
 			$Menu_B .= '<li class="active" ><a href="Asistente1"><span>Asistente</span></a></li>
