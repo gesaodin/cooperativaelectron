@@ -11,7 +11,7 @@ function enviar() {
     if(unico != '' && unico != 0) respuesta += mes+"x"+unico+" .<br>";
     //alert(respuesta);
     $.ajax({
-        url : sUrlP + "EnviarCorreoCalculo",
+        url : sUrlP + "EnviarCalculosCorreo",
         type : "POST",
         data : "correo="+correo+"&respuesta="+respuesta;
         success : function(resp) {
