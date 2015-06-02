@@ -7753,12 +7753,11 @@ class cooperativa extends Controller {
 	 	//error_reporting(E_STRICT);
 	 	require_once('system/application/libraries/PHPMail/class.phpmailer.php');
 	 	$mail = new PHPMailer();
-	 	$body                ='';//file_get_contents('');
-	 	//$body                = preg_replace('/[\]/','',$body);
-	 	$mail->IsSMTP(); // telling the class to use SMTP	 	 
-	 	$mail->SMTPDebug  = 1;
-	 	$mail->Host          = "smtp.gmail.com";
-	 	$mail->SMTPSecure = "tls";
+	 	$body                ='';
+	 	$mail->IsSMTP(); 							  // telling the class to use SMTP	 	 
+	 	$mail->SMTPDebug  = 1;						  //
+	 	$mail->Host          = "smtp.gmail.com";      //
+	 	$mail->SMTPSecure = "tls";					  //	
 	 	$mail->SMTPAuth      = true;                  // enable SMTP authentication
 	 	$mail->SMTPKeepAlive = true;                  // SMTP connection will not close after each email sent
 	 	 
@@ -7784,12 +7783,12 @@ class cooperativa extends Controller {
 	 	
 	 	$mail->AltBody    = "Texto Alternativo"; // optional, comment out and test
 	 	$mail->MsgHTML($cuerpo);
-	 	$address = $email;
+	 	//$address = $email;
 	 	$mail->AddAddress($correo, "Plan de Pago");
 	 	if(!$mail->Send()) {
 	 		return "Error al enviar: " . $mail->ErrorInfo;
 	 	} else {
-	 		return "Mensaje enviado a:  " .  $address . "!";
+	 		return "Mensaje enviado a:  " .  $correo . "!";
 	 	}
 	 }
 	 
