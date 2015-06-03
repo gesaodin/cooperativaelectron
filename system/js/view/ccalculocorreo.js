@@ -1,19 +1,23 @@
 function enviar() {
     var correo = $("#txtCorreo").val();
-    var respuesta = '<h1>PROPUESTO DE CREDITO<br>PLAN DE PAGO</h1>';
+    var respuesta = '<h1>PRESUPUESTO DE CREDITO<br>PLAN DE PAGO</h1>';
     var mes = $("#cmbMeses").val();
     var esp1 = $("#txtMT1").val();var esp2 = $("#txtMT2").val();var esp3 = $("#txtMT3").val();var esp4 = $("#txtMT4").val();
     
     var unico = $("#txtMU").val();
     respuesta += "<table border=1><tr><td>CUOTA</td><td>PERIOCIDAD</td><td>MONTO</td></tr>";
     
-    if(esp1 != '' && esp1 != 0) respuesta += "<tr><td>1</td><td>" + $("#txtNominaPeriocidad1 option:selected").text() + " DE " + $("#txtAno1").val() + "</td><td>" + $("#txtMT1").val() + "</td></tr>";
-    if(esp2 != '' && esp2 != 0) respuesta += "<tr><td>1</td><td>" + $("#txtNominaPeriocidad2 option:selected").text() + " DE " + $("#txtAno2").val() + "</td><td>" + $("#txtMT2").val() + "</td></tr>";
-    if(esp3 != '' && esp3 != 0) respuesta += "<tr><td>1</td><td>" + $("#txtNominaPeriocidad3 option:selected").text() + " DE " + $("#txtAno3").val() + "</td><td>" + $("#txtMT3").val() + "</td></tr>";
-    if(esp4 != '' && esp4 != 0) respuesta += "<tr><td>1</td><td>" + $("#txtNominaPeriocidad4 option:selected").text() + " DE " + $("#txtAno4").val() + "</td><td>" + $("#txtMT4").val() + "</td></tr>";
-    if(unico != '' && unico != 0) respuesta += "<tr><td>" + mes + "</td><td>MENSUALES</td><td>" + unico + "</td></tr>";
-    //mes+"x"+unico+" .<br>";
-    //alert(respuesta);
+    if(esp1 != '' && esp1 != 0) 
+    	respuesta += "<tr><td>1</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad1").val())) + " DE " + $("#txtAno1").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad1").val())) + " DE " + $("#txtAno1").val() + "</td><td>" + $("#txtMT1").val() + "</td></tr>";
+    if(esp2 != '' && esp2 != 0) 
+    	respuesta += "<tr><td>1</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad2").val())) + " DE " + $("#txtAno2").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad2").val())) + " DE " + $("#txtAno2").val() + "</td><td>" + $("#txtMT2").val() + "</td></tr>";
+    if(esp3 != '' && esp3 != 0) 
+    	respuesta += "<tr><td>1</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad3").val())) + " DE " + $("#txtAno3").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad3").val())) + " DE " + $("#txtAno3").val() + "</td><td>" + $("#txtMT3").val() + "</td></tr>";
+    if(esp4 != '' && esp4 != 0) 
+    	respuesta += "<tr><td>1</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad4").val())) + " DE " + $("#txtAno4").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad4").val())) + " DE " + $("#txtAno4").val() + "</td><td>" + $("#txtMT4").val() + "</td></tr>";
+    
+    if(unico != '' && unico != 0) respuesta += "<tr><td>" + mes + "</td><td>MENSUAL DEL 1 AL 30 DE CADA MES</td><td>" + unico + "</td></tr>";
+   
     respuesta += "</table>";
     $.ajax({
         url : sUrlP + "EnviarCalculosCorreo",
@@ -25,6 +29,52 @@ function enviar() {
     });
     return false;
 }
+
+function MesTexto(id){
+	var mes = "";
+	switch (id) {
+	case 1:
+		mes = "ENERO";
+		break;
+	case 2:
+		mes = "FEBRERO";
+		break;
+	case 3:
+		mes = "MARZO";
+		break;
+	case 4:
+		mes = "ABRIL";
+		break;
+	case 5:
+		mes = "MAYO";
+		break;
+	case 6:
+		mes = "JUNIO";
+		break;
+	case 7:
+		mes = "JULIO";
+		break;
+	case 8:
+		mes = "AGOSTO";
+		break;
+	case 9:
+		mes = "SEPTIEMBRE";
+		break;
+	case 10:
+		mes = "OCTUBRE";
+		break;
+	case 11:
+		mes = "NOVIEMBRE";
+		break;
+	case 12:
+		mes = "DICIEMBRE";
+		break;
+	default:
+		break;
+	}
+	return mes;
+}
+
 function Calcular_Total() {
     var abono_especial = 0;
     for(var i = 1 ; i <=4 ; i++){
