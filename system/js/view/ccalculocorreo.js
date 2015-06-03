@@ -1,21 +1,26 @@
 function enviar() {
     var correo = $("#txtCorreo").val();
+    var respuesta = '<h1>PROPUESTO DE CREDITO<br>PLAN DE PAGO</h1>';
     var mes = $("#cmbMeses").val();
-    var respuesta = '<h1>PLAN DE PAGO PROPUESTO</h1><br><br>';
     var esp1 = $("#txtMT1").val();var esp2 = $("#txtMT2").val();var esp3 = $("#txtMT3").val();var esp4 = $("#txtMT4").val();
+    
     var unico = $("#txtMU").val();
-    if(esp1 != '' && esp1 != 0) respuesta += "1x"+esp1+" , 01-"+$("#txtNominaPeriocidad1").val()+"-"+$("#txtAno1").val()+"<br>";
-    if(esp2 != '' && esp2 != 0) respuesta += "1x"+esp2+" , 01-"+$("#txtNominaPeriocidad2").val()+"-"+$("#txtAno2").val()+"<br>";
-    if(esp3 != '' && esp3 != 0) respuesta += "1x"+esp3+" , 01-"+$("#txtNominaPeriocidad3").val()+"-"+$("#txtAno3").val()+"<br>";
-    if(esp4 != '' && esp4 != 0) respuesta += "1x"+esp4+" , 01-"+$("#txtNominaPeriocidad4").val()+"-"+$("#txtAno4").val()+"<br>";
-    if(unico != '' && unico != 0) respuesta += mes+"x"+unico+" .<br>";
+    respuesta += "<table border=1><tr><td>CUOTA</td><td>PERIOCIDAD</td><td>MONTO</td></tr>";
+    
+    if(esp1 != '' && esp1 != 0) respuesta += "<tr><td>1</td><td>" + $("#txtNominaPeriocidad1 option:selected").text() + " DE " + $("#txtAno1").val() + "</td><td>" + $("#txtMT1").val() + "</td></tr>";
+    if(esp2 != '' && esp2 != 0) respuesta += "<tr><td>1</td><td>" + $("#txtNominaPeriocidad2 option:selected").text() + " DE " + $("#txtAno2").val() + "</td><td>" + $("#txtMT2").val() + "</td></tr>";
+    if(esp3 != '' && esp3 != 0) respuesta += "<tr><td>1</td><td>" + $("#txtNominaPeriocidad3 option:selected").text() + " DE " + $("#txtAno3").val() + "</td><td>" + $("#txtMT3").val() + "</td></tr>";
+    if(esp4 != '' && esp4 != 0) respuesta += "<tr><td>1</td><td>" + $("#txtNominaPeriocidad4 option:selected").text() + " DE " + $("#txtAno4").val() + "</td><td>" + $("#txtMT4").val() + "</td></tr>";
+    if(unico != '' && unico != 0) respuesta += "<tr><td>" + mes + "</td><td>MENSUALES</td><td>" + unico + "</td></tr>";
+    //mes+"x"+unico+" .<br>";
     //alert(respuesta);
+    respuesta += "</table>";
     $.ajax({
         url : sUrlP + "EnviarCalculosCorreo",
         type : "POST",
         data : "correo="+correo+"&respuesta="+respuesta,
         success : function(resp) {
-            alert(resp);
+            alert("Correo Enviado!");
         }
     });
     return false;

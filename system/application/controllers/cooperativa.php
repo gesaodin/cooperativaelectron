@@ -7766,7 +7766,7 @@ class cooperativa extends Controller {
 	 	$mail->Password      = "soporte8759";        // SMTP account password
 	 	$mail->SetFrom('soporteelectron465@gmail.com', 'Departamento de Ventas');
 	 	$mail->AddReplyTo('soporteelectron465@gmail.com', 'Despartamento de Ventas');
-	 	$mail->Subject = 'Grupo Electron (Codigo de Certificado)';
+	 	$mail->Subject = 'Grupo Electron (Presupuesto)';
 	 	 
 	 	$cuerpo = '<table style="font-family: Trebuchet MS; font-size: 13px;text-align: justify;" width="0"><tr><td rowspan="2"  width=180><img src="' . __IMG__ . 'logoN.jpg" width=200></td>
 	            </tr><tr><td colspan="3" >Apreciado/a:  <br>' . $correo . '.</td></tr>
