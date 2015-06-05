@@ -311,7 +311,7 @@ class MProcesar extends Model {
     
     $sQuery = "UPDATE t_cargar_txt SET procesada=1 WHERE archivo='" . $arr['txt'] . "';";
     $this->db->query($sQuery);
-     
+    
     echo "FINALIZO EL PROCESO CON EXITO";
     
   }

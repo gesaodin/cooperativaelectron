@@ -5,18 +5,18 @@ function enviar() {
     var esp1 = $("#txtMT1").val();var esp2 = $("#txtMT2").val();var esp3 = $("#txtMT3").val();var esp4 = $("#txtMT4").val();
     
     var unico = $("#txtMU").val();
-    respuesta += "<table border=1><tr><td>CUOTA</td><td>PERIOCIDAD</td><td>MONTO</td></tr>";
+    respuesta += "<table border=1><tr><td>CUOTA</td><td>PERIOCIDAD</td><td>DESCRIPCION</td><td>MONTO</td></tr>";
     
     if(esp1 != '' && esp1 != 0) 
-    	respuesta += "<tr><td>1</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad1").val())) + " DE " + $("#txtAno1").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad1").val())) + " DE " + $("#txtAno1").val() + "</td><td>" + $("#txtMT1").val() + "</td></tr>";
+    	respuesta += "<tr><td>1</td><td>MENSUAL</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad1").val())) + " DE " + $("#txtAno1").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad1").val())) + " DE " + $("#txtAno1").val() + "</td><td>" + $("#txtMT1").val() + "</td></tr>";
     if(esp2 != '' && esp2 != 0) 
-    	respuesta += "<tr><td>1</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad2").val())) + " DE " + $("#txtAno2").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad2").val())) + " DE " + $("#txtAno2").val() + "</td><td>" + $("#txtMT2").val() + "</td></tr>";
+    	respuesta += "<tr><td>1</td><td>MENSUAL</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad2").val())) + " DE " + $("#txtAno2").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad2").val())) + " DE " + $("#txtAno2").val() + "</td><td>" + $("#txtMT2").val() + "</td></tr>";
     if(esp3 != '' && esp3 != 0) 
-    	respuesta += "<tr><td>1</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad3").val())) + " DE " + $("#txtAno3").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad3").val())) + " DE " + $("#txtAno3").val() + "</td><td>" + $("#txtMT3").val() + "</td></tr>";
+    	respuesta += "<tr><td>1</td><td>MENSUAL</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad3").val())) + " DE " + $("#txtAno3").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad3").val())) + " DE " + $("#txtAno3").val() + "</td><td>" + $("#txtMT3").val() + "</td></tr>";
     if(esp4 != '' && esp4 != 0) 
-    	respuesta += "<tr><td>1</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad4").val())) + " DE " + $("#txtAno4").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad4").val())) + " DE " + $("#txtAno4").val() + "</td><td>" + $("#txtMT4").val() + "</td></tr>";
+    	respuesta += "<tr><td>1</td><td>MENSUAL</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad4").val())) + " DE " + $("#txtAno4").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad4").val())) + " DE " + $("#txtAno4").val() + "</td><td>" + $("#txtMT4").val() + "</td></tr>";
     
-    if(unico != '' && unico != 0) respuesta += "<tr><td>" + mes + "</td><td>MENSUAL DEL 1 AL 30 DE CADA MES</td><td>" + unico + "</td></tr>";
+    if(unico != '' && unico != 0) respuesta += "<tr><td>MESUALES</td><td>" + mes + "</td><td>DEL 1 AL 30 DE CADA MES</td><td>" + unico + "</td></tr>";
    
     respuesta += "</table>";
     $.ajax({
