@@ -617,6 +617,99 @@ class MVistas extends Model {
 		$esquema -> sConsulta = 'Consulta_Usuario';
 		return $esquema -> Generar();
 	}
+
+    public function recepcionDocu() {
+        $this -> load -> library('gvista/GPesquema');
+        $esquema = new GPesquema();
+
+        $docu = array("Seleccione" => "Seleccione","Cedula"=>"Cedula","Rif"=>"Rif","Constancia de Trabajo"=>"Constancia de Trabajo"
+                ,"Recibo de Pago"=>"Recibo de Pago","Estados de Cuenta"=>"Estados de Cuenta","Libreta Bancaria"=>"Libreta Bancaria"
+                ,"Cheque"=>"Cheque","Letra De Cambio"=>"Letra De Cambio","Contrato de Servicio Firmado"=>"Contrato de Servicio Firmado"
+                ,"Contrato de Domiciliacion"=>"Contrato de Domiciliacion","Autorizacion De Descuento Por Nomina"=>"Autorizacion De Descuento Por Nomina");
+
+        $esquema -> etiqueta = 'OID';
+        $esquema -> id = 'oid';
+        $esquema -> tipo = 'texto';
+        $esquema -> clave = 'index';
+        $esquema -> propiedades = array('oculto');
+        $esquema -> Asignar_Campo();
+
+
+        $esquema -> etiqueta = 'Quien Envia';
+        $esquema -> id = 'envia';
+        $esquema -> tipo = 'texto';
+        $esquema -> estilo = 'width:100%;';
+        $esquema -> propiedades = array('requerido');
+        $esquema -> Asignar_Campo();
+
+        $esquema -> etiqueta = 'Quien Recibe';
+        $esquema -> id = 'recibe';
+        $esquema -> tipo = 'texto';
+        $esquema -> estilo = 'width:100%;';
+        $esquema -> propiedades = array('requerido');
+        $esquema -> Asignar_Campo();
+
+        $esquema -> etiqueta = 'Cedula';
+        $esquema -> id = 'cedula';
+        $esquema -> tipo = 'texto';
+        $esquema -> estilo = 'width:100%;';
+        $esquema -> propiedades = array('requerido');
+        $esquema -> Asignar_Campo();
+
+        $esquema -> etiqueta = 'Nombre y Apellido';
+        $esquema -> id = 'nombre';
+        $esquema -> tipo = 'texto';
+        $esquema -> estilo = 'width:100%;';
+        $esquema -> propiedades = array('requerido');
+        $esquema -> Asignar_Campo();
+
+        $esquema -> etiqueta = 'Fecha';
+        $esquema -> id = 'fecha';
+        $esquema -> tipo = 'calendario';
+        $esquema -> estilo = 'width:100%;';
+        $esquema -> propiedades = array('requerido');
+        $esquema -> Asignar_Campo();
+
+        $esquema -> etiqueta = 'Hora';
+        $esquema -> id = 'hora';
+        $esquema -> tipo = 'texto';
+        $esquema -> estilo = 'width:100%;';
+        $esquema -> propiedades = array('requerido');
+        $esquema -> Asignar_Campo();
+
+        $esquema -> label ="Observaciones";
+        $esquema -> id = 'observacion';
+        $esquema -> tipo = 'textarea';
+        $esquema -> estilo = 'width:100%;';
+        $esquema -> Asignar_Campo();
+
+        $esquema -> etiqueta = 'Documentos';
+        $esquema -> id = 'docu';
+        $esquema -> tipo = 'combo';
+        $esquema -> elementos = $docu;
+        $esquema -> estilo = 'width:100%;';
+        $esquema -> onchange = 'agregarDocu();aling:top;';
+        $esquema -> Asignar_Campo();
+
+        $esquema -> etiqueta = 'Documentos';
+        $esquema -> id = 'docu2';
+        $esquema -> tipo = 'lista';
+        $esquema -> elementos = $docu;
+        $esquema -> estilo = 'width:100%;height: 120px;overflow: auto;';
+        $esquema -> ondblclick = "quitarDocu();";
+        $esquema -> Asignar_Campo();
+
+        $esquema -> etiqueta = 'Guardar';
+        $esquema -> id = 'btnGuardar';
+        $esquema -> tipo = 'submit';
+        $esquema -> clase = 'icon8';
+        $esquema -> Asignar_Boton();
+
+
+        $esquema -> sTitulo = 'Registrar Documentos';
+        $esquema -> sGuardar = 'guardaRecepcionDocu';
+        return $esquema -> Generar();
+    }
 	
 }
 ?>

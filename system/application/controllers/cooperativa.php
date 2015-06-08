@@ -7791,7 +7791,30 @@ class cooperativa extends Controller {
 	 		return "Mensaje enviado a:  " .  $correo . "!";
 	 	}
 	 }
-	 
+
+    /*
+     * funciones para modulo de recepcion de documentos
+     */
+    public function recepcionDocumento() {
+        if ($this->session->userdata ( 'usuario' )) {
+            $data ['Menu'] = $this->CMenu->getHtml_Menu ( $this->session->userdata ( 'nivel' ) );
+            $data ['Nivel'] = $this->session->userdata ( 'nivel' );
+            $this->load->view ( "recepcionDocumento", $data );
+        } else {
+            $this->logout ();
+        }
+    }
+
+    function GV_recepcionDocu(){
+        $this->load->model ( "vistas/mvistas", 'MVista' );
+        echo $this->MVista->recepcionDocu ();
+    }
+
+    function guardaRecepcionDocu(){
+        $this->load->model ( "recepcion/mrecepcion", 'MRecepcion' );
+        $datos = json_decode($_POST['datos'],true);
+        echo $this -> MRecepcion ->guardar($datos);
+    }
 	 
 }
 ?>

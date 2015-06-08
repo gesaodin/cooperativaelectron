@@ -86,6 +86,11 @@ class CMenu extends Model {
 
 			';
         }
+        if ($usu == 'alvaro' || $usu == 'carlos' || $usu == 'dmarisol' || $usu == 'judelvis' ) {
+            $Menu_B .= '<li class="active" ><a href="recepcionDocumento"><span>Recep. Documentos</span></a></li>
+
+			';
+        }
 		if($ubica == 'Merida (Principal)' ||$ubica == 'Merida (Interet)'){
 		$Menu_B .= '</ul>		   			
 		   </li>
