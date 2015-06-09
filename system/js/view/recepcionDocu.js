@@ -1,7 +1,6 @@
 $(function() {
     Crear();
     regresar();
-    //listar();
 });
 
 function regresar(){
@@ -21,6 +20,7 @@ function Crear() {
             vis.AsignarCeldas(3);
             vis.AsignarBotones(1);
             vis.Generar();
+            regresar();
         }
     });
     return 0;
@@ -32,24 +32,4 @@ function agregarDocu(){
 
 function quitarDocu(){
     $("#docu2 option:selected").remove().appendTo("#docu");
-}
-
-function listar(){
-    strUrl_Proceso = sUrlP + "listar_archivosAuditoria";
-    $.ajax({
-        url : strUrl_Proceso,
-        dataType : "json",
-        success : function(oBj) {//alert(oBj);
-            if(oBj.msj){
-                Grid = new TGrid(oBj, 'lista', 'Lista de descripciones');
-                Grid.SetXls(true);
-                Grid.SetNumeracion(true);
-                Grid.SetName("lista");
-                Grid.Generar();
-            }else{
-                alert("No existen archivos pendientes por procesar");
-            }
-        }
-    });
-    return 0;
 }

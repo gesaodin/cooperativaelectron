@@ -15,8 +15,17 @@ class MRecepcion extends Model {
 
     }
 
-    public function listar(){
-        $consulta = $this -> db ->  query ("SELECT *  FROM t_recepcion_documento order by modificado DESC ");
+    public function listar($arr){
+
+
+        $query = 'SELECT t_recepcion_documento.oid as oidrec,envia,recibe,t_recepcion_documento.fecha as fec,hora,cedula,nombre,observacion,descripcion,seudonimo  FROM t_recepcion_documento
+                  left join t_usuario on t_usuario.oid = t_recepcion_documento.asignado where cedula!="" ';
+        if($arr['estatus'] != 9) $query .= ' and t_recepcion_documento.estatus='.$arr['estatus'];
+        if($arr['desde'] != '' &&  $arr['hasta'] != '') $query .= ' and t_recepcion_documento.fecha Between "'.$arr['desde'].'" and "'.$arr['hasta'].'"';
+        if($arr['desde'] != '' &&  $arr['hasta'] == '') $query .= ' and t_recepcion_documento.fecha >= "'.$arr['desde'].'" ';
+        if($arr['desde'] == '' &&  $arr['hasta'] != '') $query .= ' and t_recepcion_documento.fecha <= "'.$arr['hasta'].'" ';
+        //return $query;
+        $consulta = $this -> db ->  query ($query);
         $iCantidad = $consulta -> num_rows();
         $Conexion = $consulta -> result();
 
@@ -28,13 +37,13 @@ class MRecepcion extends Model {
         $oCabezera[6] = array("titulo" => "Fecha Rec.");
         $oCabezera[7] = array("titulo" => "Hora", "atributos" => "width:100px", "buscar" => 0);
         $oCabezera[8] = array("titulo" => "Observacion", "atributos" => "width:100px");
-        $oCabezera[9] = array("titulo" => "Usuario", "atributos" => "width:100px");
+        $oCabezera[9] = array("titulo" => "Posesion", "atributos" => "width:100px");
 
         if ($iCantidad > 0) {
             $i = 0;
             foreach ($Conexion as $row) {
                 ++$i;
-                $oFil[$i] = array("1" => $row -> oid, "2" => $row -> envia, "3" => $row -> recibe, "4" => $row -> cedula, "5" => $row -> nombre, "6" => $row -> fecha, "7" => $row -> hora, "8" => $row -> observacion , "9" => usua);
+                $oFil[$i] = array("1" => $row -> oidrec, "2" => $row -> envia, "3" => $row -> recibe, "4" => $row -> cedula, "5" => $row -> nombre, "6" => $row -> fec, "7" => $row -> hora, "8" => $row -> observacion , "9" => $row -> seudonimo);
 
             }
 

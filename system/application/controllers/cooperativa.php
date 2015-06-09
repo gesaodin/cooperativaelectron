@@ -7815,6 +7815,21 @@ class cooperativa extends Controller {
         $datos = json_decode($_POST['datos'],true);
         echo $this -> MRecepcion ->guardar($datos);
     }
+
+    function estatusDocumentosRecibidos(){
+        if ($this->session->userdata ( 'usuario' )) {
+            $data ['Menu'] = $this->CMenu->getHtml_Menu ( $this->session->userdata ( 'nivel' ) );
+            $data ['Nivel'] = $this->session->userdata ( 'nivel' );
+            $this->load->view ( "estatusDocumento", $data );
+        } else {
+            $this->logout ();
+        }
+    }
+
+    function listarRecepcionDocu(){
+        $this->load->model ( "recepcion/mrecepcion", 'MRecepcion' );
+        echo $this -> MRecepcion ->listar($_POST);
+    }
 	 
 }
 ?>
