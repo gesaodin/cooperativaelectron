@@ -16,7 +16,7 @@ function enviar() {
     if(esp4 != '' && esp4 != 0) 
     	respuesta += "<tr><td>1</td><td>MENSUAL</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad4").val())) + " DE " + $("#txtAno4").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad4").val())) + " DE " + $("#txtAno4").val() + "</td><td>" + $("#txtMT4").val() + "</td></tr>";
     
-    if(unico != '' && unico != 0) respuesta += "<tr><td>MESUALES</td><td>" + mes + "</td><td>DEL 1 AL 30 DE CADA MES</td><td>" + unico + "</td></tr>";
+    if(unico != '' && unico != 0) respuesta += "<tr><td>" + mes + "</td><td>MESUALES</td><td>DEL 1 AL 30 DE CADA MES</td><td>" + unico + "</td></tr>";
    
     respuesta += "</table>";
     $.ajax({
