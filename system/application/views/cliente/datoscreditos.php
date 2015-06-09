@@ -39,7 +39,7 @@
 			</select>
 			<select name="txtAnoC"	id="txtAnoC"style="width: 60px;">
 				<option value=0>A&ntilde;o:</option>
-				<?php 	for($i = 2012; $i <= 2015; $i++){		?>
+				<?php 	for($i = 2012; $i <= 2017; $i++){		?>
 					<option value='<?php echo $i ?>'><?php echo $i ?></option>
 				<?php	}	?>
 			</select>
