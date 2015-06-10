@@ -625,7 +625,7 @@ class MVistas extends Model {
         $docu = array("Seleccione" => "Seleccione","Cedula"=>"Cedula","Rif"=>"Rif","Constancia de Trabajo"=>"Constancia de Trabajo"
                 ,"Recibo de Pago"=>"Recibo de Pago","Estados de Cuenta"=>"Estados de Cuenta","Libreta Bancaria"=>"Libreta Bancaria"
                 ,"Cheque"=>"Cheque","Letra De Cambio"=>"Letra De Cambio","Contrato de Servicio Firmado"=>"Contrato de Servicio Firmado"
-                ,"Contrato de Domiciliacion"=>"Contrato de Domiciliacion","Autorizacion De Descuento Por Nomina"=>"Autorizacion De Descuento Por Nomina");
+                ,"Contrato de Domiciliacion"=>"Contrato de Domiciliacion","Autorizacion De Descuento Por Nomina"=>"Autorizacion De Descuento Por Nomina","Factura Presupuesto"=>"Factura Presupuesto");
 
         $esquema -> etiqueta = 'OID';
         $esquema -> id = 'oid';
