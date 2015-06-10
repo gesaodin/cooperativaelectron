@@ -4379,13 +4379,6 @@ class cooperativa extends Controller {
 			$this->login ();
 		}
 	}
-    public function CCalculosCorreo() {
-        if ($this->session->userdata ( 'usuario' )) {
-            $this->load->view ( "calculocorreo" );
-        } else {
-            $this->login ();
-        }
-    }
 	public function CCalculos_Nuevo() {
 		if ($this->session->userdata ( 'usuario' )) {
 			$this->load->model ( 'CNomina' );
@@ -7743,54 +7736,6 @@ class cooperativa extends Controller {
 
 		
 	 }
-	 
-	 /**
-	  * Enviar Calculos a correo electronico
-	  */
-	 function EnviarCalculosCorreo(){
-	 	$correo = $_POST['correo'];
-	 	$respuesta = $_POST['respuesta'];
-	 	//error_reporting(E_STRICT);
-	 	require_once('system/application/libraries/PHPMail/class.phpmailer.php');
-	 	$mail = new PHPMailer();
-	 	$body                ='';
-	 	$mail->IsSMTP(); 							  // telling the class to use SMTP	 	 
-	 	$mail->SMTPDebug  = 1;						  //
-	 	$mail->Host          = "smtp.gmail.com";      //
-	 	$mail->SMTPSecure = "tls";					  //	
-	 	$mail->SMTPAuth      = true;                  // enable SMTP authentication
-	 	$mail->SMTPKeepAlive = true;                  // SMTP connection will not close after each email sent
-	 	 
-	 	$mail->Port          = 587;
-	 	$mail->Username      = "soporteelectron465@gmail.com"; // SMTP account username
-	 	$mail->Password      = "soporte8759";        // SMTP account password
-	 	$mail->SetFrom('soporteelectron465@gmail.com', 'Departamento de Ventas');
-	 	$mail->AddReplyTo('soporteelectron465@gmail.com', 'Despartamento de Ventas');
-	 	$mail->Subject = 'Grupo Electron (Presupuesto)';
-	 	 
-	 	$cuerpo = '<table style="font-family: Trebuchet MS; font-size: 13px;text-align: justify;" width="0"><tr><td rowspan="2"  width=180><img src="' . __IMG__ . 'logoN.jpg" width=200></td>
-	            </tr><tr><td colspan="3" >Apreciado/a:  <br>' . $correo . '.</td></tr>
-	            <tr><td colspan="4">Recibe un caluroso saludo de parte de Grupo Electrón, mediante la presente te notificamos que ha sido enviado el
-	            plan de pago.<br><br>
-	            <h2><center><font color="#0070A3">'. $respuesta . '</font></center></h2><br><br>	            			            		
-	            </td>
-	          </tr><tr><td colspan="4">Si tienes alguna pregunta o si necesitas alguna asistencia con respecto a esta comunicación, tienes a tu 
-	            		disposición a nuestro equipo de atenci&oacute;n al cliente a través del número </td></tr>
-	          <tr><td colspan="4"><hr></hr><small>Muchas gracias por ser parte de la comunidad Electr&oacute;n 465.
-				Esta comunicación forma parte básica de nuestro programa de atención al cliente. Si no desea seguir recibiendo este tipo de comunicaciones.
-				Electrón 465 se compromete firmemente a respetar su privacidad. No compartimos su información con ningún tercero sin su consentimiento.</small>
-	          </td></tr></table>';
-	 	
-	 	$mail->AltBody    = "Texto Alternativo"; // optional, comment out and test
-	 	$mail->MsgHTML($cuerpo);
-	 	$address = $correo;
-	 	$mail->AddAddress($correo, "Plan de Pago");
-	 	if(!$mail->Send()) {
-	 		return "Error al enviar: " . $mail->ErrorInfo;
-	 	} else {
-	 		return "Mensaje enviado a:  " .  $correo . "!";
-	 	}
-	 }
 
     /*
      * funciones para modulo de recepcion de documentos
@@ -7830,6 +7775,74 @@ class cooperativa extends Controller {
         $this->load->model ( "recepcion/mrecepcion", 'MRecepcion' );
         echo $this -> MRecepcion ->listar($_POST);
     }
-	 
+
+
+
+    /*
+     * funciones para presupuestos enviados por correo
+     */
+    public function CCalculosCorreo() {
+        if ($this->session->userdata ( 'usuario' )) {
+            $this->load->view ( "calculocorreo" );
+        } else {
+            $this->login ();
+        }
+    }
+
+    public function presupuestoCorreo() {
+        if ($this->session->userdata ( 'usuario' )) {
+            $this->load->view ( "presupuestos/presuConTotal" );
+        } else {
+            $this->login ();
+        }
+    }
+
+    /**
+     * Enviar Calculos a correo electronico
+     */
+    function EnviarCalculosCorreo(){
+        $correo = $_POST['correo'];
+        $respuesta = $_POST['respuesta'];
+        //error_reporting(E_STRICT);
+        require_once('system/application/libraries/PHPMail/class.phpmailer.php');
+        $mail = new PHPMailer();
+        $body                ='';
+        $mail->IsSMTP(); 							  // telling the class to use SMTP
+        $mail->SMTPDebug  = 1;						  //
+        $mail->Host          = "smtp.gmail.com";      //
+        $mail->SMTPSecure = "tls";					  //
+        $mail->SMTPAuth      = true;                  // enable SMTP authentication
+        $mail->SMTPKeepAlive = true;                  // SMTP connection will not close after each email sent
+
+        $mail->Port          = 587;
+        $mail->Username      = "soporteelectron465@gmail.com"; // SMTP account username
+        $mail->Password      = "soporte8759";        // SMTP account password
+        $mail->SetFrom('soporteelectron465@gmail.com', 'Departamento de Ventas');
+        $mail->AddReplyTo('soporteelectron465@gmail.com', 'Despartamento de Ventas');
+        $mail->Subject = 'Grupo Electron (Presupuesto)';
+
+        $cuerpo = '<table style="font-family: Trebuchet MS; font-size: 13px;text-align: justify;" width="0"><tr><td rowspan="2"  width=180><img src="' . __IMG__ . 'logoN.jpg" width=200></td>
+	            </tr><tr><td colspan="3" >Apreciado/a:  <br>' . $correo . '.</td></tr>
+	            <tr><td colspan="4">Recibe un caluroso saludo de parte de Grupo Electrón, mediante la presente te notificamos que ha sido enviado el
+	            plan de pago.<br><br>
+	            <h2><center><font color="#0070A3">'. $respuesta . '</font></center></h2><br><br>
+	            </td>
+	          </tr><tr><td colspan="4">Si tienes alguna pregunta o si necesitas alguna asistencia con respecto a esta comunicación, tienes a tu
+	            		disposición a nuestro equipo de atenci&oacute;n al cliente a través del número </td></tr>
+	          <tr><td colspan="4"><hr></hr><small>Muchas gracias por ser parte de la comunidad Electr&oacute;n 465.
+				Esta comunicación forma parte básica de nuestro programa de atención al cliente. Si no desea seguir recibiendo este tipo de comunicaciones.
+				Electrón 465 se compromete firmemente a respetar su privacidad. No compartimos su información con ningún tercero sin su consentimiento.</small>
+	          </td></tr></table>';
+
+        $mail->AltBody    = "Texto Alternativo"; // optional, comment out and test
+        $mail->MsgHTML($cuerpo);
+        $address = $correo;
+        $mail->AddAddress($correo, "Plan de Pago");
+        if(!$mail->Send()) {
+            return "Error al enviar: " . $mail->ErrorInfo;
+        } else {
+            return "Mensaje enviado a:  " .  $correo . "!";
+        }
+    }
 }
 ?>

@@ -83,6 +83,7 @@ class CMenu extends Model {
 		}
         if ($usu == 'alvaro' || $usu == 'carlos' || $usu == 'alvaroz' || $usu == 'judelvis' || $ubica == 'Merida (Principal)' ||$ubica == 'Merida (Interet)') {
             $Menu_B .= '<li class="active" ><a href="#" Onclick="N_Ventana(\'ccalculosCorreo\')"><span>Calculo Correo</span></a></li>
+                        <li class="active" ><a href="#" Onclick="N_Ventana(\'presupuestoCorreo\')"><span>Presupuesto Correo</span></a></li>
                         <li class="active" ><a href="estatusDocumentosRecibidos"><span>Estatus Documentos</span></a></li>
 			';
         }

@@ -3,38 +3,23 @@
 
     <link href="<?php echo __CSS__ ?>imprimir.css" rel="stylesheet" type="text/css" media="print"/>
     <?php $this -> load -> view("incluir/cabezera.php"); ?>
-    <script type="text/javascript" src="<?php echo __JSVIEW__ ?>view/ccalculocorreo.js"></script>
+    <script type="text/javascript" src="<?php echo __JSVIEW__ ?>view/presucorreo.js"></script>
 </head>
 <body style="background-color: #FFFACD;">
 <center>
     <br><h2>PRESUPUESTO</h2><br>
 
     <center>
-        <form action="<?php echo __LOCALWWW__?>/index.php/cooperativa/buzon" method="POST" onsubmit="return enviar();">
+        <form action="#" method="POST" onsubmit="return enviar();">
             <table>
                 <tr>
-                    <td align="left"><label id="lblProforma"> Monto Proforma &nbsp;</label></td>
-                    <td align="left"><label id="lblPresupuesto"> Monto Aprobado  &nbsp;</label></td>
-                    <td align="left"><label id="lblTipoplan"> Plan De Credito &nbsp;</label></td>
+                    <td align="left"><label id="lblPresupuesto"> Monto total</label></td>
                 </tr>
                 <tr>
                     <td>
                         <div class="ui-widget">
-                            <input  type="text" value="" name="txtProforma" id="txtProforma" class="inputxt" style="width: 150px;" />
-                        </div>
-                    </td>
-
-                    <td>
-                        <div class="ui-widget">
                             <input  type="text" value="" name="txtCalculo" id="txtCalculo" class="inputxt" style="width: 150px;"  />
                         </div>
-                    </td>
-                    <td>
-                        <select id='plan' name='plan' >
-                            <option value=12 selected="selected">Basico</option>
-                            <option value=10>Especial</option>
-                            <option value=9>Super Especial</option>
-                        </select>
                     </td>
                     <td>
                         <input type="button" class="inputxt" value='Calcular' id='btnCalcular' onclick="verificar_montos();"/>
@@ -63,16 +48,15 @@
             <table border=1 cellspacing=0 celladding=0 style="	color: #333333;	width: 80%; border: 1px solid #CCCCCC;">;
                 <tr bgcolor="#CCCCCC">
                     <td style="font-size: 14px; width:500px">
-                        <select onchange="crea_combos(this.value);Asignar(this.value);Calcular_Total();" id="cmbMeses" name="cmbMeses">
+                        <select onchange="crea_combos(this.value);Calcular_Total();" id="cmbMeses" name="cmbMeses">
 
                             <?php
-                            for ($i = 6; $i <= 20; $i++) {
+                            for ($i = 6; $i <= 36; $i++) {
                                 echo '<option value=' . $i . '>' . $i . ' MESES</option>';
                             }
                             ?>
                         </select>
                     </td>
-                    <td style="font-size: 14px;"><div id="monto_aux" name="monto_aux">0.00 Bs.</div></td>
                 </tr>
             </table>
         </div>
@@ -80,7 +64,6 @@
         <font style='font-size:20px; '><b><label id='lblPlan'>PLAN DE PAGO</label></b></font><BR>
         <input type=hidden value="" name="txtMonto" id="txtMonto" />
         <input type=hidden value="" name="txtCuotas" id="txtCuotas"/>
-        <input type="hidden" value="" name="txtCed" id="txtCed" class="inputxt"   style="width: 220px;"/>
         <table>
             <tr><td style="width: 240px">DESCRIPCI&Oacute;N</td><td style="width: 100px">CUOTAS</td><td style="width: 150px">MONTO</td></tr>
             <tr><td>
