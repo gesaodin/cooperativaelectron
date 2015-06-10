@@ -99,7 +99,7 @@ function Calcular_Total() {
     ct = Math.round(monto_final / valor);
     $('#txtMU').val(ct)
     //HABILITA CAJA DE CUOTA MENSUAL
-    $('#txtMU').attr("disabled", false);
+    //$('#txtMU').attr("disabled", false);
 
     monto_n = ct * valor;
     $("#txtMTU").val(monto_n);

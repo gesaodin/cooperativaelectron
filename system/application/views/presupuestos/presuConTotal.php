@@ -185,7 +185,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <input  type="text" value="" name="txtMU" id="txtMU" class="inputxt" disabled="disabled" style="width: 70px; " />
+                    <input  type="text" value="" name="txtMU" id="txtMU" class="inputxt"  disabled="disabled" style="width: 70px; " />
                 </td>
                 <td>
                     <input  type="text" value="" name="txtMTU" id="txtMTU" class="inputxt" disabled="disabled" />
