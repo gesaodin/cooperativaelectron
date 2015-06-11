@@ -7825,7 +7825,7 @@ class cooperativa extends Controller {
 	            </tr><tr><td colspan="3" >Apreciado/a:  <br>' . $correo . '.</td></tr>
 	            <tr><td colspan="4">Recibe un caluroso saludo de parte de Grupo Electrón, mediante la presente te notificamos que ha sido enviado el
 	            plan de pago.<br><br>
-	            <h2><center><font color="#0070A3">'. $respuesta . '</font></center></h2><br><br>
+	            <h2><center><font color="#0070A3">'. $respuesta . '</font></center></h2><br><b>Monto Total Del Credito:'.$_POST['montoT'].'</b><br>
 	            </td>
 	          </tr><tr><td colspan="4">Si tienes alguna pregunta o si necesitas alguna asistencia con respecto a esta comunicación, tienes a tu
 	            		disposición a nuestro equipo de atenci&oacute;n al cliente a través del número </td></tr>
