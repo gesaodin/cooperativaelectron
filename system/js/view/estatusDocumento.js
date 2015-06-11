@@ -34,8 +34,8 @@ function listar(){
     var estatus = $("#estatus option:selected").val();
     var desde = $("#desde").val();
     var hasta = $("#hasta").val();
-
     strUrl_Proceso = sUrlP + "listarRecepcionDocu";
+    //alert(strUrl_Proceso);
     $.ajax({
         url : strUrl_Proceso,
         type : "POST",

@@ -7773,9 +7773,16 @@ class cooperativa extends Controller {
 
     function listarRecepcionDocu(){
         $this->load->model ( "recepcion/mrecepcion", 'MRecepcion' );
+        //echo "pasa";
         echo $this -> MRecepcion ->listar($_POST);
     }
 
+    function aceptarEstatusDocu(){
+        $datos = json_decode($_POST['objeto'],true);
+        //print_R($datos);
+        $this->load->model ( "recepcion/mrecepcion", 'MRecepcion' );
+        echo $this -> MRecepcion -> aceptarEstatusDocu($datos);
+    }
 
 
     /*
