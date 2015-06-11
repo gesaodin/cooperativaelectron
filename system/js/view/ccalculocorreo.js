@@ -27,7 +27,7 @@ function enviar() {
 
     if(unico != '' && unico != 0) respuesta += "<tr><td>" + mes + "</td><td>MESUALES</td><td>DEL 1 AL 30 DE CADA MES</td><td>" + unico + "</td><td>" + (unico*parseInt(mes)) + "</td></tr>";
 
-    respuesta += "</table><br><b>Monto Total Del Credito:"+formatoNumero(montoT,'BS')+"</b>";
+    respuesta += "</table><br><b>Monto Total Del Credito:"+montoT+" BS</b>";
     $.ajax({
         url : sUrlP + "EnviarCalculosCorreo",
         type : "POST",
