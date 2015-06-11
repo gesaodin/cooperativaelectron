@@ -3,22 +3,30 @@ function enviar() {
     var respuesta = '<h1>PRESUPUESTO DE CREDITO<br>PLAN DE PAGO</h1>';
     var mes = $("#cmbMeses").val();
     var esp1 = $("#txtMT1").val();var esp2 = $("#txtMT2").val();var esp3 = $("#txtMT3").val();var esp4 = $("#txtMT4").val();
-
+    var montoT = unico*parseInt(mes);
     var unico = $("#txtMU").val();
-    respuesta += "<table border=1><tr><td>CUOTA</td><td>PERIOCIDAD</td><td>DESCRIPCION</td><td>MONTO</td></tr>";
+    respuesta += "<table border=1><tr><td>CUOTA</td><td>PERIOCIDAD</td><td>DESCRIPCION</td><td>MONTO</td><td>TOTAL</td></tr>";
 
-    if(esp1 != '' && esp1 != 0)
-        respuesta += "<tr><td>1</td><td>MENSUAL</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad1").val())) + " DE " + $("#txtAno1").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad1").val())) + " DE " + $("#txtAno1").val() + "</td><td>" + $("#txtMT1").val() + "</td></tr>";
-    if(esp2 != '' && esp2 != 0)
-        respuesta += "<tr><td>1</td><td>MENSUAL</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad2").val())) + " DE " + $("#txtAno2").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad2").val())) + " DE " + $("#txtAno2").val() + "</td><td>" + $("#txtMT2").val() + "</td></tr>";
-    if(esp3 != '' && esp3 != 0)
-        respuesta += "<tr><td>1</td><td>MENSUAL</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad3").val())) + " DE " + $("#txtAno3").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad3").val())) + " DE " + $("#txtAno3").val() + "</td><td>" + $("#txtMT3").val() + "</td></tr>";
-    if(esp4 != '' && esp4 != 0)
-        respuesta += "<tr><td>1</td><td>MENSUAL</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad4").val())) + " DE " + $("#txtAno4").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad4").val())) + " DE " + $("#txtAno4").val() + "</td><td>" + $("#txtMT4").val() + "</td></tr>";
+    if(esp1 != '' && esp1 != 0){
+        respuesta += "<tr><td>1</td><td>MENSUAL</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad1").val())) + " DE " + $("#txtAno1").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad1").val())) + " DE " + $("#txtAno1").val() + "</td><td>" + $("#txtMT1").val() + "</td><td>" + $("#txtMT1").val() + "</td></tr>";
+        montoT= montoT + $("#txtMT1").val();
+    }
+    if(esp2 != '' && esp2 != 0) {
+        respuesta += "<tr><td>1</td><td>MENSUAL</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad2").val())) + " DE " + $("#txtAno2").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad2").val())) + " DE " + $("#txtAno2").val() + "</td><td>" + $("#txtMT2").val() + "</td><td>" + $("#txtMT2").val() + "</td></tr>";
+        montoT= montoT + $("#txtMT2").val();
+    }
+    if(esp3 != '' && esp3 != 0) {
+        respuesta += "<tr><td>1</td><td>MENSUAL</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad3").val())) + " DE " + $("#txtAno3").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad3").val())) + " DE " + $("#txtAno3").val() + "</td><td>" + $("#txtMT3").val() + "</td><td>" + $("#txtMT3").val() + "</td></tr>";
+        montoT= montoT + $("#txtMT3").val();
+    }
+    if(esp4 != '' && esp4 != 0) {
+        respuesta += "<tr><td>1</td><td>MENSUAL</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad4").val())) + " DE " + $("#txtAno4").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad4").val())) + " DE " + $("#txtAno4").val() + "</td><td>" + $("#txtMT4").val() + "</td><td>" + $("#txtMT4").val() + "</td></tr>";
+        montoT= montoT + $("#txtMT4").val();
+    }
 
-    if(unico != '' && unico != 0) respuesta += "<tr><td>" + mes + "</td><td>MESUALES</td><td>DEL 1 AL 30 DE CADA MES</td><td>" + unico + "</td></tr>";
+    if(unico != '' && unico != 0) respuesta += "<tr><td>" + mes + "</td><td>MESUALES</td><td>DEL 1 AL 30 DE CADA MES</td><td>" + unico + "</td><td>" + (unico*parseInt(mes)) + "</td></tr>";
 
-    respuesta += "</table>";
+    respuesta += "</table><br><b>Monto Total Del Credito:"+formatoNumero(montoT,'BS')+"</b>";
     $.ajax({
         url : sUrlP + "EnviarCalculosCorreo",
         type : "POST",
