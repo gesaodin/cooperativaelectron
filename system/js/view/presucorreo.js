@@ -3,8 +3,9 @@ function enviar() {
     var respuesta = '<h1>PRESUPUESTO DE CREDITO<br>PLAN DE PAGO</h1>';
     var mes = $("#cmbMeses").val();
     var esp1 = $("#txtMT1").val();var esp2 = $("#txtMT2").val();var esp3 = $("#txtMT3").val();var esp4 = $("#txtMT4").val();
-    var montoT = parseInt(unico)*parseInt(mes);
+
     var unico = $("#txtMU").val();
+    var montoT = parseInt(unico)*parseInt(mes);
     respuesta += "<table border=1><tr><td>CUOTA</td><td>PERIOCIDAD</td><td>DESCRIPCION</td><td>MONTO</td><td>TOTAL</td></tr>";
 
     if(esp1 != '' && esp1 != 0){
