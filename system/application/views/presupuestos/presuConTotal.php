@@ -6,6 +6,10 @@
     <script type="text/javascript" src="<?php echo __JSVIEW__ ?>view/presucorreo.js"></script>
 </head>
 <body style="background-color: #FFFACD;">
+<div class="cajaexterna">
+    <div id="cargando" class="cajacentrada"><img src="<?php echo __IMG__?>loading.gif"/></div>
+    <div id="resp" class="cajacentrada"></div>
+</div>
 <center>
     <br><h2>PRESUPUESTO</h2><br>
 
@@ -192,5 +196,52 @@
                 </td>
             </tr>
         </table>
+        <style>
+            .cajacentrada {
+                margin: 280px auto;
+                text-align: center;
+                padding: 1em;
+            }
+
+            .cajaexterna {
+                background-color: rgba(0, 0, 0, 0.5);
+                bottom: 0;
+                display: none;
+                left: 0;
+                overflow: auto;
+                position: fixed;
+                right: 0;
+                top: 0;
+                z-index: 1000;
+            }
+            .cerrar {
+                text-align:center;
+                color: green;
+                padding: 9px 24px;
+                font-size: 16px;
+                cursor: pointer;
+                font-weight: 700;
+                border-radius: 5px;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                -o-border-radius: 5px;
+                -ms-border-radius: 5px;
+                border: 2px solid #282828;
+                background: #fff;
+                margin-left: 35%;
+                margin-right:35%;
+                width: auto;
+            }
+            .banner1 {
+                background: url(../images/banner.png) no-repeat;
+                background-size: 100% 100%;
+                -webkit-background-size: 100% 100%;
+                -moz-background-size: 100% 100%;
+                -o-background-size: 100% 100%;
+                -ms-background-size: 100% 100%;
+                min-height: 350px;
+            }
+
+        </style>
 </body>
 </html>

@@ -29,15 +29,22 @@ function enviar() {
     if(unico != '' && unico != 0) respuesta += "<tr><td>" + mes + "</td><td>MESUALES</td><td>DEL 1 AL 30 DE CADA MES</td><td>" + unico + "</td><td>" + (unico*parseInt(mes)) + "</td></tr>";
 
     respuesta += "</table>";
+    $(".cajaexterna").show();
+    $("#cargando").show();
     $.ajax({
         url : sUrlP + "EnviarCalculosCorreo",
         type : "POST",
         data : "correo="+correo+"&respuesta="+respuesta+"&montoT="+montoT,
         success : function(resp) {
-            alert("Correo Enviado!");
+            //alert("Correo Enviado!");
+            $("#cargando").hide();
+            $('#resp').html('<div class="banner1"><h1>'+resp+'</h1></div><div class="cerrar"><a href="#" onclick="ocultar()" class="cerrarmodal">Cerrar</a></div>');
         }
     });
     return false;
+}
+function ocultar(){
+    $(".cajaexterna").hide();
 }
 
 function MesTexto(id){
