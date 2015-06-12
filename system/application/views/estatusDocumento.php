@@ -42,7 +42,7 @@
             <td>
                 <select name="tipo" id="tipo"  style="width: 400px;" >
                     <option value=9>TODOS</option>
-                    <option value=0>SOLICITUD</option>
+                    <option value=2>SOLICITUD</option>
                     <option value=1>LIQUIDADOS</option>
                 </select></td>
         </tr>
