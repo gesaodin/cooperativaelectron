@@ -51,7 +51,7 @@ class MRecepcion extends Model {
         $oCabezera[12] = array("titulo" => "Posesion", "atributos" => "width:100px");
         if($arr['estatus'] == 0 && ($usu == 0 || $usu == 27 || $usu == 28)){
             $oCabezera[12]['tipo'] = "combo";
-            $oCabezera[13] = array("titulo" => "AC", "tipo" => "bimagen", "funcion" => 'aceptarEstatusDocu', "parametro" => "1,3,11", "ruta" => __IMG__ . "botones/aceptar1.png", "atributos" => "width:10px");
+            $oCabezera[13] = array("titulo" => "AC", "tipo" => "bimagen", "funcion" => 'aceptarEstatusDocu', "parametro" => "1,3,12", "ruta" => __IMG__ . "botones/aceptar1.png", "atributos" => "width:10px");
             $oCabezera[14] = array("titulo" => "AN", "tipo" => "bimagen", "funcion" => 'anularEstatusDocu', "parametro" => "1", "ruta" => __IMG__ . "botones/quitar.png", "atributos" => "width:10px");
         }
 
