@@ -99,7 +99,7 @@ class MRecepcion extends Model {
         $this -> db -> insert("t_recepcion_documento",$datos);
         $id = $this -> db -> insert_id();
         foreach($documentos as $doc){
-            $query ="insert into t_it_recepcion_documentos(oidRec,docu,usua,tipo) values(".$id.",'".$doc."',".$datos['usua'].",".$datos['tipo'].")";
+            $query ="insert into t_it_recepcion_documentos(oidRec,docu,usua) values(".$id.",'".$doc."',".$datos['usua'].")";
             $this -> db -> query($query);
         }
         return "Se registro Con Exito";
