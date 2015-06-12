@@ -31,8 +31,19 @@
                     <option value=9>TODOS</option>
                     <option value=0>Recibido</option>
                     <option value=1>Entregado a Analista</option>
-                    <option value=2>Procesado</option>
+                    <option value=2>Procesado/Entregados</option>
                     <option value=3>Rechazado</option>
+                    <option value=4>Anulados</option>
+                    <option value=5>Publicidad</option>
+                </select></td>
+        </tr>
+        <tr>
+            <td style="width: 140px;">Tipo Documentos:</td>
+            <td>
+                <select name="tipo" id="tipo"  style="width: 400px;" >
+                    <option value=9>TODOS</option>
+                    <option value=0>SOLICITUD</option>
+                    <option value=1>LIQUIDADOS</option>
                 </select></td>
         </tr>
         <tr>

@@ -626,6 +626,7 @@ class MVistas extends Model {
                 ,"Recibo de Pago"=>"Recibo de Pago","Estados de Cuenta"=>"Estados de Cuenta","Libreta Bancaria"=>"Libreta Bancaria"
                 ,"Cheque"=>"Cheque","Letra De Cambio"=>"Letra De Cambio","Contrato de Servicio Firmado"=>"Contrato de Servicio Firmado"
                 ,"Contrato de Domiciliacion"=>"Contrato de Domiciliacion","Autorizacion De Descuento Por Nomina"=>"Autorizacion De Descuento Por Nomina","Factura Presupuesto"=>"Factura Presupuesto");
+        $tipo = array("1"=>"POR SOLICITUD","2"=>"LIQUIDADOS","0"=>"TIPO DE DOCUMENTACION");
 
         $esquema -> etiqueta = 'OID';
         $esquema -> id = 'oid';
@@ -680,6 +681,13 @@ class MVistas extends Model {
         $esquema -> label ="Observaciones";
         $esquema -> id = 'observacion';
         $esquema -> tipo = 'textarea';
+        $esquema -> estilo = 'width:100%;';
+        $esquema -> Asignar_Campo();
+
+        $esquema -> etiqueta = 'Tipo Documentacion';
+        $esquema -> id = 'tipo';
+        $esquema -> tipo = 'combo';
+        $esquema -> elementos = $tipo;
         $esquema -> estilo = 'width:100%;';
         $esquema -> Asignar_Campo();
 

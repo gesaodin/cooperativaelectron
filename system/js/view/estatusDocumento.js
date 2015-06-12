@@ -32,6 +32,7 @@ $(function() {
 
 function listar(){
     var estatus = $("#estatus option:selected").val();
+    var tipo = $("#tipo option:selected").val();
     var desde = $("#desde").val();
     var hasta = $("#hasta").val();
     strUrl_Proceso = sUrlP + "listarRecepcionDocu";
@@ -39,7 +40,7 @@ function listar(){
     $.ajax({
         url : strUrl_Proceso,
         type : "POST",
-        data:"estatus="+estatus+"&desde="+desde+"&hasta="+hasta,
+        data:"estatus="+estatus+"&desde="+desde+"&hasta="+hasta+"&tipo="+tipo,
         dataType : "json",
         success : function(oBj) {//alert(oBj);
             if(oBj.msj){
