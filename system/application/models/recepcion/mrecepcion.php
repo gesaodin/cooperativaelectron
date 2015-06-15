@@ -34,7 +34,7 @@ class MRecepcion extends Model {
         if($arr['desde'] != '' &&  $arr['hasta'] == '') $query .= ' and t_recepcion_documento.fecha >= "'.$arr['desde'].'" ';
         if($arr['desde'] == '' &&  $arr['hasta'] != '') $query .= ' and t_recepcion_documento.fecha <= "'.$arr['hasta'].'" ';
         if($arr['tipo'] != 9 ) $query .= ' and t_recepcion_documento.tipo = '.$arr['tipo'];
-        if($usu != 0 && $usu !=27 && $usu != 28) $query .= ' and asignado='.$usu;
+        if($usu != 0 && $usu !=27 && $usu != 28 && $arr['estatus'] != 9) $query .= ' and asignado='.$usu;
         //return $query;
         $consulta = $this -> db ->  query ($query);
         $iCantidad = $consulta -> num_rows();
