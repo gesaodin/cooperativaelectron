@@ -24,8 +24,11 @@ class MRecepcion extends Model {
             $arrUb[$ub->uoid] = $ub->descripcion;
         }
         $obj[12] = $arrUb;
-        $query = 'SELECT t_recepcion_documento.oid as oidrec,envia,recibe,t_recepcion_documento.fecha as fec,hora,cedula,nombre,observacion,descripcion,seudonimo,t_recepcion_documento.tipo as tip  FROM t_recepcion_documento
-                  left join t_usuario on t_usuario.oid = t_recepcion_documento.asignado where cedula!="" ';
+        $query = 'SELECT t_recepcion_documento.oid as oidrec,envia,recibe,t_recepcion_documento.fecha as fec,hora,cedula,nombre,observacion,descripcion,seudonimo,
+        case t_recepcion_documento.tipo when 1 then "LIQUIDADOS" when 2 then  "SOLICITUD" end as tip,
+        case t_recepcion_documento.estatus when 0 then "RECIBIDO" when 1 then  "ENT. ANALISTA" when 2 then "PROCESADO/ENTREGADO" when 3 then "RECHAZADO" when 4 then "ANULADO" when 5 then "PUBLICIDAD" end as est
+        FROM t_recepcion_documento
+                  left join t_usuario on t_usuario.oid = t_recepcion_documento.asignado where cedula!=""';
         if($arr['estatus'] != 9) $query .= ' and t_recepcion_documento.estatus='.$arr['estatus'];
         if($arr['desde'] != '' &&  $arr['hasta'] != '') $query .= ' and t_recepcion_documento.fecha Between "'.$arr['desde'].'" and "'.$arr['hasta'].'"';
         if($arr['desde'] != '' &&  $arr['hasta'] == '') $query .= ' and t_recepcion_documento.fecha >= "'.$arr['desde'].'" ';
@@ -49,10 +52,16 @@ class MRecepcion extends Model {
         $oCabezera[10] = array("titulo" => "Hora", "atributos" => "width:100px", "buscar" => 0);
         $oCabezera[11] = array("titulo" => "Observacion", "atributos" => "width:100px");
         $oCabezera[12] = array("titulo" => "Posesion", "atributos" => "width:100px");
+        $oCabezera[13] = array("titulo" => "Estatus", "atributos" => "width:100px");
         if($arr['estatus'] == 0 && ($usu == 0 || $usu == 27 || $usu == 28)){
             $oCabezera[12]['tipo'] = "combo";
-            $oCabezera[13] = array("titulo" => "AC", "tipo" => "bimagen", "funcion" => 'aceptarEstatusDocu', "parametro" => "1,3,12", "ruta" => __IMG__ . "botones/aceptar1.png", "atributos" => "width:10px");
-            $oCabezera[14] = array("titulo" => "AN", "tipo" => "bimagen", "funcion" => 'anularEstatusDocu', "parametro" => "1", "ruta" => __IMG__ . "botones/quitar.png", "atributos" => "width:10px");
+            $oCabezera[14] = array("titulo" => "AC", "tipo" => "bimagen", "funcion" => 'aceptarEstatusDocu', "parametro" => "1,3,12", "ruta" => __IMG__ . "botones/aceptar1.png", "atributos" => "width:10px");
+            $oCabezera[15] = array("titulo" => "AN", "tipo" => "bimagen", "funcion" => 'anularEstatusDocu', "parametro" => "1", "ruta" => __IMG__ . "botones/quitar.png", "atributos" => "width:10px");
+        }
+        if($arr['estatus'] == 1){
+            //$oCabezera[11]['tipo'] = "textarea";
+            $oCabezera[14] = array("titulo" => "AC", "tipo" => "bimagen", "funcion" => 'aceptarEstatusDocu', "parametro" => "1,3", "ruta" => __IMG__ . "botones/aceptar1.png", "atributos" => "width:10px");
+            $oCabezera[15] = array("titulo" => "RC", "tipo" => "bimagen", "funcion" => 'rechazarEstatusDocu', "parametro" => "1", "ruta" => __IMG__ . "botones/quitar.png", "atributos" => "width:10px");
         }
 
         if ($iCantidad > 0) {
@@ -60,10 +69,14 @@ class MRecepcion extends Model {
             foreach ($Conexion as $row) {
                 ++$i;
                 $oFil[$i] = array("1" => $row -> oidrec,"2"=>"","3"=>$arr['estatus'] ,"4" => $row -> envia, "5" => $row -> recibe, "6"=>$row->tip,"7" => $row -> cedula, "8" => $row -> nombre,
-                    "9" => $row -> fec, "10" => $row -> hora, "11" => $row -> observacion , "12" => $row -> descripcion);
+                    "9" => $row -> fec, "10" => $row -> hora, "11" => $row -> observacion , "12" => $row -> descripcion,"13"=>$row -> est);
                 if($arr['estatus'] == 0 && ($usu == 0 || $usu == 27 || $usu == 28)){
-                    $oFil[$i]["13"] = "";
                     $oFil[$i]["14"] = "";
+                    $oFil[$i]["15"] = "";
+                }
+                if($arr['estatus'] == 1){
+                    $oFil[$i]["14"] = "";
+                    $oFil[$i]["15"] = "";
                 }
             }
 
@@ -102,6 +115,13 @@ class MRecepcion extends Model {
 
     function anularEstatusDocu($arr){
         $query = "update t_recepcion_documento set estatus=4 where oid=".$arr[0];
+        //return $query;
+        $this -> db -> query($query);
+        return "Se proceso con Exito";
+    }
+
+    function rechazarEstatusDocu($arr){
+        $query = "update t_recepcion_documento set estatus=3 where oid=".$arr[0];
         //return $query;
         $this -> db -> query($query);
         return "Se proceso con Exito";

@@ -7799,6 +7799,13 @@ class cooperativa extends Controller {
         echo $this -> MRecepcion -> anularEstatusDocu($datos);
     }
 
+    function rechazarEstatusDocu(){
+        $datos = json_decode($_POST['objeto'],true);
+        //print_R($datos);
+        $this->load->model ( "recepcion/mrecepcion", 'MRecepcion' );
+        echo $this -> MRecepcion -> rechazarEstatusDocu($datos);
+    }
+
 
     /*
      * funciones para presupuestos enviados por correo
