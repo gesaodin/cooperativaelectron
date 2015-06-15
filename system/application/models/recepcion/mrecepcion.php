@@ -63,6 +63,7 @@ class MRecepcion extends Model {
             $oCabezera[14] = array("titulo" => "AC", "tipo" => "bimagen", "funcion" => 'aceptarEstatusDocu', "parametro" => "1,3", "ruta" => __IMG__ . "botones/aceptar1.png", "atributos" => "width:10px");
             $oCabezera[15] = array("titulo" => "RC", "tipo" => "bimagen", "funcion" => 'rechazarEstatusDocu', "parametro" => "1", "ruta" => __IMG__ . "botones/quitar.png", "atributos" => "width:10px");
             $oCabezera[16] = array("titulo" => "MD", "tipo" => "bimagen", "funcion" => 'observaEstatusDocu', "parametro" => "1,11", "ruta" => __IMG__ . "botones/add.png", "atributos" => "width:10px");
+            $oCabezera[17] = array("titulo" => "PB", "tipo" => "bimagen", "funcion" => 'publiEstatusDocu', "parametro" => "1", "ruta" => __IMG__ . "botones/sobre.png", "atributos" => "width:10px");
         }
 
         if ($iCantidad > 0) {
@@ -79,6 +80,7 @@ class MRecepcion extends Model {
                     $oFil[$i]["14"] = "";
                     $oFil[$i]["15"] = "";
                     $oFil[$i]["16"] = "";
+                    $oFil[$i]["17"] = "";
                 }
             }
 
@@ -149,6 +151,13 @@ class MRecepcion extends Model {
     function observaEstatusDocu($arr){
         $datos = array("oidRec"=>$arr[0],"observacion"=>$arr[1]);
         $this -> db -> insert("t_recepcion_historial",$datos);
+        return "Se proceso con Exito";
+    }
+
+    function publiEstatusDocu($arr){
+        $query = "update t_recepcion_documento set estatus=5 where oid=".$arr[0];
+        //return $query;
+        $this -> db -> query($query);
         return "Se proceso con Exito";
     }
 
