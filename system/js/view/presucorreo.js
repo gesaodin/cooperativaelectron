@@ -2,7 +2,7 @@ function enviar() {
     var correo = $("#txtCorreo").val();
     var respuesta = '<h1>PRESUPUESTO DE CREDITO<br>PLAN DE PAGO</h1>';
     var mes = $("#cmbMeses").val();
-    var esp1 = $("#txtMT1").val();var esp2 = $("#txtMT2").val();var esp3 = $("#txtMT3").val();var esp4 = $("#txtMT4").val();
+    var esp1 = $("#txtMT1").val();var esp2 = $("#txtMT2").val();var esp3 = $("#txtMT3").val();var esp4 = $("#txtMT4").val();var esp5 = $("#txtMT5").val();var esp6 = $("#txtMT6").val();
 
     var unico = $("#txtMU").val();
     var montoT = parseInt(unico)*parseInt(mes);
@@ -23,6 +23,14 @@ function enviar() {
     if(esp4 != '' && esp4 != 0) {
         respuesta += "<tr><td>1</td><td>MENSUAL</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad4").val())) + " DE " + $("#txtAno4").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad4").val())) + " DE " + $("#txtAno4").val() + "</td><td>" + $("#txtMT4").val() + "</td><td>" + $("#txtMT4").val() + "</td></tr>";
         montoT= montoT + parseInt(esp4);
+    }
+    if(esp5 != '' && esp5 != 0) {
+        respuesta += "<tr><td>1</td><td>MENSUAL</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad5").val())) + " DE " + $("#txtAno5").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad5").val())) + " DE " + $("#txtAno5").val() + "</td><td>" + $("#txtMT5").val() + "</td><td>" + $("#txtMT5").val() + "</td></tr>";
+        montoT= montoT + parseInt(esp5);
+    }
+    if(esp6 != '' && esp6 != 0) {
+        respuesta += "<tr><td>1</td><td>MENSUAL</td><td> DESDE EL 1 DE " + MesTexto(parseInt($("#txtNominaPeriocidad6").val())) + " DE " + $("#txtAno6").val() + " HASTA EL 30 DE " + MesTexto(parseInt($("#txtNominaPeriocidad6").val())) + " DE " + $("#txtAno6").val() + "</td><td>" + $("#txtMT6").val() + "</td><td>" + $("#txtMT6").val() + "</td></tr>";
+        montoT= montoT + parseInt(esp6);
     }
 
     if(unico != '' && unico != 0) respuesta += "<tr><td>" + mes + "</td><td>MESUALES</td><td>DEL 1 AL 30 DE CADA MES</td><td>" + unico + "</td><td>" + (unico*parseInt(mes)) + "</td></tr>";
@@ -93,7 +101,7 @@ function MesTexto(id){
 
 function Calcular_Total() {
     var abono_especial = 0;
-    for(var i = 1 ; i <=4 ; i++){
+    for(var i = 1 ; i <=6 ; i++){
         if ($("#txtMT"+i).val() == "") {
             $("#txtMT"+i).val(0)
         }
@@ -166,7 +174,7 @@ function crea_combos(meses_c) {
     }
     //alert(anio_f);
 
-    for (var j = 1; j <= 4; j++) {
+    for (var j = 1; j <= 6; j++) {
         $("#txtAno" + j).html('');
         $('#txtAno' + j).append(new Option('----------------------', 0, true, true));
         for (var i = parseInt(anio); i <= anio_f; i++) {
