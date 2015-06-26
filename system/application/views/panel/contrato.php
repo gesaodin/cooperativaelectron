@@ -169,9 +169,9 @@
 					<option disabled="true">DOMICILIACION POR OFICINA</option>
 					<option disabled="true">SOFITASA</option> 
 					<option>DEL SUR</option>		
-					<option disabled="true">CARONI</option>
+					<option >CARONI</option>
 					<option disabled="true">CARIBE</option>
-					<option disabled="true">MERCANTIL</option>
+					<option >MERCANTIL</option>
 					<option disabled="true">INTER-BANCARIO</option>
 				</select>
 				</td>
