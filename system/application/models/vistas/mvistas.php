@@ -718,6 +718,37 @@ class MVistas extends Model {
         $esquema -> sGuardar = 'guardaRecepcionDocu';
         return $esquema -> Generar();
     }
+
+    function panelPlan(){
+        $this -> load -> library('gvista/GPesquema');
+        $esquema = new GPesquema();
+
+        $esquema -> etiqueta = 'Plan';
+        $esquema -> id = 'plan';
+        $esquema -> tipo = 'texto';
+        $esquema -> estilo = 'width:100%;';
+        $esquema -> propiedades = array('requerido');
+        $esquema -> Asignar_Campo();
+
+        $esquema -> etiqueta = 'Porcentaje';
+        $esquema -> id = 'porcentaje';
+        $esquema -> tipo = 'texto';
+        $esquema -> estilo = 'width:100%;';
+        $esquema -> propiedades = array('requerido');
+        $esquema -> Asignar_Campo();
+
+        $esquema -> etiqueta = 'Guardar';
+        $esquema -> id = 'btnGuardar';
+        $esquema -> tipo = 'submit';
+        $esquema -> clase = 'icon8';
+        $esquema -> Asignar_Boton();
+
+
+        $esquema -> sTitulo = 'Registrar Documentos';
+        $esquema -> sGuardar = 'guardaPlan';
+        return $esquema -> Generar();
+
+    }
 	
 }
 ?>

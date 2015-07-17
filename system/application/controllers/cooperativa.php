@@ -7899,5 +7899,66 @@ class cooperativa extends Controller {
             return "Mensaje enviado a:  " .  $correo . "!";
         }
     }
+
+    /*
+     * Funciones para plan corporativo
+     */
+
+    function panelPlanes(){
+        if ($this->session->userdata ( 'usuario' )) {
+            $data ['Menu'] = $this->CMenu->getHtml_Menu ( $this->session->userdata ( 'nivel' ) );
+            $data ['Nivel'] = $this->session->userdata ( 'nivel' );
+            $data ['ubicacion'] = $this->session->userdata ( 'ubicacion' );
+            $this->load->view ( "panel/panelPlan", $data );
+        } else {
+            $this->login ();
+        }
+    }
+
+    public function GV_Plan() {
+        $this->load->model ( "vistas/mvistas", 'MVista' );
+        return $this->MVista->panelPlan();
+    }
+
+    function guardaPlan(){
+        $datos = json_decode ( $_POST ['datos'], TRUE );
+        $this->db->insert ( "t_plan_corporativo", $datos );
+        echo "Se Creo nuevo Plan Corporativo con exito";
+    }
+
+    function listarPlanesModificar(){
+        $cab[1] = array("titulo"=>"oid","oculto"=>true,"tipo"=>"texto");
+        $cab[2] = array("titulo"=>"Plan","tipo"=>"texto");
+        $cab[3] = array("titulo"=>"Porcentaje","tipo"=>"texto");
+        $cab[4] = array("titulo" => "AC", "tipo" => "bimagen", "funcion" => 'modificaPlan',"parametro"=>"1,2,3" ,"ruta" => __IMG__ . "botones/aceptar1.png", "atributos" => "width:10px","mantiene"=>1);
+        $ejecuta = $this -> db -> query("select * from t_plan_corporativo");
+        $resp = $ejecuta -> result();
+        $cuerpo = array();
+        $i=1;
+        foreach($resp as $fila) {
+            $cuerpo[$i] = array("1"=>$fila->oid,"2"=> $fila->plan,"3"=>$fila->porcentaje,"4"=>"");
+            $i++;
+        }
+        $grid=array("resp"=>1,"Cabezera"=>$cab,"Cuerpo"=>$cuerpo,"Paginador"=>10,"Origen"=>"json");
+        echo json_encode($grid);
+
+    }
+
+    function modificaPlan(){
+        $datos = json_decode($_POST['objeto']);
+        $this -> db -> query ("UPDATE t_plan_corporativo set plan='".$datos[1]."', porcentaje=".$datos[2]." where oid=".$datos[0]);
+        echo "Se actualizo con exito";
+        //print_R($_POST);
+    }
+
+    function comboPlan(){
+        $buscar = $this -> db ->  query("SELECT * FROM t_plan_corporativo");
+        $resp = $buscar -> result();
+        $combo = "";
+        foreach($resp as $fila){
+         $combo .= "<option value=".$fila->porcentaje.">".$fila->plan."</option>";
+        }
+        echo $combo;
+    }
 }
 ?>

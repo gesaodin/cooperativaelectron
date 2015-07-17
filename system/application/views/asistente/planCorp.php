@@ -41,7 +41,7 @@
                             </td>
                             <td>
                                 <select id='plan' name='plan' >
-                                    <option value=8>Tibisay Hotel Resort CA</option>
+
                                 </select>
                             </td>
                             <td>

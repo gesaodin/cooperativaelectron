@@ -18,9 +18,6 @@
 	<div id="cabecera"><br>
 		<?php $this -> load -> view("menu/buscar.php"); ?>
 		<?php echo $Menu; ?>
-	</div>		
-	<div id="lateral_i"> <center><br>
-		<?php $this -> load -> view("menu/lateral.php"); ?>
 	</div>
 	<div id="medio" >	
 		<div id="msj_alertas"></div>

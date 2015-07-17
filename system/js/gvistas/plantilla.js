@@ -1,4 +1,4 @@
-var sUrl = 'http://' + window.location.hostname + '/cooperativa';
+var sUrl = 'http://' + window.location.hostname + '/cooperativaelectron';
 var sUrlP = sUrl + '/index.php/cooperativa/';
 var sImg = sUrl + '/system/img/';
 

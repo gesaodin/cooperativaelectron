@@ -35,6 +35,7 @@ class CMenu extends Model {
 					<li class="active" ><a href="Cambiar_Ubicacion_Facturas"><span>C. Ubicacion</span></a></li>
 					<li id="tra" class="active"><a href="Panel_Traslado"><span>Traslados Masivos</span></a></li>
 					<li id="ssoli" class="active"><a href="subir_solicitud"><span>Expedientes Solicitud</span></a></li>
+					<li id="ssoli" class="active"><a href="panelPlanes"><span>Configurar Plan Corporativo</span></a></li>
 				</ul>
 		   	</li>		';
 		}

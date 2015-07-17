@@ -1,3 +1,12 @@
+$(function() {
+    $.ajax({
+        url : sUrlP + "comboPlan",
+        type : "POST",
+        success : function(oEsq) {
+            $("#plan").html(oEsq);
+        }
+    });
+});
 function Imprimir() {
 
     $("#btnImprimir").hide();
