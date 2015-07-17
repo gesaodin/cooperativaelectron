@@ -107,6 +107,7 @@ class CMenu extends Model {
                     <li class="active" ><a href="Venta_Contado"><span>Venta De Contado</span></a></li>
                     <li class="active" ><a href="#" Onclick="N_Ventana(\'ccalculos2\')"><span>Calculo</span></a></li>
                     <li class="active" ><a href="#" Onclick="N_Ventana(\'Artefacto_Contado\')"><span>Presupuesto</span></a></li>
+                    <li class="active" ><a href="#" Onclick="N_Ventana(\'planCorp\')"><span>Plan Corporativo</span></a></li>
                     <li class="active" ><a href="#" Onclick="N_Ventana(\'Presupuesto_Compuesto\')"><span>Presupuesto Compuesto</span></a></li>			
                     <li id="mresponsable" class="active"><a href="archivo_cliente"><span>Archivo</span></a></li>';
 		}else{

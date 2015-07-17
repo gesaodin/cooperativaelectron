@@ -4395,6 +4395,18 @@ class cooperativa extends Controller {
 			$this->login ();
 		}
 	}
+
+    public function PlanCorp() {
+        if ($this->session->userdata ( 'usuario' )) {
+            $this->load->model ( 'CNomina' );
+            $data ['Nivel'] = $this->session->userdata ( 'nivel' );
+            $data ['ubicacion'] = $this->session->userdata ( 'ubicacion' );
+
+            $this->load->view ( "asistente/planCorp", $data );
+        } else {
+            $this->login ();
+        }
+    }
 	public function Calculo() {
 		if (isset ( $_POST ['txtCalculo'] )) {
 			
