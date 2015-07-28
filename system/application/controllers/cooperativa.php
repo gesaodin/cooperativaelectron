@@ -7662,14 +7662,10 @@ class cooperativa extends Controller {
 	}
 	function Enviar_Certificacion() {
 		$this->load->model ( 'cliente/mcertifica', 'MCertifica' );
-		$ced = $_POST ['ced'];
-		echo $this->MCertifica->Enviar ( $ced );
+		$correo = $_POST ['correo'];
+		echo $this->MCertifica->EnviarSolicitud ( $correo );
 	}
-	function Verificar_Certificacion() {
-		$this->load->model ( 'cliente/mcertifica', 'MCertifica' );
-		echo $this->MCertifica->Verifica ( $_POST );
-	}
-	
+
 	/*
 	 * Funciones para modulo de auditoria
 	 */

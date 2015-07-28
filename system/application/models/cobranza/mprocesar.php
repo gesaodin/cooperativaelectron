@@ -72,11 +72,11 @@ class MProcesar extends Model {
     $sQuery = 'DELETE FROM ' . $this->tbl . ' WHERE  nmbr=\'' . $sPar . '\' AND esta = 1 AND tarc = \'' .$tipo_archivo . '\' LIMIT 1;';
     $Consulta = $this->db->query($sQuery);
     
-    /** Sin claupsula
+    //Sin claupsula
     $sQuery = 'SELECT * FROM ' . $this->tbl . ' WHERE  nmbr=\'' . $sPar . '\' AND esta = 1 AND tarc = \'' .$tipo_archivo . '\';';
     $Consulta = $this->db->query($sQuery);
     if ($Consulta->num_rows() == 0) {    
-    **/
+   
       $afiliacion = '';
       if ($tipo_archivo == 'A') {
         $afiliacion = 'afiliacion/';
@@ -102,7 +102,7 @@ class MProcesar extends Model {
       $sEnl = '<br><br><center><h2>El Archivo se Proceso con exito</h2> </center><br><br>
 			<h3>Cantidad de personas:<b>' . $ejec[1] . '</b></h3><br><h3>Monto Total del Archivo:<b>' . $ejec[2] . '</b></h3><br><br>
 			<a href="' . __LOCALWWW__ . '/tmp/' . $afiliacion . $md5Nom . '.txt" target="_blank">+ Descargar</a></h1></center>';
-    /**
+  
     } else {
       $afiliacion = '';
       if ($tipo_archivo == 'A') {
@@ -113,7 +113,7 @@ class MProcesar extends Model {
       $sEnl = '<br><br><center><h2>El Archivo ya fue Procesado con exito <br><br></h2>
 			<a href="' . __LOCALWWW__ . '/tmp/' . $afiliacion . $md5Nom . '.txt" target="_blank">+ Descargar</a></h1></center>';
     }
-    **/
+   
     
     return $sEnl;
   }

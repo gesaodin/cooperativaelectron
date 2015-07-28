@@ -12,6 +12,8 @@
             <select name="txtNacionalidad" id="txtNacionalidad" style="width: 50px;">
                 <option>V-</option>
                 <option>E-</option>
+                <option>G-</option>
+                <option>J-</option>
             </select>
             <input name="txtCedula" type="text" style="width: 230px;" id="txtCedula" maxlength="10" onblur="consultar_clientes();">
         </td>

@@ -89,7 +89,7 @@
 			</select>
 			<select name="txtAno"	id="txtAno" style="width: 60px;">
 				<option value=0>A&ntilde;o:</option>
-				<?php 	for($i = 2009; $i <= 2015; $i++){		?>
+				<?php 	for($i = 2013; $i <= 2016; $i++){		?>
 				<option value='<?php echo $i ?>'><?php echo $i ?></option>
 				<?php	}	?>
 			</select>
@@ -114,13 +114,19 @@
         <option value=200>200 Bs.</option>
         <option value=250>250 Bs.</option>
         <option value=500>500 Bs.</option>
+        <option value=750>750 Bs.</option>
+        <option value=1000>1000 Bs.</option>
+        <option value=1250>1250 Bs.</option>
+        <option value=1500>1500 Bs.</option>
+        <option value=1750>1750 Bs.</option>
+        <option value=2000>2000 Bs.</option>
       </select>
     </td>
   </tr>
 	
 </table>
 
-Los Archivos son dividos en cuotas según sea el metodo ejemplo: una cuota de 302 Bs.<br><br>
+Los Archivos son dividos en cuotas según sea el metodo, ejemplo: una cuota de 302 Bs.<br><br>
 1.- Usando 10 Bs. Crearía 30 Cuotas por 10 Bs., más una de 2 Bs.<br>
 2.- Usando 100 Bs. Crearía 3 Cuotas por 100 Bs., más una de 2 Bs.<br>
 3.- Usando 500 Bs. Crearía 1 Cuotas por el monto total.<br>

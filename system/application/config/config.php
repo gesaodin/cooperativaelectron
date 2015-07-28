@@ -12,7 +12,7 @@
 | $config['base_url']	= "http://192.168.137.187/cooperativa-electron";
 */
 
-$config['base_url']	= "http://200.8.36.131/cooperativa-electron";
+$config['base_url']	= "http://200.8.36.252/cooperativa-electron";
 
 /*
 |--------------------------------------------------------------------------

@@ -6,6 +6,7 @@
 	<select name="txtForma" style="width:135px;height:27px">
 		<option value="V-">Venezolano (a)</option>
 		<option value="E-">Extranjero (a)</option>
+		<option value="V-">Juridico</option>
 		<option value="C-">Contrato</option>
 		<option value="F-">Factura</option>
 		<option value="S-">Serial Activo</option>

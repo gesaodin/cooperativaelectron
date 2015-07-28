@@ -101,7 +101,7 @@ class CMenu extends Model {
                 	<li class="active" ><a href="registrar"><span>Registrar Usuario</span></a></li>
                     <li class="active" ><a href="Asistente1"><span>Asistente</span></a></li>
                     <li id="ssoli" class="active"><a href="subir_solicitud"><span>Expedientes Solicitud</span></a></li>
-                    <li class="active" ><a href="Certificar_Cliente"><span>Certificar Cliente</span></a></li>
+                    <li class="active" ><a href="Certificar_Cliente"><span>Enviar Requisitos</span></a></li>
                     <li class="active" ><a href="#" Onclick="N_Ventana(\'subir_archivo2\')"><span>Ver Expediente Digital</span></a></li>
                     <li class="active" ><a href="#" Onclick="N_Ventana(\'subir_archivo\')"><span>Cargar Expediente Digital</span></a></li>
                     <li class="active" ><a href="Pronto_Pago"><span>Verifica Pronto Pago</span></a></li>
@@ -118,7 +118,7 @@ class CMenu extends Model {
 		   		<ul>
                 	<li class="active" ><a href="registrar"><span>Registrar Usuario</span></a></li>
                     <li class="active" ><a href="Asistente1"><span>Asistente</span></a></li>
-                    <li class="active" ><a href="Certificar_Cliente"><span>Certificar Cliente</span></a></li>
+                    <li class="active" ><a href="Certificar_Cliente"><span>Enviar Requisitos</span></a></li>
                     <li class="active" ><a href="#" Onclick="N_Ventana(\'subir_archivo2\')"><span>Ver Expediente Digital</span></a></li>
                     <li class="active" ><a href="#" Onclick="N_Ventana(\'subir_archivo\')"><span>Cargar Expediente Digital</span></a></li>';
 		}
