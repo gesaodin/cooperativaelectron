@@ -3048,6 +3048,15 @@ class cooperativa extends Controller {
 			echo $this->MRecibo->jsReciboI ( $sId );
 		}
 	}
+
+    public function listaVoucherRecibo($sId = null) {
+        $this->load->model ( 'recibo/mrecibo', 'MRecibo' );
+        if (isset ( $_POST ['factura'] )) {
+            echo $this->MRecibo->listaVoucher ( $_POST['factura'] );
+        } else {
+            echo $this->MRecibo->listaVoucher ( $_POST['factura'] );
+        }
+    }
 	public function DataSource_ReciboE($sId = null) {
 		$this->load->model ( 'recibo/mreciboegreso', 'MReciboe' );
 		if (isset ( $_POST ['id'] )) {

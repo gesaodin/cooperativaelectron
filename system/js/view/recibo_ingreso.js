@@ -42,9 +42,13 @@ function consultar_clientes() {
 				var recibido_de = json["primer_nombre"] + " " + json["segundo_nombre"] + " " + json["primer_apellido"] + " " + json["segundo_apellido"];
 				$("#txtRecibidoDe").val(recibido_de);
 				$('#txtFactura').append(new Option('', 0, true, true));
+                $('#txtFacturaV').append(new Option('', 0, true, true));
 				$.each(json["facturas"], function(item,sValor) {
 					$('#txtFactura').append(new Option(sValor, sValor, true, true));
 				});
+                $.each(json["facturas2"], function(item,sValor) {
+                    $('#txtFacturaV').append(new Option(sValor, sValor, true, true));
+                });
 				$("#carga_busqueda").dialog('close');
 				if(json["recibos"] != null){
 					Grid2 = new TGrid(json["recibos"],'Recibos','Historial de Recibos Ingreso');
@@ -87,6 +91,7 @@ function GuardaRecibo(){
 	empresa = $("#txtEmpresa option:selected").val();
 	monto_a = 0;
 	creditos = new Array();
+    voucher = new Array();
 	i=0;
 	$("#lstAgregados option").each(function(){
        aux = $(this).text();
@@ -100,6 +105,20 @@ function GuardaRecibo(){
     if ( check == true){
     	cargar = 1;
     }
+    /*
+    voucher
+     */
+    i=0;
+    $("#lstVoucher option").each(function(){
+        aux = $(this).text();
+        voucher[i] = aux;
+        i++;
+    });
+    check1 = ($("#voucher").is(':checked'));
+    cargar1 = 0;
+    if ( check1 == true){
+        cargar1 = 1;
+    }
     //alert(monto_a + "/" + monto);
     if(cedula != '' && monto != '' && recibido != '' && fecha != '' && tipo != ''  && concepto != '' && empresa != '' ){
 	    if(monto_a != monto && cargar == 1){
@@ -111,7 +130,7 @@ function GuardaRecibo(){
 			url: strUrl_Proceso, 
 			type : 'POST',
 			data : 'creditos=' + creditos + '&cedula=' + cedula + '&monto=' + monto + '&recibido=' + recibido + '&fecha=' + fecha 
-			+ '&tipo=' + tipo + '&cheque=' + cheque + '&banco=' + banco + '&concepto=' + concepto + '&empresa=' + empresa+'&cargar='+cargar,
+			+ '&tipo=' + tipo + '&cheque=' + cheque + '&banco=' + banco + '&concepto=' + concepto + '&empresa=' + empresa+'&cargar='+cargar+'&cargar1='+cargar1+'&voucher='+voucher,
 			//dataType: 'json',
 			success : function(html) {
 				$("#msj_alertas").html(html);
@@ -148,8 +167,11 @@ function quitar(){
 	$("#lstAgregados option:selected").remove();
 }
 
-function Imprimir_ReciboI(){
-	
+function quitarVoucher(){
+    elemento = $("#lstVoucher option:selected").val();
+    ele = elemento.split("|");
+    $("#txtVoucher").append(new Option(ele[1], ele[1]));
+    $("#lstVoucher option:selected").remove();
 }
 
 
@@ -173,14 +195,38 @@ function MostrarVoucher(nivel) {
 
 function Agrega_Voucher(){
 	montoC = $("#txtVoucher option:selected").val();
+    $("#txtVoucher option:selected").remove();
 	original = $("#txtFacturaV option:selected").val();
 	cargar = $("#txtFacturaV option:selected").val() + ' | ' + montoC;
-	$("#txtFactura option:selected").attr("disabled", true);
-	$("#txtFactura > option[value=0]").attr("selected","selected");
-	if(montoC == '' || montoC < 1 || cargar == undefined || cargar == 0){
+	if(montoC == '' || cargar == undefined || cargar == 0){
 		alert("Debe ingresar el monto que se le va a cargar al contrato");
 	}else{
-		$("#lstAgregados").append(new Option(cargar, original));
+		$("#lstVoucher").append(new Option(cargar, cargar));
 	}
-	$("#txtMontoCarga").val('');	
+}
+
+function buscaVoucher(){
+    strUrl_Proceso = sUrlP + "listaVoucherRecibo";
+    var factura = $("#txtFacturaV option:selected").val();
+    if(factura != ''){
+        $("#carga_busqueda").dialog('open');
+        $.ajax({
+            url: strUrl_Proceso,
+            type : 'POST',
+            data : 'factura=' + factura,
+            dataType: 'json',
+            success : function(json) {//alert(json);
+                if(json['msj']== "si"){
+                    $("#txtVoucher").html('');
+                    $.each(json['filas'], function(item,sValor) {
+                        $('#txtVoucher').append(new Option(sValor, sValor, true, true));
+                    });
+                }else{
+                    alert("no posee voucher activos en la factura seleccionada");
+                }
+
+                $("#carga_busqueda").dialog('close');
+            }
+        });
+    }
 }

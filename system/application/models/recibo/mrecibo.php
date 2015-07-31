@@ -22,6 +22,23 @@ class MRecibo extends Model {
 	public function __construct() {
 		parent::Model();
 	}
+
+    public function listaVoucher($factura){
+        $consulta = $this->db->query("SELECT * from t_lista_voucher where cid='".$factura."' and estatus=0");
+        $filas = $consulta -> result();
+        $arr=array();
+        $res = array();
+        if($consulta -> num_rows() > 0){
+            foreach($filas as $fila){
+                $arr[]=$fila->ndep;
+            }
+            $res['msj'] ="si";
+        }else{
+            $res['msj'] ="no";
+        }
+        $res["filas"] = $arr;
+        return json_encode($res);
+    }
 	
 	public function jsReciboI($id = null) {
         $j = 0;
@@ -29,6 +46,7 @@ class MRecibo extends Model {
         $jsC = array(); //Lista de Contatocs
         $cmbCont = array();
 		$cmbFact = array();
+        $cmbFact2 = array();
         $Consulta = $this -> db -> query('SELECT * FROM t_personas WHERE documento_id=' . $id . ' LIMIT 1');
         foreach ($Consulta->result() as $row) {
             foreach ($row as $NombreCampo => $ValorCampo) {
@@ -45,6 +63,17 @@ class MRecibo extends Model {
 			++$i;
 			$cmbFact[$i] = $row -> numero_factura . ' | ' . $row -> contrato_id;
 		}
+
+        $sqlDetalle = "SELECT numero_factura  FROM t_clientes_creditos WHERE documento_id = '" . $id . "' group by numero_factura";
+        $Consulta = $this -> db -> query($sqlDetalle);
+
+
+        $i = 0;
+        $Conexion = $Consulta -> result();
+        foreach ($Conexion as $row) {
+            ++$i;
+            $cmbFact2[$i] = $row -> numero_factura ;
+        }
 		
 		$sqlRecibos = "select * from t_recibo_ingreso where documento_id = '". $id ."'";
 		$Consulta2 = $this -> db -> query($sqlRecibos);
@@ -79,6 +108,7 @@ class MRecibo extends Model {
 			$Object2 = NULL;
 		}
 		$jsP['facturas'] = $cmbFact;
+        $jsP['facturas2'] = $cmbFact2;
 		$jsP['recibos'] = $Object2;
 		
         return json_encode($jsP);
@@ -173,6 +203,15 @@ class MRecibo extends Model {
 					}*/
 				}
 			}
+            if($arr['cargar1'] == 1){
+                $creditos = explode(',', $arr['voucher']);
+                foreach ($creditos as $cadena) {
+                    $itemCreditos = explode('|', $cadena);
+                    $datosRecibo = array('id_recibo' => $arr['nrecibo'], 'factura' => trim($itemCreditos[0]), 'contrato' => trim($itemCreditos[1]), 'monto' => 'Monto Voucher');
+                    $this -> db -> insert('t_lista_recibo', $datosRecibo);
+                    $this -> db -> query("UPDATE t_lista_voucher SET estatus=1,observacion='RECIBO INGRESO:".$arr['nrecibo']."|".$arr['concepto']."' where cid='".trim($itemCreditos[0])."' and ndep='".trim($itemCreditos[1])."'");
+                }
+            }
 			$msj .= 'El recibo de ingreso se cargo con exito..';
 		}
 
