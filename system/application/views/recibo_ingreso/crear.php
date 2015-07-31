@@ -124,6 +124,10 @@
 			<td>Cargar Monto</td>
 			<td><input type="checkbox" name="reintegro" id="reintegro" value="" onclick="Mostrar()" ></td>
 		</tr>
+		<tr>
+			<td>Cargar Voucher o Transfencia</td>
+			<td><input type="checkbox" name="voucher" id="voucher" value="" onclick="MostrarVoucher()" ></td>
+		</tr>
 	</table>
 	<table id="datosR" style="display:none">		
 		<tr> 	
@@ -137,6 +141,24 @@
 			<td style='width:120px;'>Agregados: <font color='#B70000'>(*)</td>
 			<td style="width: 180px;" align="left" colspan="5">
 				<select name="lstAgregados"	id="lstAgregados"style="width: 100%;height: 100px;" multiple="multiple" ondblclick="quitar();">
+										
+				</select>
+			</td>
+					
+		</tr>
+	</table>
+	<table id="datosRV" style="display:none">		
+		<tr> 	
+			<td style='width:120px;'>Factura: <font color='#B70000'>(*)</td>
+			<td style="width: 180px;" align="left" colspan=""><select name="txtFacturaV"	id="txtFacturaV"style="width: 180px;"onchange="buscaVoucher();"></td>
+			<td align="right"><strong>Voucher: <font color='#B70000'>(*)</font>: </strong></td>
+			<td colspan="" ><select name="txtVoucher"	id="txtVoucher"style="width: 180px;"></td>
+			<td><button onclick="Agrega_Voucher();">AGREGAR</button></td>		
+		</tr>
+		<tr> 	
+			<td style='width:120px;'>Agregados: <font color='#B70000'>(*)</td>
+			<td style="width: 180px;" align="left" colspan="5">
+				<select name="lstVoucher"	id="lstVoucher"style="width: 100%;height: 100px;" multiple="multiple" ondblclick="quitarVoucher();">
 										
 				</select>
 			</td>

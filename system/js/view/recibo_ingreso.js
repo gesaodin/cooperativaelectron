@@ -161,3 +161,26 @@ function Mostrar(nivel) {
     	$("#datosR").hide();
     }
 }
+
+function MostrarVoucher(nivel) {
+	check = ($("#voucher").is(':checked'));
+    if ( check == true){
+    	$("#datosRV").show();
+    }else{
+    	$("#datosRV").hide();
+    }
+}
+
+function Agrega_Voucher(){
+	montoC = $("#txtVoucher option:selected").val();
+	original = $("#txtFacturaV option:selected").val();
+	cargar = $("#txtFacturaV option:selected").val() + ' | ' + montoC;
+	$("#txtFactura option:selected").attr("disabled", true);
+	$("#txtFactura > option[value=0]").attr("selected","selected");
+	if(montoC == '' || montoC < 1 || cargar == undefined || cargar == 0){
+		alert("Debe ingresar el monto que se le va a cargar al contrato");
+	}else{
+		$("#lstAgregados").append(new Option(cargar, original));
+	}
+	$("#txtMontoCarga").val('');	
+}
