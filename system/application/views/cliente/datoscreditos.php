@@ -163,7 +163,7 @@
 			</select>
 			<select name="txtAnoDescuento"	id="txtAnoDescuento" style="width: 60px;" onblur="Calcular_Fin_Descuento();" onchange="Verifica_Fecha2(frmRegistrar,<?php echo $Nivel?>);">
 				<option value=0>A&ntilde;o:</option>
-				<?php 	for($i = 2015; $i <= 2020; $i++){		?>
+				<?php 	for($i = 2010; $i <= 2030; $i++){		?>
 				<option value='<?php echo $i ?>'><?php echo $i ?></option>
 				
 				<?php	}	?>
