@@ -159,7 +159,7 @@
 			<td style='width:120px;'>Agregados: <font color='#B70000'>(*)</td>
 			<td style="width: 180px;" align="left" colspan="5">
 				<select name="lstVoucher"	id="lstVoucher"style="width: 100%;height: 100px;" multiple="multiple" ondblclick="quitarVoucher();">
-										
+
 				</select>
 			</td>
 					
