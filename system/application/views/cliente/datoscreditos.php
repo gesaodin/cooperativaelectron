@@ -23,7 +23,7 @@
 			
 			<input type="text" name="txtDiaC"   id="txtDiaC"style="width: 55px;" disabled='true' value =<?php echo (int)$fecha_actual[0]; ?> />
 			<input type="text" name="txtMesC"	id="txtMesC"style="width: 55px;" disabled='true' value =<?php echo (int)$fecha_actual[1]; ?> />
-			<input type="text" name="txtAnoC"	id="txtAnoC"style="width: 60px;" disabled='true' value =<?php echo $fecha_actual[2]; ?> />
+			<input type="text" name="txtAnoC"	id="txtAnoC"style="width: 60px;" disabled='true' value =<?php echo (int)$fecha_actual[2]; ?> />
 		<?php }else{?>
 			<select name="txtDiaC" id="txtDiaC"style="width: 55px;">
 				<option value=0>Dia:</option>
@@ -39,7 +39,7 @@
 			</select>
 			<select name="txtAnoC"	id="txtAnoC"style="width: 60px;">
 				<option value=0>A&ntilde;o:</option>
-				<?php 	for($i = 2015; $i <= 2017; $i++){		?>
+				<?php 	for($i = 2012; $i <= 2018; $i++){		?>
 					<option value='<?php echo $i ?>'><?php echo $i ?></option>
 				<?php	}	?>
 			</select>
@@ -163,7 +163,7 @@
 			</select>
 			<select name="txtAnoDescuento"	id="txtAnoDescuento" style="width: 60px;" onblur="Calcular_Fin_Descuento();" onchange="Verifica_Fecha2(frmRegistrar,<?php echo $Nivel?>);">
 				<option value=0>A&ntilde;o:</option>
-				<?php 	for($i = 2015; $i <= 2020; $i++){		?>
+				<?php 	for($i = 2010; $i <= 2030; $i++){		?>
 				<option value='<?php echo $i ?>'><?php echo $i ?></option>
 				
 				<?php	}	?>
