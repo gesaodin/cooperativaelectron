@@ -2603,6 +2603,40 @@ class cooperativa extends Controller {
 			echo "Contrato no Existe En la tabla...";
 		}
 	}
+
+    public function Modificar_LinajeF() {
+        $contrato = $_POST ['factura'];
+        $linaje = $_POST ['linaje'];
+        $peticion = $_POST ['peticion'];
+        $estaba = '';
+        $motivo = $_POST ['motivo'];
+        $rsLinaje = $this->db->query ( 'SELECT cobrado_en FROM t_clientes_creditos WHERE numero_factura="' . $contrato . '"' );
+        if ($rsLinaje->num_rows () > 0) {
+            $rsFila = $rsLinaje->result ();
+            foreach ( $rsFila as $row ) {
+                $estaba = $row->cobrado_en;
+            }
+            $data = array (
+                "cobrado_en" => $linaje
+            );
+            $this->db->where ( 'numero_factura', $contrato );
+            $paso = $this->db->update ( 't_clientes_creditos', $data );
+            $data = array (
+
+                // 'id' => null,
+                'referencia' => $contrato,
+                'tipo' => 24,
+                'usuario' => $_SESSION ['usuario'],
+                'motivo' => $motivo . "//" . $estaba . "//" . $linaje,
+                'peticion' => $peticion
+            );
+
+            $this->db->insert ( '_th_sistema', $data );
+            echo "Modificacion Procesada";
+        } else {
+            echo "Contrato no Existe En la tabla...";
+        }
+    }
 	public function Modificar_Linaje() {
 		$contrato = $_POST ['contrato'];
 		$linaje = $_POST ['linaje'];

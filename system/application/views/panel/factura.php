@@ -158,3 +158,50 @@
 		</td>
 	</tr>
 </table>
+
+<table>
+    <tr>
+        <td><h2> MODIFICAR LINAJE DE FACTURA <br></h2>Recuerde que debe estar seguro de cambiar el LINAJE ya que influye en los reportes.<br><br>
+            <table style="width:500px">
+                <tr>
+                    <td class="formulario">&nbsp;N&uacute;mero de Factura (*)</td>
+                    <td class="formulario">Linaje De Contrato</td>
+                    <td class="formulario"><label id="etiquetal2" name="etiquetal2">&nbsp;</label></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="formulario">
+                        <input type="text" class="inputxt" style="width:200px" name="txtFactura_Ln" id="txtFactura_Ln" >
+                    </td>
+                    <td class="formulario">
+                        <select class="inputxt" style="width:200px" name="cmbFactura_Ln" id="cmbFactura_Ln">
+                            <option value=0>SELECCIONE</option>
+                            <option>NOMINA</option>
+                            <option>BICENTENARIO</option>
+                            <option>BOD</option>
+                            <option>PROVINCIAL</option>
+                            <option>VENEZUELA</option>
+                            <option>BANESCO</option>
+                            <option>INDUSTRIAL</option>
+                            <option>DOMICILIACION POR OFICINA</option>
+                            <option disabled="true">CAMARA MERCANTIL</option>
+                            <option>CREDINFO</option>
+                            <option disabled="true">INVERCRESA</option>
+                            <option>FONDO COMUN</option>
+                            <option disabled="true">100% BANCO COMERCIAL</option>
+                            <option disabled="true">DOMICILIACION POR OFICINA</option>
+                            <option disabled="true">SOFITASA</option>
+                            <option>DEL SUR</option>
+                            <option >CARONI</option>
+                            <option disabled="true">CARIBE</option>
+                            <option >MERCANTIL</option>
+                            <option disabled="true">INTER-BANCARIO</option>
+                        </select>
+                    </td>
+                    <td class="formulario">
+                        <button onclick="Respaldo_Modificar_Linaje2();" >Modificar</button>
+                    </td>
+                </tr>
+            </table> </div> </td>
+    </tr>
+</table>

@@ -1210,6 +1210,27 @@ function Respaldo_Modificar_Linaje() {
 	}
 }
 
+function Respaldo_Modificar_Linaje2() {
+    contrato = $("#txtFactura_Ln").val();
+    linaje = $("#cmbFactura_Ln option:selected").text();
+    if (contrato != '' && linaje != '' && linaje != 'SELECCIONE') {
+        $("#r_factura").dialog({
+            buttons : {
+                "Aceptar": function() {
+                    Modificar_LinajeF();
+                },
+                "Cerrar" : function() {
+                    $(this).dialog("close");
+                }
+            }
+        });
+        $("#r_factura").dialog("open");
+    } else {
+        $("#msj_alertas").html('Debe ingresar todos los datos...');
+        $("#msj_alertas").dialog('open');
+    }
+}
+
 
 function Modificar_Linaje(){
 	contrato = $("#txtContrato_Ln").val();
@@ -1242,6 +1263,39 @@ function Modificar_Linaje(){
 			},
 		});
 	}
+}
+
+function Modificar_LinajeF(){
+    factura = $("#txtFactura_Ln").val();
+    linaje = $("#cmbFactura_Ln option:selected").text();
+    var peticion = $("#txtRPeticion_Fact").val();
+    var motivo = $("#txtRMotivo_Fact").val();
+    if(peticion == '' || motivo == ''){
+        $("#msj_alertas").html("<h2>DEBE INGRESAR<BR>-MOTIVO POR EL CUAL SE VA A MODIFICAR LINAJE DE LA FACTURA<BR>-NOMBRE DE LA PERSONA QUE SOLICITO LA MODIFICACION</h2> ");
+        $("#msj_alertas").dialog({
+            width : 500,
+            height : 200,
+        });
+        $("#msj_alertas").dialog('open');
+    }else{
+        $("#txtRMotivo_Fact").val('');
+        $("#txtRPeticion_Fact").val('');
+        $.ajax({
+            url : sUrlP + 'Modificar_LinajeF',
+            type : "POST",
+            data : "factura=" + factura + "&linaje=" + linaje + "&peticion=" + peticion + "&motivo=" + motivo,
+            success : function(html) {
+                $("#r_factura").dialog("close");
+                $("#msj_alertas").html(html);
+                $("#msj_alertas").dialog('open');
+                $("#txtFactura_Ln").val('');
+
+            },
+            error : function(html) {
+                alert('FALLO LA OPERACION '+html);
+            },
+        });
+    }
 }
 
 function Respaldo_Modificar_Periodicidad() {
