@@ -4,6 +4,14 @@ $(function() {
 		buttonImage: sImg + "calendar.gif",
 		buttonImageOnly: true
 	});
+	$("#fechaAbono" ).datepicker({
+		showOn: "button",
+		buttonImage: sImg + "calendar.gif",
+		buttonImageOnly: true
+	});
+	
+	
+	
 	
 	$.datepicker.regional['es'] = {
 		closeText : 'Cerrar',
@@ -24,6 +32,9 @@ $(function() {
 	};
 	$.datepicker.setDefaults($.datepicker.regional['es']);
 	$( "#fecha" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+	$( "#fechaAbono" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+	
+	
 });
 
 function consultar_clientes() {
@@ -67,7 +78,7 @@ function consultar_clientes() {
 function Agrega_Contrato(){
 	montoC = $("#txtMontoCarga").val();
 	original = $("#txtFactura option:selected").val();
-	cargar = $("#txtFactura option:selected").val() + ' | ' + montoC;
+	cargar = $("#txtFactura option:selected").val() + ' | ' + montoC  + ' | ' + $("#fechaAbono").val();
 	$("#txtFactura option:selected").attr("disabled", true);
 	$("#txtFactura > option[value=0]").attr("selected","selected");
 	if(montoC == '' || montoC < 1 || cargar == undefined || cargar == 0){

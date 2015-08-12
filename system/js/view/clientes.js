@@ -210,7 +210,7 @@ function btnGuardar() {
 	nomi2 = $("#txtNomiA2").val();
 	nomi3 = $("#txtNomiA3").val();
 	var maximo_cod='';
-	if((nom1 == '' || nom2 == '' || nom3 == '' || tlf1 == '' || tlf2 == '' || tlf3 == '' || dir1 == '' || dir2 == '' || dir3 == '' || nomi1 == '' || nomi2 == '' || nomi3 == '') && $("#txtNumero_Contrato").val() != ''){
+	if((nom1 == '' || nom2 == '' || tlf1 == '' || tlf2 == '' || dir1 == '' || dir2 == '' || nomi1 == '' || nomi2 == '') && $("#txtNumero_Contrato").val() != ''){
 		alert("DEBE INGRESAR NOMBRE, DIRECCION, NOMINA Y TELEFONO DE TODOS LOS CONTACTOS");
 		return 0;
 	}

@@ -162,17 +162,17 @@ class MRecibo extends Model {
 								<td colspan="3">Apreciado/a:  <br>'. $correo -> Nombre .'.<br>'.$arr['cedula'].'</td>
 							</tr>
 					';*/
-			if($arr['cargar'] == 1){
+				if($arr['cargar'] == 1){
 				$creditos = explode(',', $arr['creditos']);
 				foreach ($creditos as $cadena) {
 					$itemCreditos = explode('|', $cadena);
 					$montoL = strtoupper($this -> ValorEnLetras($itemCreditos[2], 'BS'));
 					$datosRecibo = array('id_recibo' => $arr['nrecibo'], 'factura' => trim($itemCreditos[0]), 'contrato' => trim($itemCreditos[1]), 'monto' => trim($itemCreditos[2]));
 					$this -> db -> insert('t_lista_recibo', $datosRecibo);
-					$fechap = explode('-', $arr['fecha']);
+					$fechap = explode('-', $itemCreditos[3]);
 					$usua = $this -> session -> userdata('oidu');
 					$datosCuota = array('mes' => $arr['nrecibo'], 'documento_id' => $arr['cedula'], 
-					'fecha' => $arr['fecha'], 'credito_id' => trim($itemCreditos[1]), 
+					'fecha' => $itemCreditos[3], 'credito_id' => trim($itemCreditos[1]), 
 					'descripcion' => 'RECIBO: ' . $arr['concepto'], 'monto' => trim($itemCreditos[2]),
 					'mesp'=> $fechap[1],'anop'=>$fechap[0],'moda'=>3,'farc'=>$arr['fecha'],'usua'=>$usua);
 					$this -> db -> insert('t_lista_cobros', $datosCuota);

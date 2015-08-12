@@ -129,7 +129,16 @@
 			<td><input type="checkbox" name="voucher" id="voucher" value="" onclick="MostrarVoucher()" ></td>
 		</tr>
 	</table>
-	<table id="datosR" style="display:none">		
+	<table id="datosR" style="display:none">	
+	
+		<tr>
+		<tr>
+			<td style="width:120px" >Fecha del Abono<font color='#B70000'>(*)</font>:</td>
+			<td align="left"   colspan=4>
+				<input type="text" id='fechaAbono' name="fechaAbono" disabled="true" style="width: 160px;" />
+			</td> 
+		
+		</tr>	
 		<tr> 	
 			<td style='width:120px;'>Factura: <font color='#B70000'>(*)</td>
 			<td style="width: 180px;" align="left" colspan=""><select name="txtFactura"	id="txtFactura"style="width: 180px;"></td>

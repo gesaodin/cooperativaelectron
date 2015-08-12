@@ -304,6 +304,8 @@
 	</tr>	
 </table>
 <br />
+
+<!-- 
 <center><b><label>Tercer Asociado</label></b></center>	
 <table style="width:620px" border="0" cellspacing="3" cellpadding="0" class="formulario">
 	<tr>
@@ -451,6 +453,6 @@
 		<td align="left" >Observaci&oacute;n: </td>
 		<td align="left" colspan="3" valign="top"><textarea name="txtObserva3" id="txtObserva3" class="inputxt" rows="5" style="width: 445px; height: 50px"  ></textarea></td>
 	</tr>	
-</table>
+</table> -->
 
 </form>
