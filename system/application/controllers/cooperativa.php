@@ -2670,6 +2670,43 @@ class cooperativa extends Controller {
 			echo "Contrato no Existe En la tabla...";
 		}
 	}
+
+    public function Modificar_Empresa() {
+        $contrato = $_POST ['contrato'];
+        $empresa = $_POST ['empresa'];
+        $tipo = $_POST ['tipo'];
+        $peticion = $_POST ['peticion'];
+        $estaba = '';
+        $motivo = $_POST ['motivo'];
+        $query='SELECT empresa FROM t_clientes_creditos WHERE contrato_id="' . $contrato . '"' ;
+        if($tipo !=0)$query='SELECT empresa FROM t_clientes_creditos WHERE numero_factura="' . $contrato . '"' ;
+        $rsEmpresa = $this->db->query ( $query);
+        if ($rsEmpresa->num_rows () > 0) {
+            $rsFila = $rsEmpresa->result ();
+            foreach ( $rsFila as $row ) {
+                $estaba = $row->empresa;
+            }
+            $data = array (
+                "empresa" => $empresa
+            );
+            if($tipo == 0)$this->db->where ( 'contrato_id', $contrato );
+            else $this->db->where ( 'numero_factura', $contrato );
+            $paso = $this->db->update ( 't_clientes_creditos', $data );
+            $data = array (
+                // 'id' => null,
+                'referencia' => $contrato,
+                'usuario' => $_SESSION ['usuario'],
+                'motivo' => $motivo . "//" . $estaba . "//" . $empresa,
+                'peticion' => $peticion
+            );
+            $data['tipo']=25;
+            if($tipo != 0) $data['tipo']=26;
+            $this->db->insert ( '_th_sistema', $data );
+            echo "Modificacion Procesada";
+        } else {
+            echo "Contrato no Existe En la tabla...".$query;
+        }
+    }
 	public function Modificar_Forma_C() {
 		$contrato = $_POST ['contrato'];
 		$forma = $_POST ['forma'];

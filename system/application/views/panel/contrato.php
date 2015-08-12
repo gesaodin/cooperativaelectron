@@ -1,4 +1,4 @@
-<table>
+<table style="background-color: #B6B6B6">
 	<tr>
 		<td><h2>INACTIVAR CONTRATO </h2>Recuerde que todos los datos asociados a este contrato NO SE REFLEJARAN EN LOS REPORTES.
 		<br>
@@ -21,7 +21,7 @@
 		</table></td>
 	</tr>
 </table>
-<table>
+<table style="background-color: #C8E6C9">
 	<tr>
 		<td><h2> MODIFICAR N&Uacute;MERO DE CONTRATO <br></h2>Recuerde que debe estar seguro que el contrato por el cual va a cambiar no esta asignado a otro cliente.<br><br>
 		<table style="width:500px">
@@ -48,7 +48,7 @@
 </table>
 <br>
 <br>
-<table>
+<table style="background-color: #B6B6B6">
 	<tr>
 		<td><h2>ELIMINAR CONTRATO </h2>Recuerde que todos los datos asociados a este contrato seran eliminados del sistema.
 		<br>
@@ -73,7 +73,7 @@
 </table>
 <br>
 <br>
-<table>
+<table style="background-color: #C8E6C9">
 	<tr>
 		<td><h2> MODIFICAR POSESION DEL CONTRATO <br></h2>Recuerde de notificar al actual poseedor del contrato que este se cambiado.<br><br>
 		<table style="width:500px">
@@ -107,7 +107,7 @@
 </table>
 <br>
 <br>
-<table>
+<table style="background-color: #B6B6B6">
 	<tr>
 		<td><h2> MODIFICAR UBICACION DEL CONTRATO <br></h2>Recuerde que debe estar seguro de cambiar la ubicacion ya que influye en los reportes.<br><br>
 		<table style="width:500px">
@@ -136,7 +136,7 @@
 </table>
 <br>
 <br>
-<table>
+<table style="background-color: #C8E6C9">
 	<tr>
 		<td><h2> MODIFICAR LINAJE DEL CONTRATO <br></h2>Recuerde que debe estar seguro de cambiar el LINAJE ya que influye en los reportes.<br><br>
 		<table style="width:500px">
@@ -184,7 +184,7 @@
 </table>
 <br>
 <br>
-<table>
+<table style="background-color: #B6B6B6">
 	<tr>
 		<td><h2> MODIFICAR PERIODICIDAD DEL CONTRATO <br></h2>Recuerde que debe estar seguro de cambiar la periodicida ya que influye en los reportes y cobros.<br><br>
 		<table style="width:500px">
@@ -221,7 +221,7 @@
 </table>
 <br>
 <br>
-<table>
+<table style="background-color: #C8E6C9">
 	<tr>
 		<td><h2> MODIFICAR FORMA DEL CONTRATO <br></h2>Recuerde que debe estar seguro de cambiar la periodicida ya que influye en los reportes y cobros.<br><br>
 		<table style="width:500px">
@@ -253,5 +253,34 @@
 			</tr>
 		</table> </div> </td>
 	</tr>
+</table>
+<br>
+<br>
+<table style="background-color: #B6B6B6">
+    <tr>
+        <td><h2> MODIFICAR EMPRESA DEL CONTRATO <br></h2>Recuerde que debe estar seguro de cambiar la Empresa ya que influye en los reportes y cobros.<br><br>
+            <table style="width:500px">
+                <tr>
+                    <td class="formulario">&nbsp;N&uacute;mero de Contrato (*)</td>
+                    <td class="formulario">Empresa De Contrato</td>
+                    <td class="formulario"><label id="etiquetaf" name="etiquetaf">&nbsp;</label></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="formulario">
+                        <input type="text" class="inputxt" style="width:200px" name="txtContrato_Empresa" id="txtContrato_Empresa" >
+                    </td>
+                    <td class="formulario">
+                        <select name="cmbContrato_Empresa"	id="cmbContrato_Empresa"style="width: 140px;" >
+                            <option value=0>Cooperativa</option>
+                            <option value=1>Grupo</option>
+                        </select>
+                    </td>
+                    <td class="formulario">
+                        <button onclick="Respaldo_Modificar_Empresa();" >Modificar</button>
+                    </td>
+                </tr>
+            </table> </div> </td>
+    </tr>
 </table>
 

@@ -1572,3 +1572,109 @@ function Eliminar_Voucher_Grupo(){
 		},
 	});
 }
+
+function Respaldo_Modificar_Empresa() {
+    contrato = $("#txtContrato_Empresa").val();
+    pr = $("#cmbContrato_Empresa option:selected").val();
+    if (contrato != '' && pr != '') {
+        $("#r_contrato").dialog({
+            buttons : {
+                "Aceptar" : function() {
+                    Modificar_Empresa();
+                },
+                "Cerrar" : function() {
+                    $(this).dialog("close");
+                }
+            }
+        });
+        $("#r_contrato").dialog("open");
+    } else {
+        $("#msj_alertas").html('Debe ingresar todos los datos...');
+        $("#msj_alertas").dialog('open');
+    }
+}
+
+function Modificar_Empresa(){
+    contrato = $("#txtContrato_Empresa").val();
+    fr = $("#cmbContrato_Empresa option:selected").val();
+    var peticion = $("#txtRPeticion_Cont").val();
+    var motivo = $("#txtRMotivo_Cont").val();
+    if(peticion == '' || motivo == ''){
+        $("#msj_alertas").html("<h2>DEBE INGRESAR<BR>-MOTIVO POR EL CUAL SE VA A MODIFICAR LA EMPRESA DEL CONTRATO<BR>-NOMBRE DE LA PERSONA QUE SOLICITO LA MODIFICACION</h2> ");
+        $("#msj_alertas").dialog({
+            width : 500,
+            height : 200,
+        });
+        $("#msj_alertas").dialog('open');
+    }else{
+        $("#txtRMotivo_Cont").val('');
+        $("#txtRPeticion_Cont").val('');
+        $.ajax({
+            url : sUrlP + 'Modificar_Empresa',
+            type : "POST",
+            data : "contrato=" + contrato + "&empresa=" + fr + "&peticion=" + peticion + "&motivo=" + motivo+"&tipo=0",
+            success : function(html) {
+                $("#r_contrato").dialog("close");
+                $("#msj_alertas").html(html);
+                $("#msj_alertas").dialog('open');
+                $("#txtContrato_Empresa").val('');
+            },
+            error : function(html) {
+                alert('FALLO LA OPERACION '+html);
+            },
+        });
+    }
+}
+
+function Respaldo_Modificar_EmpresaF() {
+    contrato = $("#txtFactura_Empresa").val();
+    pr = $("#cmbFactura_Empresa option:selected").val();
+    if (contrato != '' && pr != '') {
+        $("#r_factura").dialog({
+            buttons : {
+                "Aceptar" : function() {
+                    Modificar_EmpresaF();
+                },
+                "Cerrar" : function() {
+                    $(this).dialog("close");
+                }
+            }
+        });
+        $("#r_factura").dialog("open");
+    } else {
+        $("#msj_alertas").html('Debe ingresar todos los datos...');
+        $("#msj_alertas").dialog('open');
+    }
+}
+
+function Modificar_EmpresaF(){
+    contrato = $("#txtFactura_Empresa").val();
+    fr = $("#cmbFactura_Empresa option:selected").val();
+    var peticion = $("#txtRPeticion_Fact").val();
+    var motivo = $("#txtRMotivo_Fact").val();
+    if(peticion == '' || motivo == ''){
+        $("#msj_alertas").html("<h2>DEBE INGRESAR<BR>-MOTIVO POR EL CUAL SE VA A MODIFICAR LA EMPRESA DE LA FACTURA<BR>-NOMBRE DE LA PERSONA QUE SOLICITO LA MODIFICACION</h2> ");
+        $("#msj_alertas").dialog({
+            width : 500,
+            height : 200,
+        });
+        $("#msj_alertas").dialog('open');
+    }else{
+        $("#txtRMotivo_Fact").val('');
+        $("#txtRPeticion_Fact").val('');
+        $.ajax({
+            url : sUrlP + 'Modificar_Empresa',
+            type : "POST",
+            data : "contrato=" + contrato + "&empresa=" + fr + "&peticion=" + peticion + "&motivo=" + motivo+"&tipo=1",
+            success : function(html) {
+                $("#r_factura").dialog("close");
+                $("#msj_alertas").html(html);
+                $("#msj_alertas").dialog('open');
+                $("#txtFactura_Empresa").val('');
+            },
+            error : function(html) {
+                alert('FALLO LA OPERACION '+html);
+            },
+        });
+    }
+}

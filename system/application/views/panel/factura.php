@@ -1,4 +1,4 @@
-<table>
+<table style="background-color: #B6B6B6">
 	<tr>
 		<td><h2> MODIFICA N&Uacute;MERO DE FACTURA</h2><br>Recuerde que debe estar seguro que la factura por el cual va a cambiar no esta asignado a otro.
 		<br><br>
@@ -24,7 +24,7 @@
 	</tr>
 </table>
 <br><br>
-<table>
+<table style="background-color: #C8E6C9">
 	<tr>
 		<td>
 			<h2> MODIFICAR DATOS DE LA FACTURA</h2><br>Recuerde que SOLO LOS CAMPOS CON VALOR ASIGNADO seran modificados.
@@ -104,7 +104,7 @@
 	</tr>
 </table>
 <br>
-<table>
+<table style="background-color: #B6B6B6">
 	<tr>
 		<td><h2>INACTIVAR FACTURA </h2>Recuerde que todos los datos asociados a la FACTURA NO SE REFLEJARAN EN LOS REPORTES.
 		<br>
@@ -128,7 +128,7 @@
 	</tr>
 </table>
 <br>
-<table>
+<table style="background-color: #C8E6C9">
 	<tr>
 		<td>
 		
@@ -158,8 +158,8 @@
 		</td>
 	</tr>
 </table>
-
-<table>
+<br><br>
+<table style="background-color: #B6B6B6">
     <tr>
         <td><h2> MODIFICAR LINAJE DE FACTURA <br></h2>Recuerde que debe estar seguro de cambiar el LINAJE ya que influye en los reportes.<br><br>
             <table style="width:500px">
@@ -200,6 +200,34 @@
                     </td>
                     <td class="formulario">
                         <button onclick="Respaldo_Modificar_Linaje2();" >Modificar</button>
+                    </td>
+                </tr>
+            </table> </div> </td>
+    </tr>
+</table>
+<br><br>
+<table style="background-color: #C8E6C9">
+    <tr>
+        <td><h2> MODIFICAR EMPRESA DE La FACTURA <br></h2>Recuerde que debe estar seguro de cambiar la Empresa ya que influye en los reportes y cobros.<br><br>
+            <table style="width:500px">
+                <tr>
+                    <td class="formulario">&nbsp;N&uacute;mero de Factura (*)</td>
+                    <td class="formulario">Empresa</td>
+                    <td class="formulario"><label id="etiquetaf" name="etiquetaf">&nbsp;</label></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="formulario">
+                        <input type="text" class="inputxt" style="width:200px" name="txtFactura_Empresa" id="txtFactura_Empresa" >
+                    </td>
+                    <td class="formulario">
+                        <select name="cmbFactura_Empresa"	id="cmbFactura_Empresa"style="width: 140px;" >
+                            <option value=0>Cooperativa</option>
+                            <option value=1>Grupo</option>
+                        </select>
+                    </td>
+                    <td class="formulario">
+                        <button onclick="Respaldo_Modificar_EmpresaF();" >Modificar</button>
                     </td>
                 </tr>
             </table> </div> </td>
