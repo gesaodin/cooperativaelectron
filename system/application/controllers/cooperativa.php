@@ -1667,6 +1667,15 @@ class cooperativa extends Controller {
 			echo $this->MCliente->HConversaciones ( $_POST ['usuario'] );
 		}
 	}
+	
+	
+	function Listar_Vendedores() {
+		if (isset ( $_POST ['vend'] )) {
+			echo $this->MCliente->Listar_Vendedores ( $_POST ['vend'] );
+		}
+	}
+	
+	
 	function Contratos_Buzon() {
 		$usu = $this->session->userdata ( 'usuario' );
 		if ($usu != "alvaro") {

@@ -386,7 +386,21 @@ $(function() {
 		}
 	});
 	
-	 $("#ControlMensual").dialog({
+	$("#control_vendedores").dialog({
+		buttons : {
+			"Generar" : function() {
+				Listar_Vendedores();
+				$(this).dialog("close");
+			},
+			"Cerrar" : function() {
+				$(this).dialog("close");
+			}
+		}
+	});
+	
+	
+	
+	$("#ControlMensual").dialog({
     buttons : {
       "Generar" : function() {
         GControlMensual();
@@ -510,6 +524,27 @@ function CFactura() {
 		}
 	});
 }
+
+
+
+function Listar_Vendedores() {
+	$("#carga_busqueda").dialog('open');
+	$.ajax({
+		url : sUrlP + "Listar_Vendedores",
+		type : "POST",
+		data : "vend=" + $('#txtVendedor').val(),
+		dataType : "json",
+		success : function(oEsq) {
+			Grid = new TGrid(oEsq, 'Reportes', 'Contratos por vendedores ');
+			Grid.SetName("ReportesC");
+			Grid.SetNumeracion(true);
+			//Grid.SetXls(true);
+			Grid.Generar();
+			$("#carga_busqueda").dialog('close');
+		}
+	});
+}
+
 
 function HConversaciones() {
 	$("#carga_busqueda").dialog('open');

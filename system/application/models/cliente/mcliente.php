@@ -1013,6 +1013,18 @@ class MCliente extends Model {
 		$Object = array("Cabezera" => $Consulta -> list_fields(), "Cuerpo" => $Consulta -> result(), "Origen" => "Mysql", "Paginador" => 50);
 		return json_encode($Object);
 	}
+	
+	function Listar_Vendedores($sUsr) {
+		$strQuery = "SELECT cedula,pnombre,papellido, numero_factura, fecha_solicitud, sum(cantidad) AS Monto
+		 FROM `afiliacion` INNER JOIN t_clientes_creditos on afiliacion.cedula=t_clientes_creditos.documento_id WHERE codigovendedor='$sUsr' AND fecha_solicitud> '2015-01-01'
+		 AND cantidad > 0
+		GROUP BY documento_id, numero_factura";
+		$Consulta = $this -> db -> query($strQuery);
+		$Object = array("Cabezera" => $Consulta -> list_fields(), "Cuerpo" => $Consulta -> result(), "Origen" => "Mysql", "Paginador" => 50);
+		return json_encode($Object);
+	}
+	
+	
 
 	function Pagos_Factura($_arr) {
 		$lin = '';

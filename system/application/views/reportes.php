@@ -115,7 +115,7 @@
   					
   					
   					<?php if($Nivel == 0 ||  $this -> session -> userdata('usuario') == 'Carlos' ){?>
-  						<td align="center"><img src="/cooperativa-electron/system/img/reportes/cuadre.png" style='width:48px' onClick="muestra_div('muestra_cuadre');$('#Bancos').hide();$('#Direccion').hide();"/><br>Cuadre de Vendedores</td>
+  						<td align="center"><img src="/cooperativa-electron/system/img/reportes/cuadre.png" style='width:48px' onClick="muestra_div('control_vendedores');$('#Bancos').hide();$('#Direccion').hide();"/><br>Cuadre de Vendedores</td>
   						<td style="width: 50px"></td>
   					<?php } ?>
   					
@@ -192,10 +192,13 @@
 					<br>
 					<?php $this -> load -> view("reportes/ccargasv.php"); ?>
 				</div>
-				<div id="ccargas_domi" class="dialogo" title="Filtro Pagos Domi">
+				
+				
+				<div id="control_vendedores" class="dialogo" title="Filtro Control de Vendedores">
 					<br>
-					<?php $this -> load -> view("reportes/ccargas.php"); ?>
+					<?php $this -> load -> view("reportes/cvendedores.php"); ?>
 				</div>
+				 
 				<div id='filtro' class="dialogo" title="Filtro Solicitudes"></div>
 			</div>	
 			
