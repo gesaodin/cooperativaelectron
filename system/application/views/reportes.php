@@ -108,6 +108,22 @@
   					<?php } ?>
   			
           </tr>
+          
+          <tr>
+  					<td align="center"><img src="/cooperativa-electron/system/img/reportes/factura.png" style='width:48px' onClick="muestra_div('facturas_pendientes');$('#Bancos').hide();$('#Direccion').hide();"/><br>Estatus de Facturas</td>
+  					<td style="width: 50px"></td>
+  					
+  					
+  					<?php if($Nivel == 0 ||  $this -> session -> userdata('usuario') == 'Carlos' ){?>
+  						<td align="center"><img src="/cooperativa-electron/system/img/reportes/cuadre.png" style='width:48px' onClick="muestra_div('muestra_cuadre');$('#Bancos').hide();$('#Direccion').hide();"/><br>Cuadre de Vendedores</td>
+  						<td style="width: 50px"></td>
+  					<?php } ?>
+  					
+  				</tr>
+          
+          
+          
+          
   				</table>	
 				<div id="facturas_pendientes" class="dialogo"  title="Facturas Pendientes Por Aceptar">
 					<br>
