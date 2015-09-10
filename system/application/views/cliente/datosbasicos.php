@@ -96,7 +96,16 @@
             <input name="txtTelefonoh" id="txtTelefonoh" type="text" style="width: 150px;">
         </td>
     </tr>
-   
+    <tr>
+        <td >Ciudad:</td>
+        <td align="left" >
+            <input name="txtCiudad2"     type="text" id="txtCiudad2" style="width: 180px;">
+        </td>
+        <td >Estado: </td>
+        <td align="right" >
+            <input name="txtUbicacion2" id="txtUbicacion2" type="text" style="width: 150px;">
+        </td>
+    </tr>
     <tr>
         <td >Municipio:</td>
         <td align="left" >

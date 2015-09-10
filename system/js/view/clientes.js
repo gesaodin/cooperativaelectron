@@ -268,6 +268,7 @@ function btnGuardar() {
 			$("#msj_alertas").dialog("open");
 		}else{
 			sSerial = '';
+            var sector = $("#txtSector").val()+'|'+$("#txtCiudad2").val()+'|'+$("#txtUbicacion2").val();
 			var sCadena = 'cedula=' + $("#txtCedula").val()+ '&lstBoucher=' + l_boucher+ '&domiciliacionC=' 
 			+ $("#txtDomiciliacionC").val()+ '&domiciliacionG=' + $("#txtDomiciliacionG").val() 
 			+ '&domiciliacionI=' + $("#txtDomiciliacionI").val()+ '&tipopago=' + $("#txtTipoPago").val() 
@@ -284,7 +285,7 @@ function btnGuardar() {
 			+ '&banco_2=' + $("#txtbanco_2").val() + '&cuenta_2=' + $("#txtcuenta_2").val() 
 			+ '&numero_tarjeta=' + $("#txtnumero_tarjeta").val() + '&tipo_2=' + $("#txtTipo_2").val() 
 			+ '&municipio=' + $("#txtMunicipio").val() + '&parroquia=' + $("#txtParroquia").val() 
-			+ '&sector=' + $("#txtSector").val() + '&avenida=' + $("#txtAvenida").val() + '&calle=' + $("#txtCalles").val() 
+			+ '&sector=' + sector + '&avenida=' + $("#txtAvenida").val() + '&calle=' + $("#txtCalles").val()
 			+ '&urbanizacion=' + $("#txtUrbanizacion").val() + '&correo=' + $("#txtCorreo").val() + '&pin=' + $("#txtPin").val() 
 			+ '&montocredito=' + $("#txtmontocredito").val() + '&numerocuotas=' + $("#txtNumeroCuotas").val() 
 			+ '&solicitudDia=' + $("#txtDiaC").val() + '&solicitudMes=' + $("#txtMesC").val() 
@@ -365,6 +366,8 @@ function Limpiar_Cliente() {
 	$("#txtMunicipio").val('');
 	$("#txtParroquia").val('');
 	$("#txtSector").val('');
+    $("#txtCiudad2").val('');
+    $("#txtUbicacion2").val('');
 	$("#txtAvenida").val('');
 	$("#txtCalles").val('');
 	$("#txtUrbanizacion").val('');
@@ -545,7 +548,15 @@ function consultar_clientes() {
 				$("#txtNacionalidad").val(json["nacionalidad"]);
 				$("#txtMunicipio").val(json["municipio"]);
 				$("#txtParroquia").val(json["parroquia"]);
-				$("#txtSector").val(json["sector"]);
+                /*
+                Para consultar ciudad y estado que vienen en el campo sector en la posicion 2 y 3  separados por '|'
+                 */
+                var sector = json["sector"].split('|');
+                //alert(sector[0]);
+				$("#txtSector").val(sector[0]);
+                $("#txtCiudad2").val(sector[1]);
+                $("#txtUbicacion2").val(sector[2]);
+
 				$("#txtAvenida").val(json["avenida"]);
 				$("#txtCalles").val(json["calle"]);
 				$("#txtUrbanizacion").val(json["urbanizacion"]);

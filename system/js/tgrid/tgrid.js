@@ -652,10 +652,8 @@ var TGrid = function(oEsq, div, strTitulo) {
 							}else{
 								nuevo.innerHTML = sValor;	
 							}
-							
-							
 							nuevo.onclick = function() {
-								EjecutarEnlace(oEsquema.Cabezera[sCol].funcion, fila.id, oEsquema.Cabezera[sCol].parametro, self.la_tabla.id,oEsquema.Cabezera[sCol].metodo,nuevo);
+								EjecutarEnlace(oEsquema.Cabezera[sCol].funcion, fila.id, oEsquema.Cabezera[sCol].parametro, self.la_tabla.id,oEsquema.Cabezera[sCol].metodo,nuevo,'',elimina_fila_boton);
 							}
 							var div_texto = document.createElement('div');
 							div_texto.id = "div_texto_boton";
@@ -671,7 +669,7 @@ var TGrid = function(oEsq, div, strTitulo) {
 							}
 							nuevo.setAttribute('target' , oEsquema.Cabezera[sCol].target);
 							nuevo.onclick = function() {
-								EjecutarEnlace(oEsquema.Cabezera[sCol].funcion, fila.id, oEsquema.Cabezera[sCol].parametro, self.la_tabla.id,oEsquema.Cabezera[sCol].metodo,nuevo);
+								EjecutarEnlace(oEsquema.Cabezera[sCol].funcion, fila.id, oEsquema.Cabezera[sCol].parametro, self.la_tabla.id,oEsquema.Cabezera[sCol].metodo,nuevo,elimina_fila_boton);
 							}
 							var div_texto = document.createElement('div');
 							div_texto.id = "div_texto_boton";

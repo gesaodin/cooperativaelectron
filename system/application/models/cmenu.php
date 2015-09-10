@@ -157,6 +157,7 @@ class CMenu extends Model {
 		   		<li class="active" ><a href="Crear_Txt"><span>Crear Txt</span></a></li>
 		   		<li class="active" ><a href="Leer_Txt"><span>Pendientes Por Procesar</span></a></li>
 		   		<li class="active" ><a href="Ver_Txt"><span>Archivos Procesados</span></a></li>
+		   		<li class="active" ><a href="cargaVenezuela"><span>Cargar B. Venezuela</span></a></li>
 		   		
 		   	';
 		}

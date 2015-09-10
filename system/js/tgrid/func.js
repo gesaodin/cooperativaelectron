@@ -404,7 +404,7 @@ function Ejecutar(funcion, fila, parametro, id_tabla,eliminaFila) {
 	return 0;
 }
 
-function EjecutarEnlace(funcion, fila, parametro, id_tabla,metodo,enlace,ventana) {
+function EjecutarEnlace(funcion, fila, parametro, id_tabla,metodo,enlace,ventana,eliminaFila) {
 	//alert(funcion+'//'+fila+'//'+parametro+'//'+id_tabla+'//'+metodo+'//'+enlace);
 	var arreglo_json= new Array();
 	if (parametro == null || parametro == '') {//ENVIAR TODAS LAS COLUMNAS A LA FUNCION A EJECUTA
@@ -517,6 +517,10 @@ function EjecutarEnlace(funcion, fila, parametro, id_tabla,metodo,enlace,ventana
 		}
 		//
 	}
+    //alert(eliminaFila);
+    if(eliminaFila == 1){
+        elimina_fila(fila, id_tabla);
+    }
 	
 	
 	return 0;

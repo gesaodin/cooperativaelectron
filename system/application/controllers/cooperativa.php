@@ -8045,5 +8045,111 @@ class cooperativa extends Controller {
         }
         echo $combo;
     }
+
+    /**
+     * Fucniones Cargar archivo Banco Venezuela
+     */
+
+    function cargaVenezuela(){
+        $this->load->model ( 'CNomina' );
+        if ($this->session->userdata ( 'usuario' )) {
+            $data ['Menu'] = $this->CMenu->getHtml_Menu ( $this->session->userdata ( 'nivel' ) );
+            $data ['Nivel'] = $this->session->userdata ( 'nivel' );
+            $this->load->view ( "cargaVenezuela", $data );
+        } else {
+            $this->login ();
+        }
+    }
+
+    function subirVenezuela() {
+        $banco = strtolower ( $_POST ['banco'] );
+        $directorio = BASEPATH . 'repository/txt/' . $banco;
+        $upload_folder = 'images';
+        $nombre_archivo = $_FILES ['archivo'] ['name'];
+        $tipo_archivo = $_FILES ['archivo'] ['type'];
+        $tamano_archivo = $_FILES ['archivo'] ['size'];
+        $tmp_archivo = $_FILES ['archivo'] ['tmp_name'];
+        $archivador = $directorio . '/' . $nombre_archivo;
+        $return = Array (
+            'ok' => 'si',
+            'archivo' => $nombre_archivo,
+            "msg" => "SE CARGO CON EXITO",
+            "txt" => $nombre_archivo
+        );
+
+        $query = "SELECT * FROM t_archivos_venezuela WHERE archivo='" . $nombre_archivo . "' ";
+
+        $cant = $this->db->query ( $query );
+
+        if ($cant->num_rows () > 0) {
+            $msj = "No Se Pudo Procesar. El Archivo Ya Fue Procesado";
+            $return = Array (
+                'ok' => 'no',
+                'msg' => $msj,
+                'status' => 'error',
+                'txt' => ''
+            );
+        } else {
+            if (! move_uploaded_file ( $tmp_archivo, $archivador )) {
+                $return = Array (
+                    'ok' => 'no',
+                    'msg' => "Ocurrio un error al subir el archivo. No pudo guardarse.",
+                    'status' => 'error',
+                    'txt' => ''
+                );
+            } else {
+                $this ->load->model('cargar/mcargavenezuela','MCargaV');
+                $datos = array('archivo'=>$nombre_archivo,'empresa'=>$_POST['empresa'],
+                    'fcontrato'=>$_POST['fcontrato'],'perio'=>$_POST['perio'], 'fenv'=>$_POST['fenv'],'frec'=>$_POST['frec']);
+                $res = $this -> MCargaV -> registrar($datos);
+                $return = Array (
+                    'ok' => "si",
+                    'msg' => array('id'=>$res,'archivo'=>$nombre_archivo),
+                    'status' => 'error',
+                    'txt' => ''
+                );
+                //}
+            }
+        }
+        echo json_encode ( $return );
+    }
+
+    function leerArchivoVenezuela(){
+        $this ->load->model('cargar/mcargavenezuela','MCargaV');
+        $resp = $this -> MCargaV -> leerArchivo($_POST['id'],$_POST['archivo']);
+        if($resp) echo 'Se cargo con exito el archivo';
+        else echo 'Error al cargar el archivo';
+        //print_R($_POST);
+    }
+    function cmbArchivosVenezuela(){
+        $this ->load->model('cargar/mcargavenezuela','MCargaV');
+        $item = $this -> MCargaV -> crearCombo();
+        echo json_encode($item);
+    }
+
+    function listarArchivoVenezuela(){
+        $this ->load->model('cargar/mcargavenezuela','MCargaV');
+        $oida = $_POST['oida'];
+        //echo $oida;
+        echo $this -> MCargaV -> grid($oida);
+    }
+
+    function cmbContratosVenezuela(){
+        $this ->load->model('cargar/mcargavenezuela','MCargaV');
+        //print_R($_POST);
+        echo $this -> MCargaV -> crearComboContrato($_POST['cedula']);
+    }
+
+    function modCuotaVenezuela(){
+        $this ->load->model('cargar/mcargavenezuela','MCargaV');
+        //print_R($_POST);
+        $query = "UPDATE t_cargar_txt_venezuela set contrato='".$_POST['contrato']."',frec='".$_POST['frec']."',obser='".$_POST['obser']."' where oid=".$_POST['oid'];
+        $this->db->query($query);
+        echo "Se proceso con exito";
+    }
+
+    function Guardar_Lote_Venezuela() {
+        print_R($_POST);
+    }
 }
 ?>
