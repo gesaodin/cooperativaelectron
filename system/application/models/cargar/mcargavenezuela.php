@@ -9,11 +9,6 @@
 class Mcargavenezuela extends Model
 {
 
-    function __construct($usuario = null)
-    {
-        parent::Model();
-        $this->load->database ();
-    }
 
     function registrar($datos)
     {
@@ -100,18 +95,24 @@ class Mcargavenezuela extends Model
 
     function crearComboContrato($cedula)
     {
-        $con = $this->db->query('SELECT contrato_id FROM t_clientes_creditos WHERE documento_id="'.$cedula.'"
-                and cobrado_en="VENEZUELA"');
+        $query = "SELECT contrato_id,monto_cuota,
+case empresa when 0 then 'C' when 1 then 'G' end as emp,
+case forma_contrato  when 0 then 'U'  when 1 then 'A'  when 2 then 'V' else 'O' end as forma
+        FROM t_clientes_creditos WHERE documento_id='".$cedula."'
+                and cobrado_en='VENEZUELA' order by forma,emp";
+        $con = $this->db->query($query);
         $item = array();
         $rc = $con->result();
         foreach ($rc as $fila) {
-            $item[$fila->contrato_id] = $fila->contrato_id;
+            $item[$fila->contrato_id] = $fila->contrato_id.'|'.$fila->forma.'|'.$fila->emp.'|'.$fila->monto_cuota;
         }
         return json_encode($item);
     }
 
     function grid($oida){
-        $query = 'Select * from t_cargar_txt_venezuela where oida=' . $oida . ' order by cedula';
+        $query = 'Select a.oid as oid,archivo,cedula,contrato,a.monto as monto,a.fenv as fenv,a.frec as frec,fpro,obser,oida from t_cargar_txt_venezuela as a
+join t_archivos_venezuela as b on b.oid = a.oida
+where oida=2 order by cedula';
         //return $query;
         $oFila = array();
 
@@ -123,7 +124,9 @@ class Mcargavenezuela extends Model
         $oCabezera[6] = array("titulo" => "F.Pro", "atributos" => "width:80px");
         $oCabezera[7] = array("titulo" => "Mes a Cargar", "atributos" => "width:80px");
         $oCabezera[8] = array("titulo" => "Observaciones", "atributos" => "width:80px");
-        $oCabezera[9] = array("titulo" => "#", 'tipo' => 'enlace', "metodo" => 1,
+        $oCabezera[9] = array("titulo" => "oida", "oculto" => 1);
+        $oCabezera[10] = array("titulo" => "archivo", "oculto" => 1);
+        $oCabezera[11] = array("titulo" => "#", 'tipo' => 'enlace', "metodo" => 1,
             "ruta" => __IMG__ . "botones/agregar.png", "funcion" => "cargarCuota", "parametro" => "1,2","atributos" => "width:15px");
 
         $consulta = $this->db->query($query);
@@ -131,12 +134,14 @@ class Mcargavenezuela extends Model
         $i = 0;
         $suma_total = 0;
         $cuota = 0;
+        $ban = 0;
         foreach ($rs as $fila) {
             $color = ''; // NEGRO
             $cerrar = '';
             $cuota = $fila->monto;
             $contrato = $fila->contrato;
             if ($contrato == '') {
+                $ban ++;
                 $color = '<font color=\'#1964B5\' size="2"><b>'; // AZUL
                 $contrato = "Por Asignar";
                 $cerrar = '</b></font>';
@@ -152,13 +157,15 @@ class Mcargavenezuela extends Model
                 '6' => $fila->fpro, //
                 '7' => $fila->frec, //
                 '8' => $fila->obser, //
-                '9' => 'Cargar'); //
+                '9' => $fila->oida, //
+                '10' => $fila->archivo, //
+                '11' => 'Cargar'); //
         }
         $leyenda = '<br><center><h2> Monto Total de cuotas  ( ' . number_format($suma_total, 2, ".", ",") . ' ) <br>';
 
-
-        $oTable = array("Cabezera" => $oCabezera, "Cuerpo" => $oFila, "Origen" => "json", 'Editable' => 'Guardar_Lote_Venezuela', 'Parametros' => '1,3,5,7,9', 'leyenda' => $leyenda);
-
+        if($ban == 0) $oTable = array("Cabezera" => $oCabezera, "Cuerpo" => $oFila, "Origen" => "json",
+            'Editable' => 'Guardar_Lote_Venezuela', 'Parametros' => '2,3,10,8,7,4,6,9', 'leyenda' => $leyenda);
+        else $oTable = array("Cabezera" => $oCabezera, "Cuerpo" => $oFila, "Origen" => "json", 'leyenda' => $leyenda);
         return json_encode($oTable);
     }
 }

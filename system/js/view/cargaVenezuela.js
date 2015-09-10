@@ -85,6 +85,7 @@ $( function () {
 });
 
 function listaArchivos(){
+    $("#cmbArchivos").html('');
     $.ajax({
         url : sUrlP + "cmbArchivosVenezuela",
         dataType : "json",
@@ -224,7 +225,7 @@ function consultarTxt(){
             Grid = new TGrid(oEsq, 'Respuesta', 'Archivo:'+arch);
             Grid.SetName("Archivo");
             Grid.SetNumeracion(true);
-            Grid.SetXls(true);
+            //Grid.SetXls(true);
             Grid.Generar();
             $("#carga_busqueda").dialog('close');
 

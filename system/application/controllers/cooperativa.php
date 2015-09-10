@@ -8149,7 +8149,30 @@ class cooperativa extends Controller {
     }
 
     function Guardar_Lote_Venezuela() {
-        print_R($_POST);
+        $datos = json_decode($_POST['objeto'],true);
+        $oida = $datos[0][7];
+        $insertar = "INSERT into t_lista_cobros(documento_id,credito_id,mes,descripcion,fecha,monto,farc,mesp,anop,moda,usua) VALUES";
+        $band = 0;
+        $usu = $this->session->userdata ( 'oidu' );
+        foreach($datos as $fila){
+            $mes = "CARGA VENEZUELA:".$fila[2];
+            $mesp = explode('-',$fila[4]);
+            $band++;
+            //echo 'llega';
+            if ($band > 1) $insertar .= ',';
+            $insertar .= "('".$fila[0]."','".$fila[1]."','".$mes."','".$fila[3]."','".$fila[4]."',
+            ".$fila[5].",'".$fila[6]."',".$mesp[1].",".$mesp[0].",25,".$usu.")";
+        }
+        $res = $this->db->query($insertar);
+        if($res){
+            $this->db->query("update t_archivos_venezuela set estatus=1 where oid=".$oida);
+            echo "Se cargo con exito";
+        }else{
+            echo "No se pudo Cargar datos";
+        }
+        /*print('<pre>');
+        print_R($datos);
+        echo $oida;*/
     }
 }
 ?>
