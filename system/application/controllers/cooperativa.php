@@ -6213,7 +6213,8 @@ class cooperativa extends Controller {
 		$enlaces .= '<td><a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/Formatos_Libres/' . $ced . '/VENEZUELA/C \' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>VENEZUELA COOPERATIVA</a></td>';
 		$enlaces .= '<td><a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/Formatos_Libres/' . $ced . '/UNIVERSAL/G \' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>UNIVERSAL GRUPO</a></td>';
 		$enlaces .= '<td><a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/Formatos_Libres/' . $ced . '/UNIVERSAL/C \' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>UNIVERSAL COOPERATIVA</a></td></tr>';
-		$enlaces .= '</tbocy></table>';
+        $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesNom.docx\' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>Autorizacion Descuento Nomina</a></td></tr>';
+		$enlaces .= '</tbody></table>';
 		echo $enlaces;
 	}
 	function Formatos_Libres($cedula, $formato, $emp) {
