@@ -555,6 +555,7 @@ class MBuscar extends Model {
 				"funcion" => "Consultar",
 				"parametro" => "3,4",
 				"metodo" => 1,
+                "mantiene"=>1,
 				"ruta" => __IMG__ . "botones/add.png",
 				"atributos" => "width:10px" 
 		);
