@@ -788,8 +788,17 @@ class MBuscar extends Model {
 				"atributos" => "",
 				"funcion" => "Pago_Voucher",
 				"metodo" => 1,
-				"parametro" => "2,3" 
-		);
+				"parametro" => "2,3",
+                "mantiene" => 1
+ 		);
+        $oCabezera2 [7] = array (
+            "titulo" => "Exonerar",
+            "tipo" => "bimagen",
+            "atributos" => "width=15px;",
+            "ruta" => __IMG__."botones/aceptar.png",
+            "funcion" => "Exonerar_Voucher",
+            "parametro" => "2,3"
+        );
 		$sTituloV = '';
 		$txtEstatusV = '';
 		$voucher1 = null;
@@ -802,14 +811,29 @@ class MBuscar extends Model {
 				++ $i;
 				$totalV += $rowV->monto;
 				$txtEstatusV = $this->Estatus_Voucher ( $rowV->estatus, $pagadoV, $rowV->monto );
-				$oFil2 [$i] = array (
-						"1" => $i . " DE " . $iCantidadV,
-						"2" => $rowV->ndep,
-						"3" => $rowV->cid,
-						"4" => $rowV->monto,
-						"5" => $rowV->fecha,
-						"6" => $txtEstatusV 
-				);
+                $usu = $this->session->userdata ( 'oidu' );
+                if($usu =0 || $usu==27 || $usu == 28 ){
+                    $oFil2 [$i] = array (
+                        "1" => $i . " DE " . $iCantidadV,
+                        "2" => $rowV->ndep,
+                        "3" => $rowV->cid,
+                        "4" => $rowV->monto,
+                        "5" => $rowV->fecha,
+                        "6" => $txtEstatusV,
+                        "7" => ""
+                    );
+                }else{
+                    $oFil2 [$i] = array (
+                        "1" => $i . " DE " . $iCantidadV,
+                        "2" => $rowV->ndep,
+                        "3" => $rowV->cid,
+                        "4" => $rowV->monto,
+                        "5" => $rowV->fecha,
+                        "6" => $txtEstatusV
+                    );
+                }
+
+
 			}
 			
 			$sTituloV = "<br>" . $tit . "<br>";

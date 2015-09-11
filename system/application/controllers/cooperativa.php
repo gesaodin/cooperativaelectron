@@ -8174,5 +8174,13 @@ class cooperativa extends Controller {
         print_R($datos);
         echo $oida;*/
     }
+
+    function Exonerar_Voucher(){
+        /*print("<pre>");
+        print_R($_POST);*/
+        $datos = json_decode($_POST['objeto']);
+        $this->db->query("UPDATE t_lista_voucher set estatus=6 where ndep='".$datos[0]."' and cid='".$datos[1]."' ");
+        echo "Se exonero con exito";
+    }
 }
 ?>
