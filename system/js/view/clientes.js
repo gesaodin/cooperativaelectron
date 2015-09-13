@@ -482,7 +482,7 @@ function consultar_clientes() {
 		type : 'POST',
 		data : 'id=' + id,
 		dataType : 'json',
-		success : function(json) {
+		success : function(json) {//alert(json);
 			$("#Salvar").show();
 			dcumento_id = json["documento_id"];
 			apellido_casada = json["apellido_casada"];
@@ -508,6 +508,7 @@ function consultar_clientes() {
 			if (json['documento_id'] == "NULL" || json['documento_id'] == "0") {
 				Limpiar_Cliente();
 				Limpiar_Credito();
+                $("#txtCedula").val(id);
 				$("#foto").attr('src',sImg+'sinfoto.png');
 			} else {
 				var foto = sImgFoto + id+'.jpg';

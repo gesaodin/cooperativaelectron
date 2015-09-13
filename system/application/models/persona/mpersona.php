@@ -10,7 +10,7 @@ class MPersona extends Model {
     }
     public function jsPersona($id = null) {
         $j = 0;
-        $jsP = array();    //Una Persona Json
+        $jsP = array('documento_id'=>0);    //Una Persona Json
         $jsC = array(); //Lista de Contatocs
         $jsS = array(); //Lista de suspencion
         $Consulta = $this -> db -> query('SELECT * FROM t_personas
