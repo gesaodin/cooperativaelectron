@@ -208,6 +208,7 @@ function Validar(archivo, banco) {//alert(banco);
 
 function consultarTxt(){
     var oida = $("#cmbArchivos").val();
+    //alert(oida);
     var arch = $("#cmbArchivos option:selected").text();
     if(oida == 0){
         alert('Debe seleccionar un archivo');

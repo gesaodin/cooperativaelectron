@@ -112,7 +112,7 @@ case forma_contrato  when 0 then 'U'  when 1 then 'A'  when 2 then 'V' else 'O' 
     function grid($oida){
         $query = 'Select a.oid as oid,archivo,cedula,contrato,a.monto as monto,a.fenv as fenv,a.frec as frec,fpro,obser,oida from t_cargar_txt_venezuela as a
 join t_archivos_venezuela as b on b.oid = a.oida
-where oida=2 order by cedula';
+where oida='.$oida.' order by cedula';
         //return $query;
         $oFila = array();
 
