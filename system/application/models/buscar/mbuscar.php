@@ -813,7 +813,7 @@ class MBuscar extends Model {
 				$totalV += $rowV->monto;
 				$txtEstatusV = $this->Estatus_Voucher ( $rowV->estatus, $pagadoV, $rowV->monto );
                 $usu = $this->session->userdata ( 'oidu' );
-                if($usu =0 || $usu==27 || $usu == 28 ){
+                if($usu ==0 || $usu==27 || $usu == 28 ){
                     $oFil2 [$i] = array (
                         "1" => $i . " DE " . $iCantidadV,
                         "2" => $rowV->ndep,
