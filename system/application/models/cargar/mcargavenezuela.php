@@ -32,6 +32,7 @@ class Mcargavenezuela extends Model
             //echo  $linea. "<br />";
             if (substr($linea, 0, 2) == '02') {
                 $picar = explode(';', $linea);
+                $ced = substr($picar[1],1,-1);
                 $mtc = $picar[24];
                 $monto1 = intval(substr($mtc, 0, -2));
                 $decimal = substr($mtc, -2);
@@ -43,7 +44,7 @@ class Mcargavenezuela extends Model
                     $ban++;
                     //echo 'llega';
                     if ($ban > 1) $consulta .= ',';
-                    $consulta .= '(' . $oida . ',' . intval($picar[2]) . ',"' . date("Y-m-d", strtotime($picar[17])) . '","' . date("Y-m-d", strtotime($picar[23])) . '",' . $monto1 . '.' . $decimal . ')';
+                    $consulta .= '(' . $oida . ',' . intval($ced) . ',"' . date("Y-m-d", strtotime($picar[17])) . '","' . date("Y-m-d", strtotime($picar[23])) . '",' . $monto1 . '.' . $decimal . ')';
                     //echo 2;
                 }
 
