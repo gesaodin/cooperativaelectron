@@ -370,9 +370,9 @@ class cooperativa extends Controller {
 			if ($json [4] == "DOMICILIACION") {
 				$json [4] = "5-DOM";
 			}
-			if ($json [5] == 1) {
+			/*if ($json [5] == 1) {
 				$json [4] = "5-DOM";
-			}
+			}*/
 			$sCod = '';
 			$sPago = explode ( "-", $json [4] );
 			$arr ['cobrado_en'] = $json [2];
@@ -6214,7 +6214,7 @@ class cooperativa extends Controller {
 		$enlaces .= '<td><a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/Formatos_Libres/' . $ced . '/UNIVERSAL/G \' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>UNIVERSAL GRUPO</a></td>';
 		$enlaces .= '<td><a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/Formatos_Libres/' . $ced . '/UNIVERSAL/C \' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>UNIVERSAL COOPERATIVA</a></td></tr>';
         $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesNom.docx\' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>Autorizacion Descuento Nomina</a></td></tr>';
-$enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>Autorizacion Descuento Nomina</a></td></tr>';
+$enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>Autorizacion Descuento Domilizacion</a></td></tr>';
 		$enlaces .= '</tbody></table>';
 		echo $enlaces;
 	}
