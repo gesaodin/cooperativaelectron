@@ -90,9 +90,9 @@
                 </td>
                 <td>
                     <select name="txtAno1"	id="txtAno1" class="inputxt" style="width: 70px;" onchange="valida_meses(1);">
-                        <option value=2013>2013</option>
-                        <option value=2014>2014</option>
                         <option value=2015>2015</option>
+                        <option value=2016>2016</option>
+                        <option value=2017>2017</option>
                     </select>
                 </td>
                 <td>
@@ -119,9 +119,9 @@
                 </td>
                 <td>
                     <select name="txtAno2"	id="txtAno2" class="inputxt" style="width: 70px;" onchange="valida_meses(2);">
-                        <option value=2013>2013</option>
-                        <option value=2014>2014</option>
                         <option value=2015>2015</option>
+                        <option value=2016>2016</option>
+                        <option value=2017>2017</option>
                     </select>
                 </td>
                 <td>
@@ -148,9 +148,9 @@
                 </td>
                 <td>
                     <select name="txtAno3"	id="txtAno3" class="inputxt" style="width: 70px;" onchange="valida_meses(3);">
-                        <option value=2013>2013</option>
-                        <option value=2014>2014</option>
                         <option value=2015>2015</option>
+                        <option value=2016>2016</option>
+                        <option value=2017>2017</option>
                     </select>
                 </td>
                 <td>
@@ -206,9 +206,9 @@
                 </td>
                 <td>
                     <select name="txtAno5"	id="txtAno5" class="inputxt" style="width: 70px;" onchange="valida_meses(5);">
-                        <option value=2013>2013</option>
-                        <option value=2014>2014</option>
                         <option value=2015>2015</option>
+                        <option value=2016>2016</option>
+                        <option value=2017>2017</option>
                     </select>
                 </td>
                 <td>
@@ -235,13 +235,72 @@
                 </td>
                 <td>
                     <select name="txtAno6"	id="txtAno6" class="inputxt" style="width: 70px;" onchange="valida_meses(6);">
-                        <option value=2013>2013</option>
-                        <option value=2014>2014</option>
                         <option value=2015>2015</option>
+                        <option value=2016>2016</option>
+                        <option value=2017>2017</option>
                     </select>
                 </td>
                 <td>
                     <input  type="text" value="" name="txtMT6" id="txtMT6" class="inputxt"  onkeydown="return soloNumeros(event);" onclick="limpiar(this);" onchange="Calcular_Total();"/>
+                </td>
+            </tr>
+
+            <tr><td>
+                    <select name="txtNominaPeriocidad7"	id="txtNominaPeriocidad7" class="inputxt" style="width: 220px;" onchange="valida_meses(7);">
+                        <option value=0>----------------------------</option>
+                        <option value=1>PAGARE EXTRA - ENERO</option>
+                        <option value=2>PAGARE EXTRA - FEBRERO</option>
+                        <option value=3>PAGARE EXTRA - MARZO </option>
+                        <option value=4>PAGARE EXTRA - ABRIL </option>
+                        <option value=5>PAGARE EXTRA - MAYO </option>
+                        <option value=6>PAGARE EXTRA - JUNIO</option>
+                        <option value=7>PAGARE EXTRA - JULIO</option>
+                        <option value=8>PAGARE EXTRA - AGOSTO</option>
+                        <option value=9>PAGARE EXTRA - SEPTIEMBRE</option>
+                        <option value=10>PAGARE EXTRA - OCTUBRE</option>
+                        <option value=11>PAGARE EXTRA - NOVIEMBRE</option>
+                        <option value=12>PAGARE EXTRA - DICIEMBRE</option>
+
+                    </select>
+                </td>
+                <td>
+                    <select name="txtAno7"	id="txtAno7" class="inputxt" style="width: 70px;" onchange="valida_meses(7);">
+                        <option value=2015>2015</option>
+                        <option value=2016>2016</option>
+                        <option value=2017>2017</option>
+                    </select>
+                </td>
+                <td>
+                    <input  type="text" value="" name="txtMT7" id="txtMT7" class="inputxt"  onkeydown="return soloNumeros(event);" onclick="limpiar(this);" onchange="Calcular_Total();"/>
+                </td>
+            </tr>
+            <tr><td>
+                    <select name="txtNominaPeriocidad8"	id="txtNominaPeriocidad8" class="inputxt" style="width: 220px;" onchange="valida_meses(8);">
+                        <option value=0>----------------------------</option>
+                        <option value=1>PAGARE EXTRA - ENERO</option>
+                        <option value=2>PAGARE EXTRA - FEBRERO</option>
+                        <option value=3>PAGARE EXTRA - MARZO </option>
+                        <option value=4>PAGARE EXTRA - ABRIL </option>
+                        <option value=5>PAGARE EXTRA - MAYO </option>
+                        <option value=6>PAGARE EXTRA - JUNIO</option>
+                        <option value=7>PAGARE EXTRA - JULIO</option>
+                        <option value=8>PAGARE EXTRA - AGOSTO</option>
+                        <option value=9>PAGARE EXTRA - SEPTIEMBRE</option>
+                        <option value=10>PAGARE EXTRA - OCTUBRE</option>
+                        <option value=11>PAGARE EXTRA - NOVIEMBRE</option>
+                        <option value=12>PAGARE EXTRA - DICIEMBRE</option>
+
+                    </select>
+                </td>
+                <td>
+                    <select name="txtAno8"	id="txtAno8" class="inputxt" style="width: 70px;" onchange="valida_meses(8);">
+                        <option value=2015>2015</option>
+                        <option value=2016>2016</option>
+                        <option value=2017>2017</option>
+                    </select>
+                </td>
+                <td>
+                    <input  type="text" value="" name="txtMT8" id="txtMT8" class="inputxt"  onkeydown="return soloNumeros(event);" onclick="limpiar(this);" onchange="Calcular_Total();"/>
                 </td>
             </tr>
             <tr>
