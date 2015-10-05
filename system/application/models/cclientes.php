@@ -310,7 +310,7 @@ class CClientes extends Model {
 		<ul><table style=\"height:15px;width:100%;\" border=0
 		class=\"ui-widget ui-widget-content\" cellspacing=\"3\" cellpadding=\"0\">
 		<thead><tr class=\"ui-widget-header\" style=\"height:10px;\">
-		<th></th><th>#</th><th>MES CUOTA</th><th>FECHA CUOTA</th><th>CUOTA</th><th>RESTANTE</th><th>FECHA DESCUENTO</th><th>DESCRIPCION</th><th>FECHA CARGA</th><th>MODALIDAD</th<th></th></tr></thead><tbody>";
+		<th></th><th>#</th><th>MES CUOTA</th><th>FECHA CUOTA</th><th>CUOTA</th><th>RESTANTE</th><th>FECHA DESCUENTO</th><th>DESCRIPCION</th><th>FECHA CARGA</th><th>MODALIDAD</th><th></th></tr></thead><tbody>";
 		if ($Consulta -> num_rows() > 0) {
 			foreach ($Consulta->result() as $row) {
 				$fila++;

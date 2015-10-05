@@ -1646,5 +1646,9 @@ Electrón 465 se compromete firmemente a respetar su privacidad. No compartimos 
 		}
 		return json_encode ( $valores );
 	}
+
+    function listaCobros(){
+
+    }
 }
 ?>
