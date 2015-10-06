@@ -201,6 +201,13 @@ class CPersonas extends Model {
 	 */
 	var $direccion_trabajo;
 
+    /**
+     * DEPENDECIA EN LA QUE LA LABORA
+     *
+     * @var string
+     */
+    var $direccion_trabajo2;
+
 	/**
 	 * Consigno Copia de la Cedula de Identidad (FISICO)
 	 *

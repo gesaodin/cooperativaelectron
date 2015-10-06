@@ -275,8 +275,8 @@ function btnGuardar() {
 			+ '&nombre=' + $("#txtNombre1").val() + '&nombre2=' + $("#txtNombre2").val() 
 			+ '&apellido=' + $("#txtApellido1").val() + '&apellido2=' + $("#txtApellido2").val() 
 			+ '&sexo=' + $("#txtSexo").val() + '&edocivil=' + $("#txtEdocivil").val() 
-			+ '&direccionh=' + $("#txtDireccionH").val() + '&direcciont=' + $("#txtDireccionT").val() 
-			+ '&telefono=' + $("#txtTelefono").val() + '|'+$("#txtTelefonoh").val()+'&nacionalidad=' + $("#txtNacionalidad").val() 
+			+ '&direccionh=' + $("#txtDireccionH").val() + '&direcciont=' + $("#txtDireccionT").val() + '&direcciont2=' + $("#txtDireccionT2").val()
+                + '&telefono=' + $("#txtTelefono").val() + '|'+$("#txtTelefonoh").val()+'&nacionalidad=' + $("#txtNacionalidad").val()
 			+ '&ciudad=' + $("#txtCiudad").val() + '&cargo=' + $("#txtCargo").val() 
 			+ '&dia=' + $("#txtDiaNacimiento").val() + '&mes=' + $("#txtMesNacimiento").val() + '&ano=' + $("#txtAnoNacimiento").val() 
 			+ '&diaIng=' + $("#txtDiaI").val() + '&mesIng=' + $("#txtMesI").val() + '&anoIng=' + $("#txtAnoI").val() 
@@ -358,6 +358,7 @@ function Limpiar_Cliente() {
 	$("#txtTelefono").val('');
 	$("#txtDireccionH").val('');
 	$("#txtDireccionT").val('');
+    $("#txtDireccionT2").val('');
 	$("#txtCiudad").val('');
 	$("#txtUbicacion").val('');
 	$("#txtcuenta_1").val('');
@@ -565,6 +566,7 @@ function consultar_clientes() {
 				$("#txtPin").val(json["pin"]);
 				$("#txtDireccionH").val(json["direccion"]);
 				$("#txtDireccionT").val(json["direccion_trabajo"]);
+                $("#txtDireccionT2").val(json["direccion_trabajo2"]);
 				$("#txtCiudad").val(json["ciudad"]);
 				$("#txtUbicacion").val(json["ubicacion"]);
 				$("#txtbanco_1").val(json["banco_1"]);

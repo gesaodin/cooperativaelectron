@@ -291,6 +291,13 @@
         </td>
     </tr>
     <tr>
+        <td >Direcci&oacute;n Trabajo 2:</td>
+        <td align="left" colspan="3">
+            <input name="txtDireccionT2" id="txtDireccionT2" type="text" style="width: 490px;">
+
+        </td>
+    </tr>
+    <tr>
         <td>N&uacute;m. de tarjeta</td>
         <td colspan="3">
             <input name="txtnumero_tarjeta" type="text" style="width: 490px;" id="txtnumero_tarjeta" maxlength="20" />

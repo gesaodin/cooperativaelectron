@@ -1769,6 +1769,7 @@ class cooperativa extends Controller {
 		$nacionalidad = $_POST ['nacionalidad'];
 		$direccionH = $_POST ['direccionh'];
 		$direccionT = $_POST ['direcciont'];
+        $direccionT2 = $_POST ['direcciont2'];
 		$estado_civil = $_POST ['edocivil'];
 		$telefono = $_POST ['telefono'];
 		$municipio = $_POST ['municipio'];
@@ -1906,6 +1907,8 @@ class cooperativa extends Controller {
 		
 		$CPersona->direccion_trabajo = trim ( $direccionT );
 		$data_u ['direccion_trabajo'] = trim ( $direccionT );
+        $CPersona->direccion_trabajo2 = trim ( $direccionT2 );
+        $data_u ['direccion_trabajo2'] = trim ( $direccionT2 );
 		
 		$CPersona->direccion = trim ( $direccionH );
 		$data_u ['direccion'] = trim ( $direccionH );
