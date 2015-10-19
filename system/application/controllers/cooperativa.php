@@ -1989,7 +1989,7 @@ class cooperativa extends Controller {
 			}
 			
 			$sMensaje = "No posee Acceso para modificar..! El cliente con C.I: " . $_POST ['cedula'] . ", No fue actualizadado Solicite Autorización...";
-			if ($this->session->userdata ( 'nivel' ) == 0 || $this->session->userdata ( 'nivel' ) == 3 || $this->session->userdata ( 'nivel' ) == 18) {
+			if ($this->session->userdata ( 'nivel' ) == 0 || $this->session->userdata ( 'nivel' ) == 3 || $this->session->userdata ( 'nivel' ) == 18 || $this -> session -> userdata('usuario') == 'AlvaroZ') {
 				$CPersona->expediente_caja = $Usuario;
 				$this->db->where ( 'documento_id', $cedula );
 				$this->db->update ( 't_personas', $CPersona );
