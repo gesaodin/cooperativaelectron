@@ -6670,6 +6670,9 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
 				if ($nivel == 5) {
 					$arr ['ubicacion'] = $this->session->userdata ( 'ubicacion' );
 				}
+                if ($this->session->userdata ( 'usuario' ) == 'AlvaroZ') {
+                    $arr ['ubicacion'] = $_POST ['ubicacion'];
+                }
 				$objeto = $this->MPresupuesto->Listar_FPresupuesto ( $arr );
 			} else {
 				$objeto = $this->MPresupuesto->Listar_FPresupuesto ( '' );
