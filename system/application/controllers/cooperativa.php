@@ -6704,7 +6704,7 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
 	}
 	public function Elimina_Fpresu() {
 		$niv = $this->session->userdata ( 'nivel' );
-		if ($niv == 0 || $niv == 9 || $this->session->userdata ( 'usuario' ) == 'Carlos' || $niv == 18) {
+		if ($niv == 0 || $niv == 9 || $this->session->userdata ( 'usuario' ) == 'Carlos' || $this->session->userdata ( 'usuario' ) == 'AlvaroZ' || $niv == 18) {
 			$json = json_decode ( $_POST ['objeto'], true );
 			$this->db->query ( "DELETE FROM t_fpresupuesto WHERE factura = '" . $json [0] . "'" );
 			$this->db->query ( "DELETE FROM t_it_fpresupuesto WHERE factura = '" . $json [0] . "'" );
