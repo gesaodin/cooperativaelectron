@@ -279,12 +279,12 @@ class MProcesar extends Model {
   function Itxt($arr = array()) {
   	$sInsert = "INSERT INTO t_lista_cobros (documento_id,credito_id,mes,descripcion,fecha,monto,usua,farc,mesp,anop,moda) ";
   	$usuario = $this->session->userdata ( 'oidu' );
-  	$fecha = explode("-", $arr['fecha']);
+  	$fecha = explode("-", $arr['mesCobro']);
   	
   	
   	if($arr['banco'] == 'BICENTENARIO'){
   		$sQuery = $sInsert . "SELECT t_cargar_txt.cedula,t_clientes_creditos.contrato_id, 'CERT: " . $arr['clv'] . "','PROCESADO MEDIANTE LOTE',
-		 '" . $arr['fecha'] . "', SUM(t_cargar_txt.monto),'".$usuario."','" . $arr['fecha'] . "','" . $fecha[1] . 
+		 '" . $arr['mesCobro'] . "', SUM(t_cargar_txt.monto),'".$usuario."','" . $arr['fecha'] . "','" . $fecha[1] .
 		 "','" . $fecha[0] . "','9'  FROM `t_cargar_txt`,t_clientes_creditos WHERE 
 		 t_cargar_txt.credito_id=t_clientes_creditos.credito_id AND t_cargar_txt.archivo='" . $arr['txt'] . "' GROUP BY t_cargar_txt.credito_id";
   	}else {  		

@@ -29,6 +29,11 @@ $(function() {
 			dates.not( this ).datepicker( "option", option, date );
 		}
 	});
+    $( "#txtFechaC" ).datepicker({
+        showOn: "button",
+        buttonImage: sImg + "calendar.gif",
+        buttonImageOnly: true
+    });
 	$.datepicker.regional['es'] = {
 		closeText : 'Cerrar',
 		prevText : '&#x3c;Ant',
@@ -48,6 +53,7 @@ $(function() {
 	};
 	$.datepicker.setDefaults($.datepicker.regional['es']);
 	$( "#txtFechaP" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+    $( "#txtFechaC" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 	
 	$("#msj_alertas").dialog({
 		modal : true,
@@ -134,11 +140,12 @@ function Itxt() {
 	var banco = $("#txtCobrado option:selected").text();
 	if(banco == "Fondo Comun" || banco == "FONDO COMUN")
 		banco = "bfc";
-	var sFecha = $("#txtFechaP").val();	
-	$.ajax({
+	var sFecha = $("#txtFechaP").val();
+    var cFecha = $("#txtFechaC").val();
+    $.ajax({
 		url : sUrlP + "Itxt",
 		type : "POST",
-		data : "txt=" + sTxt + "&clv=" + sCertificado + "&banco=" + banco +"&fecha="+sFecha,
+		data : "txt=" + sTxt + "&clv=" + sCertificado + "&banco=" + banco +"&fecha="+sFecha+"&mesCobro="+cFecha,
 		//dataType : "json",
 		success : function(oEsq) {
 				$("#msj_alertas").html("<br><br><center><h3>" + oEsq + "</h3></center>");

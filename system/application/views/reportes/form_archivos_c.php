@@ -40,6 +40,12 @@
 			<input type="text" name="txtFechaP"	id="txtFechaP"  style="width: 200px;" readonly="readonly">
 		</td>
 	</tr>
+    <tr>
+        <td >Fecha Cuota:</td>
+        <td>
+            <input type="text" name="txtFechaC"	id="txtFechaC"  style="width: 200px;" readonly="readonly">
+        </td>
+    </tr>
 	<tr>
 		<td >Seleccionar Archivo (*):</td>
 		<td>
