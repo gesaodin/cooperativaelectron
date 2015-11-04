@@ -39,9 +39,8 @@
                             <option value=10>Especial</option>
                             <option value=9>Super Especial</option>
                             <option value=8>Coorporativo</option>
-                            <?php if ($this->session->userdata ( 'usuario' ) == 'alvaro' || $this->session->userdata ( 'usuario' ) == 'AlvaroZ'){?>
                             <option value=6>Vip</option>
-                            <?php }?>
+
                         </select>
                     </td>
                     <td>
