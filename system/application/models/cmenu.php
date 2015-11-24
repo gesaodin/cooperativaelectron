@@ -123,7 +123,7 @@ class CMenu extends Model {
                     <li class="active" ><a href="#" Onclick="N_Ventana(\'subir_archivo\')"><span>Cargar Expediente Digital</span></a></li>';
 		}
 		
-		if ($usu == 'alvaro' || $usu == 'carlos' || $usu == 'yuli' || $intNivel == 3 || $intNivel == 10 || $usu == 'alvaroz'|| $usu == 'poleeth') {
+		if ($usu == 'alvaro' || $usu == 'carlos' || $usu == 'yuli' || $intNivel == 3 || $intNivel == 10 || $usu == 'alvaroz'|| $usu == 'poleeth'  || $usu == 'georly') {
 			$Menu_B .= '<li id="mreciboi" class="active"><a href="Recibo_Ingreso"><span>Recibos de Ingreso</span></a></li>
 						
 			';
