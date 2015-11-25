@@ -117,7 +117,7 @@
 	<tr>
 		<td>N&uacute;m. de cuotas <font color='#B70000'>(*)</font>:</td>
 		<td align="left" style="width:60px">
-		<select name="txtNumeroCuotas"	id="txtNumeroCuotas" style="width: 50px;" onblur="Calcular_Monto();" onchange="valida_motivo();">
+		<select name="txtNumeroCuotas"	id="txtNumeroCuotas" style="width: 50px;" onblur="Calcular_Monto();" onchange="//valida_motivo();">
 			<?php 	for($i = 1; $i <= 50; $i++){	?>
 			<option value='<?php echo $i ?>'><?php echo $i ?></option>
 			<?php	}	?>
