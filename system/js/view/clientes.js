@@ -756,16 +756,16 @@ function fecha_especial(){
 	if(valor == 5 ){
 		$("#txtDiaDescuento").val('1');
 		$("#txtMesDescuento").val('11');
-		$("#txtAnoDescuento").val('2013');
+		$("#txtAnoDescuento").val('2016');
 		$("#txtFinDiaDescuento").val('30');
 		$("#txtFinMesDescuento").val('11');
-		$("#txtFinAnoDescuento").val('2013');
+		$("#txtFinAnoDescuento").val('2016');
 	}
 	
 }
 function valida_motivo(){
 	var mot = $("#txtMotivo option:selected").val();
-	var fct = $("#txtFormaContrato option:selected").val();
+	var fct = $("#txtFormaContrato option:selected").val();0
 	var per = $("#txtNominaPeriocidad option:selected").val()
 	var mul = 1;
 	if(per == 2 || per == 3){

@@ -171,7 +171,7 @@
 			</td>
 			<td align="right">&nbsp;&nbsp;<strong>Contrato <font color='#B70000'>(*)</font></strong>:</td>
 			<td align="left" class="formulario">
-				<select name="txtFormaContrato"	id="txtFormaContrato" style="width: 140px;" onchange="fecha_especial();tipo_contrato();">
+				<select name="txtFormaContrato"	id="txtFormaContrato" style="width: 140px;" onchange="fecha_especial();//tipo_contrato();">
 				<option value=0>UNICO</option>
 				<option value=6>UNICO - PRONTO PAGO</option>				
 				<option value=1>AGUINALDOS - CUOTA ESPECIAL</option>
