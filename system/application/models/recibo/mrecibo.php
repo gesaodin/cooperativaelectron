@@ -24,13 +24,13 @@ class MRecibo extends Model {
 	}
 
     public function listaVoucher($factura){
-        $consulta = $this->db->query("SELECT * from t_lista_voucher where cid='".$factura."' and estatus=0");
+        $consulta = $this->db->query("SELECT * from t_lista_voucher where cid='".$factura."' and estatus=0 order by fecha");
         $filas = $consulta -> result();
         $arr=array();
         $res = array();
         if($consulta -> num_rows() > 0){
             foreach($filas as $fila){
-                $arr[]=$fila->ndep;
+                $arr[]=$fila->ndep .'|'.$fila->fecha;;
             }
             $res['msj'] ="si";
         }else{
