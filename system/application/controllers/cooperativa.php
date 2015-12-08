@@ -6793,14 +6793,14 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
 		}
 	}
 	function Consulta_Fcontrol() {
-		$this->load->model ( "cliente/mpresupuesto", 'MPresupuesto' );
+		$this->load->model ( "cliente/mfcontrol", 'MControl' );
 		$factura = $_POST ['factura'];
-		echo $this->MPresupuesto->Consultar ( $factura );
+		echo $this->MControl->Consultar ( $factura );
 	}
 	public function Listar_Fcontrol() {
 		$nivel = $this->session->userdata ( 'nivel' );
 		if ($nivel == 0 || $nivel == 9 || $nivel == 5 || $this->session->userdata ( 'usuario' ) == 'Carlos' || $nivel == 18 || $nivel == 19) {
-			$this->load->model ( "cliente/mpresupuesto", 'MPresupuesto' );
+			$this->load->model ( "cliente/mfcontrol", 'MFcontrol' );
 			if (isset ( $_POST )) {
 				$arr ['desde'] = $_POST ['desde'];
 				$arr ['hasta'] = $_POST ['hasta'];
@@ -6809,9 +6809,9 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
 				if ($nivel == 5) {
 					$arr ['ubicacion'] = $this->session->userdata ( 'ubicacion' );
 				}
-				$objeto = $this->MPresupuesto->Listar_FPresupuesto ( $arr );
+				$objeto = $this->MFcontrol->Listar_Fcontrol ( $arr );
 			} else {
-				$objeto = $this->MPresupuesto->Listar_FPresupuesto ( '' );
+				$objeto = $this->MFcontrol->Listar_Fcontrol ( '' );
 			}
 			echo $objeto;
 		} else {
@@ -6825,14 +6825,14 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
 			$json = json_decode ( $_POST ['objeto'], true );
 			$mod = array (
 					"nombre" => $json [2],
-					"direccion" => $json [3],
+					"control" => $json [3],
 					"telf" => $json [4],
 					"total" => $json [5] 
 			);
 			$this->db->where ( "factura", $json [0] );
 			$this->db->where ( "cedula", $json [1] );
-			$this->db->update ( "t_fpresupuesto", $mod );
-			$this->db->query ( "UPDATE t_it_fpresupuesto SET monto=" . $json [5] . " WHERE factura='" . $json [0] . "'" );
+			$this->db->update ( "t_fcontrol", $mod );
+			$this->db->query ( "UPDATE t_it_fcontrol SET monto=" . $json [5] . " WHERE factura='" . $json [0] . "'" );
 			echo "Se Modifico Factura.";
 		} else {
 			echo "No tiene permisos para realizar modificaciones...";
@@ -6842,8 +6842,8 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
 		$niv = $this->session->userdata ( 'nivel' );
 		if ($niv == 0 || $niv == 9 || $this->session->userdata ( 'usuario' ) == 'Carlos' || $niv == 18) {
 			$json = json_decode ( $_POST ['objeto'], true );
-			$this->db->query ( "DELETE FROM t_fpresupuesto WHERE factura = '" . $json [0] . "'" );
-			$this->db->query ( "DELETE FROM t_it_fpresupuesto WHERE factura = '" . $json [0] . "'" );
+			$this->db->query ( "DELETE FROM t_fcontrol WHERE factura = '" . $json [0] . "'" );
+			$this->db->query ( "DELETE FROM t_it_fcontrol WHERE factura = '" . $json [0] . "'" );
 			echo "Se Elimina Factura.";
 		} else {
 			echo "No tiene permisos para realizar ELIMINACION...";

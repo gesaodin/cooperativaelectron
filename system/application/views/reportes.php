@@ -80,6 +80,10 @@
   						<td align="center"><img src="/cooperativa-electron/system/img/reportes/fcontado.png" style='width:48px' onClick="muestra_div('rep_fpresu');$('#Bancos').hide();$('#Direccion').hide();"/><br>Facturas Presupuesto</td>
   						<td style="width: 50px" ></td>
   					<?php } ?>
+					<?php if($Nivel == 0 || $Nivel == 8 || $Nivel == 9 || $Nivel == 5 || $this -> session -> userdata('usuario') == 'Carlos'  || $Nivel == 18 ){?>
+						<td align="center"><img src="/cooperativa-electron/system/img/reportes/fcontado.png" style='width:48px' onClick="muestra_div('rep_fcontrol');$('#Bancos').hide();$('#Direccion').hide();"/><br>Facturas Formato Control</td>
+						<td style="width: 50px" ></td>
+					<?php } ?>
   					<?php if($Nivel == 0 || $Nivel == 8 || $Nivel == 9 || $Nivel == 5 || $this -> session -> userdata('usuario') == 'Carlos'  || $Nivel == 19 || $Nivel == 15 ){?>
   						<td align="center"><img src="/cooperativa-electron/system/img/reportes/emercancia.png" style='width:48px' onClick="muestra_div('rep_entregas');$('#Bancos').hide();$('#Direccion').hide();"/><br>Entrega de Mercancia</td>
   						<td style="width: 50px" ></td>
@@ -179,6 +183,10 @@
 				<div id="rep_fpresu" class="dialogo" title="Filtro Facturas Presupuesto">
 					<br>
 					<?php $this -> load -> view("reportes/fpresupuesto.php"); ?>
+				</div>
+				<div id="rep_fcontrol" class="dialogo" title="Filtro Facturas Formato Control">
+					<br>
+					<?php $this -> load -> view("reportes/fcontrol.php"); ?>
 				</div>
 				<div id="rep_entregas" class="dialogo" title="Filtro Entrega Mercancia">
 					<br>

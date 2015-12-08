@@ -171,9 +171,9 @@ class MFcontrol extends Model {
 			$oCabezera[8] = array("titulo" => "Total","tipo"=>"texto");
 			$oCabezera[9] = array("titulo" => "Empresa");
 			$oCabezera[10] = array("titulo" => "Ubicacion");
-			$oCabezera[11] = array("titulo" => "#", "tipo" => "enlace", "metodo" => 2, "funcion" => "Formato_Fpresupuesto", "parametro" => "3,14", "ruta" => __IMG__ . "botones/print.png", "atributos" => "width:12px", "target" => "_blank");
-			$oCabezera[12] = array("titulo" => "#", "tipo" => "bimagen", "funcion" => 'Modifica_Fpresu', "parametro" => "3,2,4,5,6,8", "ruta" => __IMG__ . "botones/aceptar1.png", "atributos" => "width:10px","mantiene"=>1);
-			$oCabezera[13] = array("titulo" => "#", "tipo" => "bimagen", "funcion" => 'Elimina_Fpresu', "parametro" => "3", "ruta" => __IMG__ . "botones/cancelar1.png", "atributos" => "width:10px","mantiene"=>1);
+			$oCabezera[11] = array("titulo" => "#", "tipo" => "enlace", "metodo" => 2, "funcion" => "Formato_Fcontrol", "parametro" => "3,14", "ruta" => __IMG__ . "botones/print.png", "atributos" => "width:12px", "target" => "_blank");
+			$oCabezera[12] = array("titulo" => "#", "tipo" => "bimagen", "funcion" => 'Modifica_Fcontrol', "parametro" => "3,2,4,5,6,8", "ruta" => __IMG__ . "botones/aceptar1.png", "atributos" => "width:10px","mantiene"=>1);
+			$oCabezera[13] = array("titulo" => "#", "tipo" => "bimagen", "funcion" => 'Elimina_Fcontrol', "parametro" => "3", "ruta" => __IMG__ . "botones/cancelar1.png", "atributos" => "width:10px","mantiene"=>1);
 			$oCabezera[14] = array("titulo" => "","oculto" => 1);
 			$i = 0;
 			foreach ($busqueda -> result() as $fpresu) {
@@ -182,7 +182,7 @@ class MFcontrol extends Model {
 							"2" => $fpresu -> cedula,
 							"3" => $fpresu -> factura,
 							"4" => $fpresu -> nombre,
-							"5" => $fpresu -> direccion,
+							"5" => $fpresu -> control,
 							"6" => $fpresu -> telf,
 							"7" => $fpresu -> fecha,
 							"8" => $fpresu -> total,

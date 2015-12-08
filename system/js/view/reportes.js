@@ -112,6 +112,16 @@ $(function() {
       dates1.not(this).datepicker("option", option1, date1);
     }
   });
+
+	var dates11 = $("#desde_fcontrol, #hasta_fcontrol").datepicker({
+		showOn : "button",
+		buttonImage : sImg + "calendar.gif",
+		buttonImageOnly : true,
+		onSelect : function(selectedDate) {
+			var option = this.id == "desde_fcontrol" ? "minDate" : "maxDate", instance = $(this).data("datepicker"), date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+			dates11.not(this).datepicker("option", option, date);
+		}
+	});
   
   var dates_sol = $("#desde_sol, #hasta_sol").datepicker({
 	    showOn : "button",
@@ -155,6 +165,8 @@ $(function() {
 	$("#hasta_contado").datepicker("option", "dateFormat", "yy-mm-dd");
 	$("#desde_fpresu").datepicker("option", "dateFormat", "yy-mm-dd");
 	$("#hasta_fpresu").datepicker("option", "dateFormat", "yy-mm-dd");
+	$("#desde_fcontrol").datepicker("option", "dateFormat", "yy-mm-dd");
+	$("#hasta_fcontrol").datepicker("option", "dateFormat", "yy-mm-dd");
 	$("#desde_entregas").datepicker("option", "dateFormat", "yy-mm-dd");
 	$("#hasta_entregas").datepicker("option", "dateFormat", "yy-mm-dd");
 	$("#desde_ccargasv").datepicker("option", "dateFormat", "yy-mm-dd");
@@ -325,6 +337,18 @@ $(function() {
 			}
 		}
 	});
+
+	$("#rep_fcontrol").dialog({
+		buttons : {
+			"Generar" : function() {
+				Listar_Fcontrol();
+				$(this).dialog("close");
+			},
+			"Cerrar" : function() {
+				$(this).dialog("close");
+			}
+		}
+	});
 	
 	$("#rep_ncliente").dialog({
 		buttons : {
@@ -457,6 +481,7 @@ function Listar() {
 				$("#txtDependencia_inv").append(new Option(valor['valor'], valor['seudonimo']));
 				$("#txtDependencia_contado").append(new Option(valor['valor'], valor['seudonimo']));
 				$("#txtDependencia_fpresu").append(new Option(valor['valor'], valor['seudonimo']));
+				$("#txtDependencia_fcontrol").append(new Option(valor['valor'], valor['seudonimo']));
 				$("#txtDependencia_entregas").append(new Option(valor['valor'], valor['seudonimo']));
 				$("#txtUsuario").append(new Option(valor['valor'], valor['seudonimo']));
 				$("#txtUsuarioContrato").append(new Option(valor['valor'], valor['seudonimo']));
@@ -468,6 +493,7 @@ function Listar() {
 			$("#txtDependenciaDep").append(new Option("TODOS", "TODOS"));
 			$("#txtDependencia_inv").append(new Option("TODOS", "TODOS"));
 			$("#txtDependencia_fpresu").append(new Option("TODOS", "TODOS"));
+			$("#txtDependencia_fcontrol").append(new Option("TODOS", "TODOS"));
 			$("#txtDependencia_entregas").append(new Option("TODOS", "TODOS"));
 			$("#txtDependencia_contado").append(new Option("TODOS", "TODOS"));
 			$("#txtDependencia_sp").append(new Option("TODOS", "TODOS"));
@@ -975,6 +1001,40 @@ function Listar_Fpresu() {
 				if (oEsq.msj == 1) {
 					Grid = new TGrid(oEsq, 'Reportes', "Facturas Presupuesto");
 					Grid.SetName("fpresu");
+					Grid.SetNumeracion(true);
+					Grid.SetXls(true);
+					Grid.Generar();
+				} else {
+					alert("No se encontraton registros");
+				}
+
+			}
+		});
+	}
+
+}
+
+function Listar_Fcontrol() {
+
+	var ubica = $("#txtDependencia_fcontrol option:selected").text();
+	var fecha_d = $("#desde_fcontrol").val();
+	var fecha_h = $("#hasta_fcontrol").val();
+	if(fecha_d == '' || fecha_h == '') {
+		alert("Debe Ingresar Todos los datos");
+	}else {
+		$("#Reportes").html('');
+		$("#carga_busqueda").dialog('open');
+		$.ajax({
+			url : sUrlP + "Listar_Fcontrol",
+			type : "POST",
+			data : "ubicacion=" + ubica + "&desde=" + fecha_d + "&hasta=" + fecha_h,
+			dataType : "json",
+			success : function(oEsq) {
+				$("#carga_busqueda").dialog('close');
+				//alert(oEsq);
+				if (oEsq.msj == 1) {
+					Grid = new TGrid(oEsq, 'Reportes', "Facturas Control");
+					Grid.SetName("fcontrol");
 					Grid.SetNumeracion(true);
 					Grid.SetXls(true);
 					Grid.Generar();
