@@ -1584,10 +1584,10 @@ class PFormatos extends Model {
 				//codigo
 				$pagina1['codigo'] = array('texto' => $fact -> factura, 'ancho' => 45, 'x' => $xcod, 'y' => $y5, 'estilo' => 'B', 'alinea' => 'L');
 				//total
-				$pagina1['total'] = array('texto' => number_format($fact -> total,2), 'ancho' => 30, 'x' => 178, 'y' => 263, 'estilo' => 'B', 'alinea' => 'L');
+				$pagina1['total'] = array('texto' => number_format($fact -> total,2,',','.'), 'ancho' => 30, 'x' => 178, 'y' => 263, 'estilo' => 'B', 'alinea' => 'L');
 				if($e != 0){
 					//total
-					$pagina1['total2'] = array('texto' => number_format($fact -> total,2), 'ancho' => 30, 'x' => 178, 'y' => 245, 'estilo' => 'B', 'alinea' => 'L');
+					$pagina1['total2'] = array('texto' => number_format($fact -> total,2,',','.'), 'ancho' => 30, 'x' => 178, 'y' => 245, 'estilo' => 'B', 'alinea' => 'L');
 				}
 				
 				//Detalle factura
@@ -1603,9 +1603,9 @@ class PFormatos extends Model {
 					//cantidad
 					$pagina1['cantidad'.$i] = array('texto' => $det -> cantidad, 'ancho' => 15, 'x' => $xd1, 'y' => $y6, 'estilo' => '');
 					//precio
-					$pagina1['precio'.$i] = array('texto' => number_format($det -> monto,2), 'ancho' => 30, 'x' => $xd3, 'y' => $y6, 'estilo' => '');
+					$pagina1['precio'.$i] = array('texto' => number_format($det -> monto,2,',','.'), 'ancho' => 30, 'x' => $xd3, 'y' => $y6, 'estilo' => '');
 					//precio total
-					$total = number_format($det -> monto * $det -> cantidad,2);
+					$total = number_format($det -> monto * $det -> cantidad,2,',','.');
 					$pagina1['total'.$i] = array('texto' => $total, 'ancho' => 30, 'x' => $xd4, 'y' => $y6, 'estilo' => '');
 					//des
 					$pagina1['des'.$i] = array('texto' => $det -> descrip, 'ancho' => 110, 'x' => $xd2, 'y' => $y6, 'estilo' => '', 'multi' => 6, 'alto' => 6.7, 'alinea' => 'L');
@@ -1717,10 +1717,10 @@ class PFormatos extends Model {
 				$pagina1['tlf'] = array('texto' => $fact -> telf, 'ancho' => $at, 'x' => $xt, 'y' => $y3, 'estilo' => '', 'alinea' => 'L');
 				//total
 				$iva = $fact->total * 0.12;
-				$pagina1['total'] = array('texto' => number_format($fact -> total+$iva,2), 'ancho' => $ato, 'x' => $xto, 'y' => $y5, 'estilo' => 'B', 'alinea' => 'C');
+				$pagina1['total'] = array('texto' => number_format($fact -> total+$iva,2,',','.'), 'ancho' => $ato, 'x' => $xto, 'y' => $y5, 'estilo' => 'B', 'alinea' => 'C');
 				$pagina1['iva'] = array('texto' => '12', 'ancho' => 9, 'x' => $xiva, 'y' => $yiva, 'estilo' => 'B', 'alinea' => 'C');
-				$pagina1['impo'] = array('texto' => number_format($fact->total,2), 'ancho' => $ato, 'x' => $xto, 'y' => ($yiva-7), 'estilo' => 'B', 'alinea' => 'C');
-				$pagina1['miva'] = array('texto' => number_format($iva,2), 'ancho' => $ato, 'x' => $xto, 'y' => $yiva, 'estilo' => 'B', 'alinea' => 'C');
+				$pagina1['impo'] = array('texto' => number_format($fact->total,2,',','.'), 'ancho' => $ato, 'x' => $xto, 'y' => ($yiva-7), 'estilo' => 'B', 'alinea' => 'C');
+				$pagina1['miva'] = array('texto' => number_format($iva,2,',','.'), 'ancho' => $ato, 'x' => $xto, 'y' => $yiva, 'estilo' => 'B', 'alinea' => 'C');
 				//Detalle factura
 				$sqlDetalle = "SELECT * FROM t_it_fcontrol WHERE factura ='".$factura."'";
 				$Detalle = $this -> db -> query($sqlDetalle);
@@ -1731,7 +1731,7 @@ class PFormatos extends Model {
 					//cantidad
 					$pagina1['cantidad'.$i] = array('texto' => $det -> cantidad, 'ancho' => 15, 'x' => $xd1, 'y' => $y4, 'estilo' => '');
 					//precio
-					$pagina1['precio'.$i] = array('texto' => number_format($det -> monto,2), 'ancho' => $atd, 'x' => $xd3, 'y' => $y4, 'estilo' => '');
+					$pagina1['precio'.$i] = array('texto' => number_format($det -> monto,2,',','.'), 'ancho' => $atd, 'x' => $xd3, 'y' => $y4, 'estilo' => '');
 					//precio total
 					$total = number_format($det -> monto * $det -> cantidad,2);
 					$pagina1['total'.$i] = array('texto' => $total, 'ancho' => 30, 'x' => $xd4, 'y' => $y4, 'estilo' => '');
