@@ -6861,10 +6861,10 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
 		}
 	}
 	public function Detalle_Fcontrol() {
-		$this->load->model ( "cliente/mpresupuesto", 'MPresupuesto' );
+		$this->load->model ( "cliente/mfcontrol", 'MControl' );
 		$json = json_decode ( $_POST ['objeto'], true );
 		$factura = $json ['0'];
-		$objeto = $this->MPresupuesto->Listar_FPresupuesto_Detalle ( $factura );
+		$objeto = $this->MControl->Listar_FControl_Detalle ( $factura );
 		echo $objeto;
 	}
 	

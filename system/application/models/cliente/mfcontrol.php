@@ -161,7 +161,7 @@ class MFcontrol extends Model {
 		$cant = $busqueda -> num_rows();
 		$filas = array();
 		if ($cant > 0) {
-			$oCabezera[1] = array("titulo" => " ", "tipo" => "detallePost", "atributos" => "width:40px", "funcion" => "Detalle_Fpresu", "parametro" => "3", "atributos" => "width:12px");
+			$oCabezera[1] = array("titulo" => " ", "tipo" => "detallePost", "atributos" => "width:40px", "funcion" => "Detalle_Fcontrol", "parametro" => "3", "atributos" => "width:12px");
 			$oCabezera[2] = array("titulo" => "Cedula", "atributos" => "width:50px","buscar"=>1);
 			$oCabezera[3] = array("titulo" => "Factura", "atributos" => "width:50px;text-align:center;","buscar"=>1);
 			$oCabezera[4] = array("titulo" => "Nombre", "atributos" => "width:100px;text-align:right;","tipo"=>"texto");
@@ -169,7 +169,7 @@ class MFcontrol extends Model {
 			$oCabezera[6] = array("titulo" => "Telefono", "atributos" => "width:100px;text-align:center;","tipo"=>"texto");
 			$oCabezera[7] = array("titulo" => "Fecha");
 			$oCabezera[8] = array("titulo" => "Total","tipo"=>"texto");
-			$oCabezera[9] = array("titulo" => "Empresa");
+			$oCabezera[9] = array("titulo" => "Empresa","buscar"=>1);
 			$oCabezera[10] = array("titulo" => "Ubicacion");
 			$oCabezera[11] = array("titulo" => "Estatus","buscar"=>1);
 			$oCabezera[12] = array("titulo" => "#", "tipo" => "enlace", "metodo" => 2, "funcion" => "Formato_Fcontrol", "parametro" => "3,15", "ruta" => __IMG__ . "botones/print.png", "atributos" => "width:12px", "target" => "_blank");
@@ -179,6 +179,8 @@ class MFcontrol extends Model {
 			$i = 0;
 			foreach ($busqueda -> result() as $fpresu) {
 				$i++;
+				$eti='';$eti2='';
+				if($fpresu->estatus == 1){$eti='<font color=red>';$eti2='</font>';}
 				$filas[$i] = array("1" => "",
 							"2" => $fpresu -> cedula,
 							"3" => $fpresu -> factura,
@@ -189,14 +191,14 @@ class MFcontrol extends Model {
 							"8" => $fpresu -> total,
 							"9" => $this -> Empresa($fpresu -> empresa),
 							"10" => $fpresu -> ubicacion,
-							"11" => $fpresu -> estatusT,
+							"11" => $eti.$fpresu -> estatusT.$eti2,
 							"12" => "",
 							"13" => "",
 							"14" => "",
 							"15" => $fpresu -> empresa
 							);
 			}
-			$Object = array("Cabezera" => $oCabezera, "Cuerpo" => $filas, "Origen" => "json", "msj" => 1,"Pagindor"=>50);
+			$Object = array("Cabezera" => $oCabezera, "Cuerpo" => $filas, "Origen" => "json", "msj" => 1,"Paginador"=>50);
 		} else {
 			$Object = array("msj" => 0);
 		}
@@ -204,8 +206,8 @@ class MFcontrol extends Model {
 
 	}
 
-	function Listar_FPresupuesto_Detalle($factura){
-		$sql = "SELECT cantidad AS Cantidad, descrip AS Descripcion, monto AS Precio_Unitario, (cantidad*monto) AS Total FROM t_it_fpresupuesto WHERE factura='". $factura ."'";
+	function Listar_FControl_Detalle($factura){
+		$sql = "SELECT cantidad AS Cantidad, descrip AS Descripcion, monto AS Precio_Unitario, (cantidad*monto) AS Total FROM t_it_fcontrol WHERE factura='". $factura ."'";
 		$consulta = $this -> db -> query($sql);
 		$cantidad = $consulta -> num_rows();
 		if($cantidad > 0){
