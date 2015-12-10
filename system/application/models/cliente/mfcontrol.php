@@ -152,9 +152,9 @@ class MFcontrol extends Model {
 				$ubi = '';
 			else
 				$ubi = " AND ubicacion ='" . $arr['ubicacion'] . "'";
-			$consulta = "SELECT * FROM t_fcontrol WHERE fecha BETWEEN '" . $arr['desde'] . "' AND '" . $arr['hasta'] . "' " . $ubi;
+			$consulta = "SELECT *,if(estatus=0,\"Activa\",\"Nula\")as estatusT FROM t_fcontrol WHERE fecha BETWEEN '" . $arr['desde'] . "' AND '" . $arr['hasta'] . "' " . $ubi;
 		} else {
-			$consulta = "SELECT * FROM t_fcontrol";
+			$consulta = "SELECT *,if(estatus=0,\"Activa\",\"Nula\")as estatusT FROM t_fcontrol";
 		}
 		$busqueda = $this -> db -> query($consulta);
 
@@ -162,8 +162,8 @@ class MFcontrol extends Model {
 		$filas = array();
 		if ($cant > 0) {
 			$oCabezera[1] = array("titulo" => " ", "tipo" => "detallePost", "atributos" => "width:40px", "funcion" => "Detalle_Fpresu", "parametro" => "3", "atributos" => "width:12px");
-			$oCabezera[2] = array("titulo" => "Cedula", "atributos" => "width:50px");
-			$oCabezera[3] = array("titulo" => "Factura", "atributos" => "width:50px;text-align:center;");
+			$oCabezera[2] = array("titulo" => "Cedula", "atributos" => "width:50px","buscar"=>1);
+			$oCabezera[3] = array("titulo" => "Factura", "atributos" => "width:50px;text-align:center;","buscar"=>1);
 			$oCabezera[4] = array("titulo" => "Nombre", "atributos" => "width:100px;text-align:right;","tipo"=>"texto");
 			$oCabezera[5] = array("titulo" => "Control", "atributos" => "width:100px;text-align:right;","tipo"=>"texto");
 			$oCabezera[6] = array("titulo" => "Telefono", "atributos" => "width:100px;text-align:center;","tipo"=>"texto");
@@ -171,10 +171,11 @@ class MFcontrol extends Model {
 			$oCabezera[8] = array("titulo" => "Total","tipo"=>"texto");
 			$oCabezera[9] = array("titulo" => "Empresa");
 			$oCabezera[10] = array("titulo" => "Ubicacion");
-			$oCabezera[11] = array("titulo" => "#", "tipo" => "enlace", "metodo" => 2, "funcion" => "Formato_Fcontrol", "parametro" => "3,14", "ruta" => __IMG__ . "botones/print.png", "atributos" => "width:12px", "target" => "_blank");
-			$oCabezera[12] = array("titulo" => "#", "tipo" => "bimagen", "funcion" => 'Modifica_Fcontrol', "parametro" => "3,2,4,5,6,8", "ruta" => __IMG__ . "botones/aceptar1.png", "atributos" => "width:10px","mantiene"=>1);
-			$oCabezera[13] = array("titulo" => "#", "tipo" => "bimagen", "funcion" => 'Elimina_Fcontrol', "parametro" => "3", "ruta" => __IMG__ . "botones/cancelar1.png", "atributos" => "width:10px","mantiene"=>1);
-			$oCabezera[14] = array("titulo" => "","oculto" => 1);
+			$oCabezera[11] = array("titulo" => "Estatus","buscar"=>1);
+			$oCabezera[12] = array("titulo" => "#", "tipo" => "enlace", "metodo" => 2, "funcion" => "Formato_Fcontrol", "parametro" => "3,15", "ruta" => __IMG__ . "botones/print.png", "atributos" => "width:12px", "target" => "_blank");
+			$oCabezera[13] = array("titulo" => "#", "tipo" => "bimagen", "funcion" => 'Modifica_Fcontrol', "parametro" => "3,2,4,5,6,8", "ruta" => __IMG__ . "botones/aceptar1.png", "atributos" => "width:10px","mantiene"=>1);
+			$oCabezera[14] = array("titulo" => "#", "tipo" => "bimagen", "funcion" => 'Anular_Fcontrol', "parametro" => "3", "ruta" => __IMG__ . "botones/cancelar1.png", "atributos" => "width:10px","mantiene"=>1);
+			$oCabezera[15] = array("titulo" => "","oculto" => 1);
 			$i = 0;
 			foreach ($busqueda -> result() as $fpresu) {
 				$i++;
@@ -188,13 +189,14 @@ class MFcontrol extends Model {
 							"8" => $fpresu -> total,
 							"9" => $this -> Empresa($fpresu -> empresa),
 							"10" => $fpresu -> ubicacion,
-							"11" => "",
+							"11" => $fpresu -> estatusT,
 							"12" => "",
 							"13" => "",
-							"14" => $fpresu -> empresa
+							"14" => "",
+							"15" => $fpresu -> empresa
 							);
 			}
-			$Object = array("Cabezera" => $oCabezera, "Cuerpo" => $filas, "Origen" => "json", "msj" => 1);
+			$Object = array("Cabezera" => $oCabezera, "Cuerpo" => $filas, "Origen" => "json", "msj" => 1,"Pagindor"=>50);
 		} else {
 			$Object = array("msj" => 0);
 		}

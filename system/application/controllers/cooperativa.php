@@ -6849,6 +6849,17 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
 			echo "No tiene permisos para realizar ELIMINACION...";
 		}
 	}
+	public function Anular_Fcontrol() {
+		$niv = $this->session->userdata ( 'nivel' );
+		if ($niv == 0 || $niv == 9 || $this->session->userdata ( 'usuario' ) == 'Carlos' || $this->session->userdata ( 'usuario' ) == 'AlvaroZ' || $niv == 18) {
+			$json = json_decode ( $_POST ['objeto'], true );
+			$this->db->query ( "UPDATE t_fcontrol SET estatus=1 WHERE factura = '" . $json [0] . "'" );
+
+			echo "Se Anulo Factura Factura.";
+		} else {
+			echo "No tiene permisos para realizar ELIMINACION...";
+		}
+	}
 	public function Detalle_Fcontrol() {
 		$this->load->model ( "cliente/mpresupuesto", 'MPresupuesto' );
 		$json = json_decode ( $_POST ['objeto'], true );
