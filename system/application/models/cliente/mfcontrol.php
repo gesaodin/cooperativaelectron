@@ -211,7 +211,7 @@ class MFcontrol extends Model {
 		$consulta = $this -> db -> query($sql);
 		$cantidad = $consulta -> num_rows();
 		if($cantidad > 0){
-			$Object = array("Cabezera" => $consulta -> list_fields(), "Cuerpo" => $consulta -> result(), "Origen" => "Mysql");	
+			$Object = array("Cabezera" => $consulta -> list_fields(), "Cuerpo" => $consulta -> result(), "Origen" => "Mysql","leyenda"=>"<br><br>","titulo"=>"<br><br>");
 		}
 		return json_encode($Object);
 	}
