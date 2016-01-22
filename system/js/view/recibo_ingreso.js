@@ -92,6 +92,7 @@ function Agrega_Contrato(){
 function GuardaRecibo(){
 	strUrl_Proceso = sUrlP + "Guardar_Recibo";
 	cedula = $("#txtCedula").val();
+	reciboPre = $("#txtReciboPre").val();
 	monto = $("#txtmontorecibo").val();
 	recibido = $("#txtRecibidoDe").val();
 	fecha = $("#fecha").val();
@@ -141,7 +142,7 @@ function GuardaRecibo(){
 			url: strUrl_Proceso, 
 			type : 'POST',
 			data : 'creditos=' + creditos + '&cedula=' + cedula + '&monto=' + monto + '&recibido=' + recibido + '&fecha=' + fecha 
-			+ '&tipo=' + tipo + '&cheque=' + cheque + '&banco=' + banco + '&concepto=' + concepto + '&empresa=' + empresa+'&cargar='+cargar+'&cargar1='+cargar1+'&voucher='+voucher,
+			+ '&tipo=' + tipo + '&cheque=' + cheque + '&banco=' + banco + '&concepto=' + concepto + '&empresa=' + empresa+'&cargar='+cargar+'&cargar1='+cargar1+'&voucher='+voucher+'&reciboPre='+reciboPre,
 			//dataType: 'json',
 			success : function(html) {
 				$("#msj_alertas").html(html);
@@ -157,6 +158,7 @@ function GuardaRecibo(){
 
 function limpiar(){
 	$("#txtCedula").val('');
+	$("#txtReciboPre").val('');
 	$("#txtmontorecibo").val('');
 	$("#txtRecibidoDe").val('');
 	$("#fecha").val('');

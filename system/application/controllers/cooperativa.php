@@ -6116,6 +6116,7 @@ class cooperativa extends Controller {
 		$msj = $this->MRecibo->Guardar_Recibo ( $arr );
 		$cedula = $arr ['cedula'];
 		$msj .= '<a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/Imprime_Recibo_Ingreso/' . $arr ['nrecibo'] . '\' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'><br>	Imprimir Recibo de Ingreso</a>';
+		$msj .= '<a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/Imprime_Recibo_Ingreso_Preimpreso/' . $arr ['nrecibo'] . '\' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'><br>Recibo Pre-Impreso</a>';
 		echo $msj;
 	}
 	public function Guardar_ReciboE() {
@@ -6136,6 +6137,16 @@ class cooperativa extends Controller {
 			$this->login ();
 		}
 	}
+
+	public function Imprime_Recibo_Ingreso_Preimpreso($recibo = null) {
+		if ($this->session->userdata ( 'usuario' )) {
+			$this->load->model ( 'reporte/PReciboingreso' );
+			$this->PReciboingreso->ReciboI_Pre ( $recibo );
+		} else {
+			$this->login ();
+		}
+	}
+
 	public function Imprime_Recibo_Egreso($recibo = null) {
 		if ($this->session->userdata ( 'usuario' )) {
 			$this->load->model ( 'reporte/preeciboegreso', 'PReciboegreso' );

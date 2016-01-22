@@ -15,6 +15,12 @@
 			<td colspan="3" ><input name="txtmontorecibo" type="text" style="width: 100%;" id="txtmontorecibo" onkeypress="Solo_Numero();"></td>
 		
 		</tr>
+		<tr>
+			<td style='width:120px;'>N.Recibo Pre.: <font color='#B70000'>(*)</td>
+			<td style="width: 120px;" align="left" colspan="5">
+				<input name="txtReciboPre" type="text" style="width: 100%;" id="txtReciboPre">
+			</td>
+		</tr>
 		<tr> 	
 			<td style='width:120px;'>Recibido De: <font color='#B70000'>(*)</td>
 			<td style="width: 120px;" align="left" colspan="5">
@@ -114,8 +120,8 @@
 			<td style='width:120px;'>Formato de Imp.: <font color='#B70000'>(*)</td>
 			<td style="width: 180px;" align="left" colspan="5">
 				<select name="txtEmpresa"	id="txtEmpresa"style="width: 100%;">
-					<OPTION VALUE =0 >COOPERATIVA ELECTRON 465 RL.</option>
-					<OPTION VALUE =1 >GRUPO ELECTRON 465 C.A</option>					
+					<OPTION VALUE =0 disabled="disabled">COOPERATIVA ELECTRON 465 RL.</option>
+					<OPTION VALUE =1>GRUPO ELECTRON 465 C.A</option>
 				</select>
 			</td>
 					

@@ -155,6 +155,159 @@ class PReciboingreso extends Model {
 
 	}
 
+	public function ReciboI_Pre($recibo) {
+		$this -> load -> library('pdf');
+		$pdf = new $this->pdf();
+		$font = 'times';
+		$pdf -> SetHeaderMargin(0);
+		$pdf -> SetFooterMargin(0);
+		$pdf -> SetAutoPageBreak(FALSE, 0);
+		$pdf -> setImageScale(3.7);
+		$query = "SELECT *
+		FROM t_recibo_ingreso
+		WHERE numero_recibo='" .$recibo . "' LIMIT 1";
+		$Consulta = $this -> db -> query($query);
+		$cant = 1;
+		if ($Consulta -> num_rows() > 0) {
+			foreach ($Consulta->result() as $row) {
+				$cedula = $row -> documento_id;
+				$recibo = $row -> numero_recibo;
+				$recibido = $row -> recibido;
+				$fecha = explode('-', $row -> fecha);
+				$monto = $row -> monto;
+				$concepto = $row -> concepto;
+				$banco = $row -> banco;
+				$tipo = $row -> tipo_pago;
+				$cheque = $row -> numero_cheque;
+				$empresa = $row -> empresa;
+			}
+		}
+		//$img_file = K_PATH_IMAGES . $img;
+		$y = 13;
+		$x1 = 165;
+		$y1 = 23 ;
+		$x2 = 145;
+		$y2 = 32;
+		$x3 = 25;
+		$x4 = 39;
+		$x5 = 53;
+
+		$x6= 37;
+		$y4 = 38;
+		$y5 = 44;
+		$y7 = 55;
+
+		$x7 = 130;
+		$y6 = 50;
+
+		$y7= 56;
+
+		$y8 =76;
+		$xt = 25.5;
+		switch($tipo){
+			case 'E':
+				$xt = 24;
+				break;
+			case 'C':
+				$xt = 58;
+				break;
+			case 'D':
+				$xt = 40;
+				break;
+			case 'P':
+				$xt = 103;
+				break;
+			case 'T':
+				$xt = 84;
+				break;
+		}
+		if($tipo == 'C'){
+
+		}
+
+		$y9 = 80;
+		$xc = 33;
+		$pdf -> setPrintHeader(FALSE);
+		$pdf -> setPrintFooter(FALSE);
+		$pdf -> AddPage('', 'LETTER');
+		$pdf -> SetFont($font, 'B', 10);
+		$img = 'recibo_ingreso_grupo.jpg';
+		if($empresa == 0){
+			$img = 'recibo_ingreso_cooperativa.jpg';
+		}
+
+		$img_file = K_PATH_IMAGES . $img;
+		for ($i = 1;$i <= $cant ;$i++){
+
+			//$pdf -> Image($img_file, 10, $y, 0, 90, '', '', '', false, 300, '', false, false, 0);
+			//recibo
+			/*$pdf -> SetFont($font, 'B', 14);
+			$pdf -> SetXY($x1,$y1);
+			$pdf -> Cell(30, 4, $recibo, 0, 0, 'C', 0);*/
+			//monto
+			$pdf -> SetXY($x2 , $y2);
+			$pdf -> Cell(46, 4, number_format($monto,2), 0, 0, 'C', 0);
+			//fecha
+			$pdf -> SetXY($x3 , $y2);
+			$pdf -> Cell(14, 4, $fecha[2], 0, 0, 'C', 0);
+			$pdf -> SetXY($x4 , $y2);
+			$pdf -> Cell(14, 4, $fecha[1], 0, 0, 'C', 0);
+			$pdf -> SetXY($x5 , $y2);
+			$pdf -> Cell(28, 4, $fecha[0], 0, 0, 'C', 0);
+			//cliente
+			$tam = 150;
+			$pdf -> SetFont($font, 'B', 10);
+			$pdf -> SetXY($x6 , $y4);
+			$tamAux = $this -> get_tam_font($pdf, 10, $font, $recibido, 'B', $tam);
+			$pdf -> SetFont($font, 'B', $tamAux);
+			$pdf -> Cell($tam, 4, $recibido, 0, 0, 'C', 0);
+			//monto_letras
+			$ancho = 150;
+			$pdf -> SetFont($font, 'B', 10);
+			$letras = strtoupper($this -> ValorEnLetras($monto, 'BOLIVARES'));
+			$tamAux = $this -> get_tam_font($pdf, 8, $font, $letras, 'B', 120);
+			$pdf -> SetFont($font, 'B', $tamAux);
+			$pdf -> SetXY($x6, $y5);
+			$pdf -> MultiCell($ancho, 0, $letras, 0, 'C', 0, 0, '', '', 0);
+			//cedula
+			$pdf -> SetXY($x7 , $y6);
+			$pdf -> SetFont($font, 'B', 10);
+			$pdf -> Cell(60, 4, $cedula, 0, 0, 'C', 0);
+			//motivo
+
+			$pdf -> SetFont($font, 'B', 10);
+			$pdf -> SetXY($x6 , $y7);
+			$pdf -> MultiCell(150, 10, $concepto, 0, 'L', 0, 0, '', '', TRUE);
+			//tipo
+			$pdf -> SetXY($xt , $y8);
+			$pdf -> SetFont($font, 'B', 10);
+			$pdf -> Cell(5, 4, 'X', 0, 0, 'C', 0);
+			//cheque
+			$pdf -> SetXY($xc , $y9);
+			$pdf -> SetFont($font, 'B', 10);
+			$pdf -> Cell(55, 4, $cheque, 0, 0, 'C', 0);
+
+			//banco
+			$pdf -> SetXY($xc-10 , $y9+6);
+			$pdf -> SetFont($font, 'B', 10);
+			$pdf -> Cell(65, 4, $banco, 0, 0, 'C', 0);
+
+			$y +=132.3;
+			$y1+=132.3;
+			$y2+=132.3;
+			$y4+=132.3;
+			$y5+=132.3;
+			$y6+=132.3;
+			$y7+=132.3;
+			$y8+=132.3;
+			$y9+=132.3;
+		}
+
+
+		$pdf -> Output('RI_'.$recibo.'.pdf', 'D');
+
+	}
+
 	public function get_tam_font($pdf, $tam, $font, $cad, $est, $ancho) {
 		$tamAux = $tam;
 		$auxFont = $pdf -> GetStringWidth($cad, $font, $est, $tamAux);
