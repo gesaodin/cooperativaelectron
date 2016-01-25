@@ -76,7 +76,7 @@
   						<td align="center"><img src="/cooperativa-electron/system/img/reportes/vcontado.png" style='width:48px' onClick="muestra_div('rep_contado');$('#Bancos').hide();$('#Direccion').hide();"/><br>Ventas De Contado</td>
   						<td style="width: 50px" ></td>
   					<?php } ?>
-  					<?php if($Nivel == 0 || $Nivel == 8 || $Nivel == 9 || $Nivel == 5 || $this -> session -> userdata('usuario') == 'Carlos'  || $Nivel == 18 ){?>
+  					<?php if($Nivel == 0 || $Nivel == 8 || $Nivel == 9 || $Nivel == 5 || $this -> session -> userdata('usuario') == 'Carlos'  || $Nivel == 18  || $this -> session -> userdata('usuario') == 'mvanalista11'){?>
   						<td align="center"><img src="/cooperativa-electron/system/img/reportes/fcontado.png" style='width:48px' onClick="muestra_div('rep_fpresu');$('#Bancos').hide();$('#Direccion').hide();"/><br>Facturas Presupuesto</td>
   						<td style="width: 50px" ></td>
   					<?php } ?>

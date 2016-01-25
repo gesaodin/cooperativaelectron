@@ -96,6 +96,7 @@ function consulta_cliente() {
 	
 	
 	strUrl_Proceso = sUrlP + "wservicio";
+	/**
 	$.ajax({
 		url : strUrl_Proceso,
 		type : 'POST',
@@ -110,6 +111,7 @@ function consulta_cliente() {
 			}
 		}
 	});
+	**/
 
 	strUrl_Proceso = sUrlP + "DataSource_Cliente";
 	$.ajax({

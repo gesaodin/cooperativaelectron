@@ -108,7 +108,7 @@
 			</select>
 			<select name="txtAno"	id="txtAno" style="width: 60px;">
 				<option value=0>A&ntilde;o:</option>
-				<?php 	for($i = 2006; $i <= 2015; $i++){		?>
+				<?php 	for($i = 2006; $i <= 2017; $i++){		?>
 				<option value='<?php echo $i ?>'><?php echo $i ?></option>
 				<?php	}	?>
 			</select>

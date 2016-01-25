@@ -997,7 +997,7 @@ function Listar_Fpresu() {
 			dataType : "json",
 			success : function(oEsq) {
 				$("#carga_busqueda").dialog('close');
-				//alert(oEsq);
+				alert('PAUSE...');
 				if (oEsq.msj == 1) {
 					Grid = new TGrid(oEsq, 'Reportes', "Facturas Presupuesto");
 					Grid.SetName("fpresu");

@@ -304,12 +304,18 @@ class cooperativa extends Controller {
 				t_cheque_garantia.factura=t_clientes_creditos.numero_factura
 				WHERE contrato_id='" . $json [1] . "' LIMIT 1";
 				$Consulta = $this->db->query ( $sQuery );
+				
+				$this->MCliente->EjecutarDisparo ( $json [1], $this->session->userdata ( 'destino_verdadero' ), $json [3], 1 );
+				echo '<a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/ipdf/' . $json [4], '/', $json [1] . '\' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'><br>	Imprimir Formato</a>';
+				/**
 				if ($Consulta->num_rows () > 0) {
 					$this->MCliente->EjecutarDisparo ( $json [1], $this->session->userdata ( 'destino_verdadero' ), $json [3], 1 );
 					echo '<a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/ipdf/' . $json [4], '/', $json [1] . '\' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'><br>	Imprimir Formato</a>';
 				} else {
 					echo "Debe Ingresar Cheque por Garantia en el Modulo de Expediente Digital";
 				}
+				**/
+				
 			}
 		}
 	}
@@ -6671,7 +6677,7 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
 	}
 	public function Listar_FPresupuesto() {
 		$nivel = $this->session->userdata ( 'nivel' );
-		if ($nivel == 0 || $nivel == 9 || $nivel == 5 || $this->session->userdata ( 'usuario' ) == 'Carlos' || $nivel == 18 || $nivel == 19) {
+		if ($nivel == 0 || $nivel == 9 || $nivel == 5 || $this->session->userdata ( 'usuario' ) == 'Carlos' || $nivel == 18 || $nivel == 19 || $this -> session -> userdata('usuario') == 'mvanalista11') {
 			$this->load->model ( "cliente/mpresupuesto", 'MPresupuesto' );
 			if (isset ( $_POST )) {
 				$arr ['desde'] = $_POST ['desde'];
