@@ -249,7 +249,7 @@ class cooperativa extends Controller {
 	}
 	function Pagos_Factura() {
 		$nivel = $this->session->userdata ( 'nivel' );
-		if ($nivel == 0 || $nivel == 9 || $this->session->userdata ( 'usuario' ) == 'Carlos' || $nivel == 5 || $nivel == 3) {
+		if ($nivel == 0 || $nivel == 9 || $this->session->userdata ( 'usuario' ) == 'Carlos' || $nivel == 5 || $nivel == 3 || $nivel == 18) {
 			$arr ['tipo'] = $_POST ['tipo'];
 			$arr ['ubicacion'] = $_POST ['ubicacion'];
 			$arr ['ano'] = $_POST ['ano'];

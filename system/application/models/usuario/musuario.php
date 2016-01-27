@@ -394,7 +394,7 @@ class MUsuario extends Model {
 		if ($rsCon -> num_rows() > 0) {
 			$rs = $rsCon -> result();
 			foreach ($rs as $rw) {
-				if (strtolower($rw -> sd) == "alvaro" || strtolower($rw -> sd) == "carlos" || strtolower($rw -> sd) == "cuadre" || strtolower($rw -> sd) == "planificacion") {
+				if (strtolower($rw -> sd) == "alvaro" || strtolower($rw -> sd) == "carlos" || strtolower($rw -> sd) == "cuadre" || strtolower($rw -> sd) == "planificacion"|| strtolower($rw -> sd) == "albeida") {
 					$this -> lista_dependiente[] = array('oid' => $rw -> oid, 'id' => $rw -> cedula, 'valor' => $rw -> ubicacion, 'seudonimo' => $rw -> ubicacion);
 				} else {
 					$this -> lista_dependiente[] = array('oid' => $rw -> oid, 'id' => $rw -> cedula, 'valor' => $rw -> dependiente, 'seudonimo' => $rw -> seudonimo);
