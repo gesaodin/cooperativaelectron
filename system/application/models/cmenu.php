@@ -200,7 +200,7 @@ class CMenu extends Model {
 
 		if ($intNivel == 18) {
 			$Menu_B = '
-      <div class="cssmenu">ma
+      <div class="cssmenu">
       <ul>
       <li class="active" id="mbuzon"><span><a href="buzon"><span id="iContador">Principal</span></a></li>
       <li  id="mcliente"><a href="registrar"><span>Cliente</span></a></li>
