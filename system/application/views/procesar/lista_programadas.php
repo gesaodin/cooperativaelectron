@@ -29,7 +29,7 @@
 		
 		<select name="txtAnoCobro"	id="txtAnoCobro"  style="width: 70px;">
 			<?php 
-					for($i = 2014; $i <= 2015; $i++){
+					for($i = 2015; $i <= 2016; $i++){
 			?>
 				<option value='<?php echo $i ?>'><?php echo $i ?></option>
 			<?php 
