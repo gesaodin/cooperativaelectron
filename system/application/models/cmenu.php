@@ -48,10 +48,7 @@ class CMenu extends Model {
 		}
 
 		if ($usu == 'poleeth') {
-			$TMnu .= '
-				<li id="mcobranza"><a href="Cobranza"><span>Cobranza BFC</span></a></li>
-				<li id="mreciboi" class="active"><a href="Recibo_Egreso"><span>Recibos de Egreso</span></a></li>
-			';
+			$TMnu .= '<li id="mcobranza"><a href="Cobranza"><span>Cobranza BFC</span></a></li>';
 		}
 		if ($intNivel == 15) {
 			$TMnu .= '
@@ -123,7 +120,7 @@ class CMenu extends Model {
                     <li class="active" ><a href="#" Onclick="N_Ventana(\'subir_archivo\')"><span>Cargar Expediente Digital</span></a></li>';
 		}
 		
-		if ($usu == 'alvaro' || $usu == 'carlos' || $usu == 'yuli' || $intNivel == 3 || $intNivel == 10 || $usu == 'alvaroz'|| $usu == 'poleeth'  || $usu == 'georly') {
+		if ($usu == 'alvaro' || $usu == 'carlos' || $usu == 'yuli' || $intNivel == 3 || $intNivel == 10 || $usu == 'alvaroz'|| $usu == 'poleeth'  || $usu == 'georly' ||  $usu == 'dmarisol') {
 			$Menu_B .= '<li id="mreciboi" class="active"><a href="Recibo_Ingreso"><span>Recibos de Ingreso</span></a></li>
 						
 			';
@@ -137,7 +134,7 @@ class CMenu extends Model {
 			
 		}*/
 		
-		if ($this -> session -> userdata('ubicacion')=='Merida (Principal)' && $intNivel==4) {
+		if ($this -> session -> userdata('ubicacion')=='Merida (Principal)' && $intNivel==4 &&  $usu != 'dmarisol') {
 			$Menu_B .= '<li class="active" ><a href="Cambiar_Ubicacion_Facturas"><span>C. Ubicacion</span></a></li>
 			<li id="mreciboi" class="active"><a href="Recibo_Egreso"><span>Recibos de Egreso</span></a></li>
 			';
@@ -147,9 +144,8 @@ class CMenu extends Model {
 			$Menu_B .= '<li id="sexpe" class="active"><a href="subir_expediente"><span>Expedientes Revision</span></a></li>
 			<li id="sexpe" class="active"><a href="Liquidacion"><span>Liquidacion</span></a></li>';
 		}
-		if ($intNivel == 10 ||$this -> session -> userdata('nivel') == 0 || $this -> session -> userdata('nivel') == 3 || $this -> session -> userdata('nivel') == 5 || $this -> session -> userdata('nivel') == 9 || $this -> session -> userdata('nivel') == 8 || $this -> session -> userdata('nivel') == 4) {
-			$Menu_B .= '<li id="mreciboi" class="active"><a href="Recibo_Egreso"><span>Recibos de Egreso</span></a></li>
-			<li class="active" ><a href="Entregar_Inventario_Cliente"><span>Entregar Mercancia</span></a></li>
+		if ($intNivel == 10 ||$this -> session -> userdata('nivel') == 0 || $this -> session -> userdata('nivel') == 3 || $this -> session -> userdata('nivel') == 5 || $this -> session -> userdata('nivel') == 9 || $this -> session -> userdata('nivel') == 8 ) {
+			$Menu_B .= '<li class="active" ><a href="Entregar_Inventario_Cliente"><span>Entregar Mercancia</span></a></li>
 			';
 		}
 		if ($this -> session -> userdata('nivel') <= 3) {
