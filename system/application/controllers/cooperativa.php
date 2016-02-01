@@ -6121,6 +6121,13 @@ class cooperativa extends Controller {
 		$arr ['usuario'] = $this->session->userdata ( 'usuario' );
 		$msj = $this->MRecibo->Guardar_Recibo ( $arr );
 		$cedula = $arr ['cedula'];
+		
+		if($_POST['formaPago'] != "NO"){	
+			$this->load->model ( "cliente/mvoucher", "MVoucher" );
+			$this->MVoucher->Modificar_Modalidad_Pago ( $_POST['formaPago'], "Sistema", "Cancelación de la Factura");
+							
+		}
+		
 		$msj .= '<a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/Imprime_Recibo_Ingreso/' . $arr ['nrecibo'] . '\' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'><br>	Imprimir Recibo de Ingreso</a>';
 		$msj .= '<a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/Imprime_Recibo_Ingreso_Preimpreso/' . $arr ['nrecibo'] . '\' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'><br>Recibo Pre-Impreso</a>';
 		echo $msj;
@@ -8224,11 +8231,11 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
 		$this->load->model("cliente/mfcontrol", "FControl");
 		//$rs = $this->FControl->PagarFactura('GN004049', '23/07/1985');
 		$rs = $this->FControl->PagarFactura($_POST['factura'], $_POST['fecha']);
-		//$this->MVoucher->Modificar_Modalidad_Pago ( $_POST['factura'], 'Sistema', 'Cancelación de Factura completa');
+		
 
-		print_r($rs);		
+		print(json_encode($rs));
+		//print_r($rs);		
 		//return "<strong>&nbsp;  Proceso Finalizado Satisfactoriamente </strong>...." . $msj;
-		//print(json_encode($rs));
 		
 		
 	}

@@ -1,3 +1,11 @@
+
+/**
+ |	Bandera que permite establecer si se cancela 
+ |	Una factura en su totalidad 
+ */
+formaPago = 'NO';
+
+
 $(function() {
 	$("#fecha" ).datepicker({
 		showOn: "button",
@@ -144,18 +152,22 @@ function GuardaRecibo(){
 	    	alert('Los montos estan mal cargados');
 	    	return 0;
 	    }
-	    
+	   
+	   
 	    $.ajax({
 			url: strUrl_Proceso, 
 			type : 'POST',
 			data : 'creditos=' + creditos + '&cedula=' + cedula + '&monto=' + monto + '&recibido=' + recibido + '&fecha=' + fecha 
-			+ '&tipo=' + tipo + '&cheque=' + cheque + '&banco=' + banco + '&concepto=' + concepto + '&empresa=' + empresa+'&cargar='+cargar+'&cargar1='+cargar1+'&voucher='+voucher+'&reciboPre='+reciboPre,
+			+ '&tipo=' + tipo + '&cheque=' + cheque + '&banco=' + banco + '&concepto=' + concepto + '&empresa=' + empresa+'&cargar='+cargar+'&cargar1='+cargar1
+			+'&voucher='+voucher+'&reciboPre=' + reciboPre + '&formaPago=' + formaPago,
 			//dataType: 'json',
 			success : function(html) {
 				$("#msj_alertas").html(html);
 				$("#msj_alertas").dialog('open');	
 			}
 		});
+		
+		
 		limpiar();
     }else{
     	alert('DEBE INGRESAR TODOS LOS DATOS');
@@ -267,7 +279,9 @@ function PagarFacturas(){
                 $.each(json, function(item,sValor) {                	
 					$("#lstAgregados").append(new Option(sValor, sValor));					
                 });
+                formaPago = factura; //Activación variable global para el pago de una factura total
                 $("#carga_busqueda").dialog('close');
+                
             }
         });
     }
