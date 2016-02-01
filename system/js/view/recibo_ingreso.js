@@ -59,7 +59,14 @@ function consultar_clientes() {
 				});
                 $.each(json["facturas2"], function(item,sValor) {
                     $('#txtFacturaV').append(new Option(sValor, sValor, true, true));
+                    $('#txtFacturas').append(new Option(sValor, sValor, true, true));
                 });
+                $('#txtFacturasV').append(new Option("----------------------", '0', true, true));
+                $('#txtFacturas').append(new Option("----------------------", '0', true, true));
+                //
+                //$.each(json["facturas2"], function(item,sValor) {
+                //});
+                
 				$("#carga_busqueda").dialog('close');
 				if(json["recibos"] != null){
 					Grid2 = new TGrid(json["recibos"],'Recibos','Historial de Recibos Ingreso');
@@ -242,4 +249,27 @@ function buscaVoucher(){
             }
         });
     }
+}
+
+function PagarFacturas(){
+	
+	fecha = $("#fechaAbono").val();
+	strUrl_Proceso = sUrlP + "PagarFacturas";
+    var factura = $("#txtFacturas option:selected").val();
+    if(factura != '' || fecha != ''){
+        $("#carga_busqueda").dialog('open');
+        $.ajax({
+            url: strUrl_Proceso,
+            type : 'POST',
+            data : 'factura=' + factura + '&fecha=' + fecha,
+            dataType: 'json',
+            success : function(json) {   			
+                $.each(json, function(item,sValor) {                	
+					$("#lstAgregados").append(new Option(sValor, sValor));					
+                });
+                $("#carga_busqueda").dialog('close');
+            }
+        });
+    }
+	
 }

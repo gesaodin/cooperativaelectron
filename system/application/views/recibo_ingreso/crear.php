@@ -140,13 +140,14 @@
 		<tr>
 		<tr>
 			<td style="width:120px" >Fecha del Abono<font color='#B70000'>(*)</font>:</td>
-			<td align="left"   colspan=4>
+			<td align="left"   >
 				<input type="text" id='fechaAbono' name="fechaAbono" disabled="true" style="width: 160px;" />
 			</td> 
-		
+			<td style='width:120px;' align="right"><strong>Factura: </font>: </strong></td>
+			<td style="width: 180px;" align="left" colspan=""><select id="txtFacturas"style="width: 160px;"onchange="PagarFacturas();"></td>
 		</tr>	
 		<tr> 	
-			<td style='width:120px;'>Factura: <font color='#B70000'>(*)</td>
+			<td style='width:120px;'>Contratos: <font color='#B70000'>(*)</td>
 			<td style="width: 180px;" align="left" colspan=""><select name="txtFactura"	id="txtFactura"style="width: 180px;"></td>
 			<td align="right"><strong>Monto C.: <font color='#B70000'>(*)</font>: </strong></td>
 			<td colspan="" ><input type="text" name="txtMontoCarga"	id="txtMontoCarga"style="width: 90px;"></td>
@@ -164,7 +165,7 @@
 	</table>
 	<table id="datosRV" style="display:none">		
 		<tr> 	
-			<td style='width:120px;'>Factura: <font color='#B70000'>(*)</td>
+			<td style='width:120px;'>Contratos: <font color='#B70000'></td>
 			<td style="width: 180px;" align="left" colspan=""><select name="txtFacturaV"	id="txtFacturaV"style="width: 180px;"onchange="buscaVoucher();"></td>
 			<td align="right"><strong>Voucher: <font color='#B70000'>(*)</font>: </strong></td>
 			<td colspan="" ><select name="txtVoucher"	id="txtVoucher"style="width: 180px;"></td>

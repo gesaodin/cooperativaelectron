@@ -190,6 +190,8 @@ class MRecibo extends Model
                         'fecha' => $itemCreditos[3], 'credito_id' => trim($itemCreditos[1]),
                         'descripcion' => 'RECIBO: ' . $arr['concepto'], 'monto' => trim($itemCreditos[2]),
                         'mesp' => $fechap[1], 'anop' => $fechap[0], 'moda' => 3, 'farc' => $arr['fecha'], 'usua' => $usua);
+                    
+                    
                     $this->db->insert('t_lista_cobros', $datosCuota);
 
                     /*$cuerpo .= '

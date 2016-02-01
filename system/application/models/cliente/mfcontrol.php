@@ -226,6 +226,64 @@ class MFcontrol extends Model {
 				break;
 		}
 	}
+	
+	function PagarFactura($sfactura, $fecha){
+		$sQuery = "SELECT * FROM t_clientes_creditos WHERE numero_factura='" . $sfactura . "';";
+		$rs = $this -> db -> query($sQuery);
+		$cont = array();
+		foreach ($rs->result() as $clav) {
+			if($clav->marca_consulta == 6){				
+				$resta = $this->restaPorVoucher($sfactura, $clav->monto_total, $clav->monto_cuota);
+				
+			}else{
+				$resta = $this->restaPorContrato($clav->contrato_id, $clav->monto_total);				
+			}
+			$cont[] = $sfactura . '|' . $clav->contrato_id . '|' . $resta . '|' . $fecha;
+		} 
+		return $cont;
+		
+		
+	}
+	
+	/**
+	 * @update 01/02/2016
+	 * Consultar deuda restante por factura
+	 * @author Carlos Peña
+	 * @return double
+	 */	
+	function restaPorContrato($contrato, $monto){
+		$sQuery = "SELECT SUM(monto) AS monto_total FROM t_lista_cobros WHERE credito_id='" . $contrato . "'";
+		$rs = $this -> db -> query($sQuery);
+		$cont = array();
+		foreach ($rs->result() as $clav) {			
+			$cont = $clav->monto_total;
+		}
+		$resta = $monto - $cont;  
+		return $resta;
+	}
+	
+/**
+	 * @update 01/02/2016
+	 * Consultar deuda restante por factura
+	 * @author Carlos Peña
+	 * @return double
+	 */	
+	function restaPorVoucher($contrato, $monto, $monto_cuota){
+			//SELECT * FROM `t_lista_voucher` WHERE `cid` LIKE 'GN004049'
+			
+		$sQuery = "SELECT SUM(monto) AS monto_total, monto FROM t_lista_voucher WHERE cid='" . $contrato . "' AND estatus = 1";
+		$rs = $this -> db -> query($sQuery);
+		$cont = 0;
+		foreach ($rs->result() as $clav) {
+			if($monto_cuota == $clav->monto){
+				$cont = $clav->monto_total;
+			}
+			
+		}
+		$resta = $monto - $cont;  
+		return $resta;
+		
+	}
 
 }
 ?>

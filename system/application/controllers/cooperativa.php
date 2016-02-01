@@ -8218,5 +8218,19 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
         $this->db->query("UPDATE t_lista_voucher set estatus=6 where ndep='".$datos[0]."' and cid='".$datos[1]."' ");
         echo "Se exonero con exito";
     }
+	
+	function PagarFacturas(){
+		$this->load->model ("cliente/mvoucher", "MVoucher");
+		$this->load->model("cliente/mfcontrol", "FControl");
+		//$rs = $this->FControl->PagarFactura('GN004049', '23/07/1985');
+		$rs = $this->FControl->PagarFactura($_POST['factura'], $_POST['fecha']);
+		//$this->MVoucher->Modificar_Modalidad_Pago ( $_POST['factura'], 'Sistema', 'Cancelación de Factura completa');
+
+		print_r($rs);		
+		//return "<strong>&nbsp;  Proceso Finalizado Satisfactoriamente </strong>...." . $msj;
+		//print(json_encode($rs));
+		
+		
+	}
 }
 ?>
