@@ -82,8 +82,16 @@ class MRecibo extends Model
 
         $sqlRecibos = "select * from t_recibo_ingreso where documento_id = '" . $id . "'";
         $Consulta2 = $this->db->query($sqlRecibos);
-
-        $oCabezeraR[1] = array("titulo" => " ", "tipo" => "bimagen", "funcion" => "Eliminar_Recibo", "parametro" => "2", "ruta" => __IMG__ . "botones/cancelar1.png");
+		$usu = strtolower($this -> session -> userdata('usuario'));
+        if($usu == "alvaro" || $usu == "carlos" || $usu == "judelvis"){
+        	$oCabezeraR[1] = array("titulo" => " ", "tipo" => "bimagen", "funcion" => "Eliminar_Recibo", 
+        	"parametro" => "2", "ruta" => __IMG__ . "botones/cancelar1.png");	
+        }else{
+        	$oCabezeraR[1] = array("titulo" => " ", "tipo" => "bimagen", "funcion" => "Eliminar_Recibo", 
+        	"parametro" => "2", "ruta" => __IMG__ . "botones/cancelar1.png", "oculto" => 1);
+        }
+        
+        
         $oCabezeraR[2] = array("titulo" => "#Recibo");
         $oCabezeraR[3] = array("titulo" => "#Recibo-Pre");
         $oCabezeraR[4] = array("titulo" => "Fecha");
@@ -186,7 +194,7 @@ class MRecibo extends Model
                     $this->db->insert('t_lista_recibo', $datosRecibo);
                     $fechap = explode('-', $itemCreditos[3]);
                     $usua = $this->session->userdata('oidu');
-                    $datosCuota = array('mes' => $arr['nrecibo'], 'documento_id' => $arr['cedula'],
+                    $datosCuota = array('mes' => $arr['nrecibo'] . '|' . $arr['reciboPre'], 'documento_id' => $arr['cedula'],
                         'fecha' => $itemCreditos[3], 'credito_id' => trim($itemCreditos[1]),
                         'descripcion' => 'RECIBO: ' . $arr['concepto'], 'monto' => trim($itemCreditos[2]),
                         'mesp' => $fechap[1], 'anop' => $fechap[0], 'moda' => 3, 'farc' => $arr['fecha'], 'usua' => $usua);
@@ -226,7 +234,7 @@ class MRecibo extends Model
                     $itemCreditos = explode('|', $cadena);
                     $datosRecibo = array('id_recibo' => $arr['nrecibo'], 'factura' => trim($itemCreditos[0]), 'contrato' => trim($itemCreditos[1]), 'monto' => 'Monto Voucher');
                     $this->db->insert('t_lista_recibo', $datosRecibo);
-                    $this->db->query("UPDATE t_lista_voucher SET estatus=1,observacion='RECIBO INGRESO:" . $arr['nrecibo'] . "|" . $arr['concepto'] . "' where cid='" . trim($itemCreditos[0]) . "' and ndep='" . trim($itemCreditos[1]) . "'");
+                    $this->db->query("UPDATE t_lista_voucher SET estatus=1,observacion='RECIBO INGRESO: " . $arr['nrecibo']  . '| RECIBO PRE: ' . $arr['reciboPre'] .  "| CONCEPTO: " . $arr['concepto'] . "' where cid='" . trim($itemCreditos[0]) . "' and ndep='" . trim($itemCreditos[1]) . "'");
                 }
             }
             $msj .= 'El recibo de ingreso se cargo con exito..';
