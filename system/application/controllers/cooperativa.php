@@ -405,6 +405,10 @@ class cooperativa extends Controller {
 					$modo = 1;
 					$pref = 'T-';
 				}
+				if ($sPago [1] == "COT") {
+					$modo = 2;
+					$pref = 'CT-';
+				}
 				$sCero = "00";
 				$sCodI = substr ( $json [0], 4 );
 				for($i = 0; $i < $json [5]; $i ++) {
@@ -2115,6 +2119,10 @@ class cooperativa extends Controller {
 									$modo = 1;
 									$pref='T-';
 								}
+								if($artipo_pago [1] == 'COT') {
+									$modo = 2;
+									$pref='CT-';
+								}
 								$lstBoucher = explode ( ',', $lista_voucher );
 								foreach ( $lstBoucher as $cadena ) {
 									$itemVoucher = explode ( '|', $cadena );
@@ -2194,6 +2202,10 @@ class cooperativa extends Controller {
 									$modo = 1;
 									$pref='T-';
 								}
+								if($artipo_pago [1] == 'COT') {
+									$modo = 2;
+									$pref='CT-';
+								}
 								$lstBoucher = explode ( ',', $lista_voucher );
 								foreach ( $lstBoucher as $cadena ) {
 									$itemVoucher = explode ( '|', $cadena );
@@ -2272,6 +2284,11 @@ class cooperativa extends Controller {
 							$modo = 1;
 							$pref='T-';
 						}
+						if($artipo_pago [1] == 'COT') {
+							$modo = 2;
+							$pref='CT-';
+						}
+
 						foreach ( $lstBoucher as $cadena ) {
 							$itemVoucher = explode ( '|', $cadena );
 							$datosVoucher = array (

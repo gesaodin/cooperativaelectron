@@ -101,7 +101,7 @@ group by numero_factura) as a';
 			$msj .= '<h2>Deudas Generales:</h2>
 			<br><font color="#1c94c4" size=4>POR DOMICILIACION: </font><font color="red" size=3>' . number_format($montod-$montopd,2) .'  BS</font>
 			<br><font color="#1c94c4" size=4>ULTIMA ACTUALIZACION: </font><font color="red" size=3>' . $rsCP[0] -> ultima .'</font>
-			<br><br><font color="#1c94c4" size=4>POR VOUCHER: <font color="red" size=3>'.number_format($restav,2).'  BS</font>
+			<br><br><font color="#1c94c4" size=4>POR VOUCHER,TRANSFERENCIA O COTERO: <font color="red" size=3>'.number_format($restav,2).'  BS</font>
 			<br><font color="#1c94c4" size=4>ULTIMA ACTUALIZACION: </font><font color="red" size=3>' . $rsCV[0] -> evento .'</font>';
 			$act = "NO";
 			if($rs->num_rows() > 0){

@@ -518,7 +518,7 @@ class MCliente extends Model {
 
 	function ListarContratoPendientes($Fact = '') {
 		$ofil = array();
-		$forma = array('5-DOM'=> 'DOMICILIACION' ,'6-TRF'=> 'TRANSFERENCIA','6-PRV'=> 'VOUCHER - PROVINCIAL','6-BIC'=> 'VOUCHER - BICENTENARIO','5-VBI'=>'DOMICILIACION VOUCHER - BICENTENARIO');
+		$forma = array('5-DOM'=> 'DOMICILIACION' ,'6-TRF'=> 'TRANSFERENCIA','6-PRV'=> 'VOUCHER - PROVINCIAL','6-BIC'=> 'VOUCHER - BICENTENARIO','6-COT'=> 'COTERO','5-VBI'=>'DOMICILIACION VOUCHER - BICENTENARIO');
 		
 		$nomina = array();
 		$linaje = array();

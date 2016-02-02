@@ -229,7 +229,7 @@
 					<option value='6-BIC'>VOUCHER - BICENENARIO</option>
 					<option value='6-BFC'>VOUCHER - BFC</option>
 					<option value='5-VBI'>DOMICILIACION - VOUCHER BICENTENARIO</option>
-					<option value='7-COT'>COTERO</option>			
+					<option value='6-COT'>COTERO</option>
 			</select>
 		</td>
 		

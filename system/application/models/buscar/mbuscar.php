@@ -320,10 +320,10 @@ class MBuscar extends Model {
 		$sBoucher = '';
 		foreach ( $Conexion2 as $row2 ) {
 			if ($row2->marca_consulta == 6){
-				if($row2->modo == 0){
-					$forma_contrato [] = 'Voucher';	
-				}else{
-					$forma_contrato [] = 'Transferencia';
+				switch($row2->modo){
+					case 0: $forma_contrato [] = 'Voucher';break;
+					case 1: $forma_contrato [] = 'Transferencia';break;
+					case 2: $forma_contrato [] = 'Cotero';break;
 				}
 			}else{
 				$forma_contrato [] = 'Domiciliacion';
@@ -337,6 +337,9 @@ class MBuscar extends Model {
 			$sBoucher = 'Mixto-V';
 			if(in_array('Transferencia', $arreglo)){
 				$sBoucher = 'Mixto-T';
+			}
+			if(in_array('Cotero', $arreglo)){
+				$sBoucher = 'Mixto-CT';
 			}
 		}
 		return $sBoucher;
