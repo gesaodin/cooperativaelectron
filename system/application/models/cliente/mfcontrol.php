@@ -271,7 +271,7 @@ class MFcontrol extends Model {
 	function restaPorVoucher($contrato, $monto, $monto_cuota){
 			//SELECT * FROM `t_lista_voucher` WHERE `cid` LIKE 'GN004049'
 			
-		$sQuery = "SELECT SUM(monto) AS monto_total, monto FROM t_lista_voucher WHERE cid='" . $contrato . "' AND estatus = 1";
+		$sQuery = "SELECT SUM(monto) AS monto_total, monto FROM t_lista_voucher WHERE cid='" . $contrato . "' AND (estatus = 1 OR estatus = 3)";
 		$rs = $this -> db -> query($sQuery);
 		$cont = 0;
 		foreach ($rs->result() as $clav) {
