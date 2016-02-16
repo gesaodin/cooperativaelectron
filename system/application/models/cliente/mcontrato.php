@@ -24,7 +24,7 @@ class MContrato extends Model {
 			$destino = 4;
 			if($row -> condicion != 0)$destino = 5;
 			
-			$sQuery = "SELECT * FROM t_clientes_creditos INNER JOIN t_cheque_garantia ON
+			/*$sQuery = "SELECT * FROM t_clientes_creditos INNER JOIN t_cheque_garantia ON
 			t_cheque_garantia.factura=t_clientes_creditos.numero_factura
 			WHERE contrato_id='" . $row -> contrato_id . "' LIMIT 1";
 			$Consulta = $this -> db -> query($sQuery);
@@ -35,7 +35,9 @@ class MContrato extends Model {
 			} else {
 				return "Debe Ingresar Cheque por Garantia en el Modulo de Expediente Digital";
 				
-			}			
+			}*/
+			$sSql = 'UPDATE t_estadoejecucion SET oide ='.$destino.', observacion=\'Aceptacion Por Factura\', estatus=1 WHERE oidc = \'' . $row -> contrato_id . '\' LIMIT 1';
+			$this -> db -> query($sSql);
 		}
 		return "Se acepto la Factura";
 	}
