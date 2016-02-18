@@ -633,7 +633,7 @@ function consultar_clientes() {
 			$('#divCreditosInformacion').html(htm);
 		}
 	});
-	Comprobar_Certificado();
+	//Comprobar_Certificado();
 	return true;
 }
 
