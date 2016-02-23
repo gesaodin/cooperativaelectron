@@ -139,7 +139,7 @@ class CMenu extends Model {
 			<li id="mreciboi" class="active"><a href="Recibo_Egreso"><span>Recibos de Egreso</span></a></li>
 			';
 		}
-		if ($usu == 'yuli' || $usu=='alvaroz'|| $usu=='judelvis') {
+		if ($usu == 'yuli' || $usu=='alvaroz') {
 			$Menu_B .= '<li class="active" ><a href="Cambiar_Ubicacion_Facturas"><span>C. Ubicacion</span></a></li>
 			<li id="mreciboi" class="active"><a href="Recibo_Egreso"><span>Recibos de Egreso</span></a></li>
 			';
