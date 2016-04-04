@@ -83,7 +83,7 @@ class MRecibo extends Model
         $sqlRecibos = "select * from t_recibo_ingreso where documento_id = '" . $id . "'";
         $Consulta2 = $this->db->query($sqlRecibos);
 		$usu = strtolower($this -> session -> userdata('usuario'));
-        if($usu == "alvaro" || $usu == "carlos" || $usu == "judelvis"){
+        if($usu == "alvaro" || $usu == "carlos" || $usu == "judelvis" || $usu == "alvaroz"){
         	$oCabezeraR[1] = array("titulo" => " ", "tipo" => "bimagen", "funcion" => "Eliminar_Recibo", 
         	"parametro" => "2", "ruta" => __IMG__ . "botones/cancelar1.png");	
         }else{
