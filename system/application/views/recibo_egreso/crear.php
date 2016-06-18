@@ -123,7 +123,7 @@
 					
 		</tr>
 		<?php 
-		if($Nivel !=0 && $Nivel !=3 && $Nivel !=2 && $Nivel !=9 && $Nivel !=8 && $Nivel !=10) $propiedad = "disabled=disabled";
+		if($Nivel !=0 && $Nivel !=3 && $Nivel !=2 && $Nivel !=5 && $Nivel !=9 && $Nivel !=8 && $Nivel !=10) $propiedad = "disabled=disabled";
 		else $propiedad = "";
 		?>
 		<tr>

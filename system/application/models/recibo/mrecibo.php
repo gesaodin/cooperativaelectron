@@ -244,15 +244,15 @@ class MRecibo extends Model
     }
 
     /**
-     *    Esta Funcion Elimina: t_lista_cobros, t_recibo_ingreso,
+     * Esta Funcion Elimina: t_lista_cobros, t_recibo_ingreso,
      *
      * @var string Numero Recibo
      */
-    function Eliminar_Recibo($sNumero)
-    {
-        $this->db->query("DELETE FROM t_lista_cobros WHERE mes = '" . $sNumero . "'");
-        $this->db->query("DELETE FROM t_recibo_ingreso WHERE numero_recibo = '" . $sNumero . "'");
-        $this->db->query("DELETE FROM t_lista_recibo WHERE id_recibo = '" . $sNumero . "'");
+    function Eliminar_Recibo($sNumero){
+    	
+        $this->db->query("DELETE FROM t_lista_cobros WHERE mes like '" . $sNumero . "%' LIMIT 1");
+        $this->db->query("DELETE FROM t_recibo_ingreso WHERE numero_recibo = '" . $sNumero . "' LIMIT 1");
+        $this->db->query("DELETE FROM t_lista_recibo WHERE id_recibo = '" . $sNumero . "' LIMIT 1");
         echo "Proceso finalizo con exito....";
     }
 
