@@ -8242,6 +8242,8 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
         $this->db->query("UPDATE t_lista_voucher set estatus=6 where ndep='".$datos[0]."' and cid='".$datos[1]."' ");
         echo "Se exonero con exito";
     }
+
+
 	
 	function PagarFacturas(){
 		$this->load->model ("cliente/mvoucher", "MVoucher");
@@ -8256,5 +8258,31 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
 		
 		
 	}
+
+	function ReversarVoucher($factura, $arrVoucher = ''){
+		$lst = explode('p', $arrVoucher);
+		$sActualizar = 'UPDATE t_lista_voucher SET estatus=0, observacion=\'\' WHERE `cid` LIKE \'' . $factura . '\' AND estatus=5;';
+		echo $sActualizar . '<br>';
+		$this->db->query($sActualizar);
+		$sActualizar = 'UPDATE t_lista_voucher SET estatus=0, observacion=\'\' WHERE `cid` LIKE \'' . $factura . '\' AND estatus=2;';
+		echo $sActualizar . '<br><br>';
+		$this->db->query($sActualizar);
+		
+		foreach ($lst as $k => $v) {
+			echo '# --- ' . $v . '<br>';
+			$sActualizar = 'UPDATE `electron`.`t_clientes_creditos` 
+									SET `marca_consulta` = \'6\' WHERE 
+									`t_clientes_creditos`.`contrato_id` = \'' . $v . '\';';
+			echo $sActualizar;
+			echo '<br>';
+			$this->db->query($sActualizar);
+			$sActualizar = 'DELETE FROM `t_lista_cobros` WHERE 
+									`credito_id` LIKE \'' . $v . '\' AND mes = \'Cambio De Modalidad\';';
+			echo $sActualizar;
+			echo '<br><br>';
+			$this->db->query($sActualizar);
+		}
+	}
+
 }
 ?>

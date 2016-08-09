@@ -24,7 +24,7 @@
   				<tr>
   					
   					<?php if($Nivel == 3 || $Nivel == 0 || $Nivel == 9 || $Nivel == 2 || $Nivel == 8){?>
-  						<td align="center"><img src="<?php echo __IMG__ ?>reportes/clientes.png" style='width:48px' onClick="MostrarDiv('filtro_txt');"/><br>Generar TXT</td>
+  						<td align="center"><img src="<?php echo __IMG__ ?>reportes/emercancia.png" style='width:48px' onClick="MostrarDiv('filtro_txt');"/><br>Generar TXT</td>
   						<td style="width: 50px"></td>
   					<?php }?>
   				</tr>

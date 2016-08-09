@@ -120,10 +120,22 @@
         <option value=1500>1500 Bs.</option>
         <option value=1750>1750 Bs.</option>
         <option value=2000>2000 Bs.</option>
-          <option value=2500>2500 Bs.</option>
-          <option value=3000>3000 Bs.</option>
-          <option value=3500>3500 Bs.</option>
-          <option value=4000>4000 Bs.</option>
+        <option value=2500>2500 Bs.</option>
+        <option value=3000>3000 Bs.</option>
+        <option value=3500>3500 Bs.</option>
+        <option value=4000>4000 Bs.</option>
+	<option value=4500>4500 Bs.</option>
+	<option value=5000>5000 Bs.</option>
+	<option value=5500>5500 Bs.</option>
+	<option value=6000>6000 Bs.</option>
+	<option value=6500>6500 Bs.</option>
+	<option value=7000>7000 Bs.</option>
+	<option value=7500>7500 Bs.</option>
+	<option value=8000>8000 Bs.</option>
+	<option value=8500>8500 Bs.</option>
+	<option value=9000>9000 Bs.</option>
+	<option value=9500>9500 Bs.</option>
+	<option value=10000>10000 Bs.</option>
       </select>
     </td>
   </tr>
