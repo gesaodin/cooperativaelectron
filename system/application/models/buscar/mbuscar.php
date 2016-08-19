@@ -1610,6 +1610,9 @@ Electrón 465 se compromete firmemente a respetar su privacidad. No compartimos 
 			case 6 :
 				return "<font color='#1c94c4'>Pronto Pago</font>";
 				break;
+			case 7 :
+				return "<font color='#1c94c4'>BONOEXPRESS</font>";
+				break;
 		}
 	}
 	public function Descripcion_Mes($intCod) {

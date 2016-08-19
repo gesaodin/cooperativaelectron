@@ -127,6 +127,7 @@
 		<td align="left" class="formulario">
 			<select name="txtNominaPeriocidad"	id="txtNominaPeriocidad"style="width: 140px;" >
 			<option value=4>MENSUAL</option>
+			<option value=9>MENSUAL- BONOEXPRESS</option>
 			<option value=0 disabled=disabled>SEMANAL</option>
 			<option value=1 disabled=disabled>CATORCENAL</option>
 			<option value=2>QUINCENAL 15 - 30</option>
@@ -135,7 +136,8 @@
 			<option value=6 disabled=disabled>SEMESTRAL</option>
 			<option value=7 disabled=disabled>-- ANUAL --</option>
 			<option value=8 disabled=disabled>MENSUAL-10</option>
-			<option value=9 disabled=disabled>MENSUAL-25</option>
+			<option value=9>MENSUAL-25</option>
+			
 			
 			</select>
 		</td>
@@ -173,7 +175,8 @@
 			<td align="left" class="formulario">
 				<select name="txtFormaContrato"	id="txtFormaContrato" style="width: 140px;" onchange="fecha_especial();//tipo_contrato();">
 				<option value=0>UNICO</option>
-				<option value=6>UNICO - PRONTO PAGO</option>				
+				<option value=7>BONOEXPRESS</option>
+				<option value=6>UNICO - PRONTO PAGO</option>							
 				<option value=1>AGUINALDOS - CUOTA ESPECIAL</option>
 				<option value=2>VACACIONES - CUOTA ESPECIAL</option>				
 				<option value=3 disabled="disabled" >CUOTA EXTRAORDINARIA</option>

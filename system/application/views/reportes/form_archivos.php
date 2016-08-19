@@ -41,6 +41,7 @@
 		<td align="left" class="formulario">
 			<select name="txtFormaContrato"	id="txtFormaContrato" style="width: 140px;" >
 				<option value=0>UNICO</option>
+				<option value=7>BONOEXPRESS</option>
 				<option value=1>AGUINALDOS - CUOTA ESPECIAL</option>
 				<option value=2>VACACIONES - CUOTA ESPECIAL</option>
 				<option value=3>EXTRA</option>
@@ -55,6 +56,7 @@
 		<td align="left" class="formulario">
 			<select name="txtPeriodicidad"	id="txtPeriodicidad" style="width: 140px;" >
 				<option value=4>MENSUAL</option>
+				<option value=9>MENSUAL-BONOEXPRESS</option>
 				<option value=0>SEMANAL</option>
 				<option value=1>CATORCENAL</option>
 				<option value=2>QUINCENAL 15 - 30</option>
