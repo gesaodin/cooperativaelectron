@@ -373,8 +373,10 @@ class MCliente extends Model {
 
 	function PendientesDeposito($arr) {
 		$ofil = array();
-		$banco = array('BI'=> "BICENTENARIO","BA" => "BANESCO" ,"PR"=> "PROVINCIAL","VE"=> "VENEZUELA","BO"=> "BOD","FC"=> "BFC","DS"=> "DEL SUR","MC"=> "MERCANTIL","IN"=> "INDUSTRIAL","CR"=> "CARONI","SO"=> "SOFITASA","CA"=>"CARIBE","EX"=>"EXTERIOR");
-		$cond = array('0'=>'DEPOSITO','1' => 'TRANSFERENCIA');
+		$banco = array('EF' => "EFECTIVO", 'BI'=> "BICENTENARIO",
+		"BA" => "BANESCO" ,"PR"=> "PROVINCIAL","VE"=> "VENEZUELA","BO"=> "BOD","FC"=> "BFC","DS"=> "DEL SUR",
+		"MC"=> "MERCANTIL","IN"=> "INDUSTRIAL","CR"=> "CARONI","SO"=> "SOFITASA","CA"=>"CARIBE","EX"=>"EXTERIOR");
+		$cond = array('0'=>'DEPOSITO','1' => 'TRANSFERENCIA', '2' => 'CHEQUE' , '3' => 'EFECTIVO');
 		$oCabezera[1] = array("titulo" => "Cedula", "atributos" => "width:80px", "buscar" => 0);
 		$oCabezera[2] = array("titulo" => "Datos Basicos", "atributos" => "width:250px", "buscar" => 0);
 		$oCabezera[3] = array("titulo" => "Solicitud", "atributos" => "width:100px");
