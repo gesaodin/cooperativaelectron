@@ -20,7 +20,7 @@ function CodigoSRand() {
 
 
 function isNumberKey(evt) {
-	var charCode = (evt.which) ? evt.which : event.keyCode
+	var charCode = (evt.which) ? evt.which : event.keyCode;
 	if (charCode > 31 && (charCode < 48 || charCode > 57))
 		return false;
 	return true;
@@ -44,18 +44,18 @@ function calcular() {
 		montoT3 = (montoA) / 2;
 		mensaje = "<h2>La capacidad de endeudamiento mensual del cliente es:<br>" + montoT1 + " BS.</h2>";
 		if (tipo != 0) {
-			mensaje += "<br><h2>La capacidad de endeudamiento en Bono Recreacional Julio  del cliente es:<br>" + montoT2 + " BS.</h2>"
-			mensaje += "<br><h2>La capacidad de endeudamiento en Noviembre del cliente es:<br>" + montoT3 + " BS.</h2>"
+			mensaje += "<br><h2>La capacidad de endeudamiento en Bono Recreacional Julio  del cliente es:<br>" + montoT2 + " BS.</h2>";
+			mensaje += "<br><h2>La capacidad de endeudamiento en Noviembre del cliente es:<br>" + montoT3 + " BS.</h2>";
 
 		} else {
-			mensaje += "<br><h2>La capacidad de endeudamiento en vacaciones del cliente es:<br>" + montoT2 + " BS.</h2>"
-			mensaje += "<br><h2>La capacidad de endeudamiento en aguinaldos del cliente es:<br>" + montoT3 + " BS.</h2>"
+			mensaje += "<br><h2>La capacidad de endeudamiento en vacaciones del cliente es:<br>" + montoT2 + " BS.</h2>";
+			mensaje += "<br><h2>La capacidad de endeudamiento en aguinaldos del cliente es:<br>" + montoT3 + " BS.</h2>";
 
 		}
 
 		if ((nomina == 'MINISTERIO DEL PODER POPULAR PARA LA EDUCACION' || nomina == 'MINISTERIO DEL PODER POPULAR PARA LA EDUCACION - JUBILADO') && forma != 'Nomina') {
 			montoT4 = montoUU / 2;
-			mensaje += "<br><h2>La capacidad de endeudamiento por bonos de utiles y uniformes del cliente es:<br>" + montoT4 + " BS.</h2>"
+			mensaje += "<br><h2>La capacidad de endeudamiento por bonos de utiles y uniformes del cliente es:<br>" + montoT4 + " BS.</h2>";
 		} else {
 			$("#f5").hide();
 		}
@@ -119,20 +119,30 @@ function verifica_fpago() {
 		$("#f4").show();
 		$("#txtMontoV").val('');
 		$("#txtMontoA").val('');
-		if (forma == 'Nomina') {
-			if (nomina == 'MINISTERIO DEL PODER POPULAR PARA LA EDUCACION' || nomina == 'MINISTERIO DEL PODER POPULAR PARA LA EDUCACION - JUBILADO') {
-				if (tipo == 1) {
-					$("#f1").hide();
-					alert("Personal Del M.P.P.P.E. Credinfo No posee Jubilados");
-				} else {
-					$("#f1").show();
-				}
-				$("#f3").hide();
-				$("#f4").hide();
-				$("#f5").hide();
-				$("#txtMontoV").val(0);
-				$("#txtMontoA").val(0);
+		
+		
+		if (forma == 'BONOEXPRESS') {
+			if (nomina != 'MINISTERIO DEL PODER POPULAR PARA LA EDUCACION'){
+				alert("Esta función solo existe para ministerio de educación");
+			}else{
+				
+				
 			}
+		}else{
+			if (forma == 'Nomina') {
+				if (nomina == 'MINISTERIO DEL PODER POPULAR PARA LA EDUCACION' || nomina == 'MINISTERIO DEL PODER POPULAR PARA LA EDUCACION - JUBILADO') {
+					if (tipo == 1) {
+						$("#f1").hide();
+						alert("Personal Del M.P.P.P.E. Credinfo No posee Jubilados");
+					} else {
+						$("#f1").show();
+					}
+					$("#f3").hide();
+					$("#f4").hide();
+					$("#f5").hide();
+					$("#txtMontoV").val(0);
+					$("#txtMontoA").val(0);
+				}
 			$("#f2").hide();
 			$("#txtMontoD").val(0);
 			$("#txtMontoUU").val(0);
@@ -148,6 +158,9 @@ function verifica_fpago() {
 			$("#txtMontoD").val('');
 
 		}
+			
+		}
+		
 
 	} else {
 		$("#mensual").hide();

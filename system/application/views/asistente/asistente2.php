@@ -213,10 +213,11 @@
 			</table>
 			<br><br>
 			<label id ="lbltipo">Forma Del Credito: </label>
-			<select id="forma" style="width: 120px;" onchange="verifica_fpago();">
-				<option>Seleccionar</option>
-				<option>Nomina</option>
-				<option>Banco</option>
+			<select id="forma" style="width: 200px;" onchange="verifica_fpago();">
+				<option>SELECCIONAR</option>
+				<option value="Nomina">NOMINA</option>
+				<option value="Banco">BANCO</option>
+				<option value="BONOEXPRESS">BONOEXPRESS</option>
 			</select><br><br><br>
 			<table id="mensual" style="display: none;">
 				<tr>

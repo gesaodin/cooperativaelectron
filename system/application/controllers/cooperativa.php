@@ -7371,7 +7371,7 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
 		$this->load->model ( "vistas/mvistas", 'MVista' );
 		echo $this->MVista->Filtro_Solicitud ();
 	}
-	public function GV_FSoli2() {
+	public function GV_FSoli2  () {
 		$this->load->model ( "vistas/mvistas", 'MVista' );
 		echo $this->MVista->Filtro_Solicitud2 ();
 	}

@@ -115,6 +115,10 @@
         <option value=150>150 Bs.</option>
         <option value=200>200 Bs.</option>
         <option value=250>250 Bs.</option>
+        <option value=300>300 Bs.</option>
+        <option value=350>350 Bs.</option>
+        <option value=400>400 Bs.</option>
+        <option value=450>450 Bs.</option>
         <option value=500>500 Bs.</option>
         <option value=750>750 Bs.</option>
         <option value=1000>1000 Bs.</option>

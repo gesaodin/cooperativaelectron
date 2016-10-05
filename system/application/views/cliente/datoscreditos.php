@@ -128,7 +128,7 @@
 			<select name="txtNominaPeriocidad"	id="txtNominaPeriocidad"style="width: 140px;" >
 			<option value=4>MENSUAL</option>
 			<option value=9>MENSUAL- BONOEXPRESS</option>
-			<option value=0 disabled=disabled>SEMANAL</option>
+			<option value=0>SEMANAL</option>
 			<option value=1 disabled=disabled>CATORCENAL</option>
 			<option value=2>QUINCENAL 15 - 30</option>
 			<option value=3 >QUINCENAL 10 - 25</option>
