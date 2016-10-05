@@ -91,7 +91,6 @@
 		<td style="width:150px">Inicio del Descuento <font color='#B70000'>(*)</font> :</td>
 			<td align="left"  style="width:210px" colspan=3>	
 			<select name="txtDia" id="txtDia" style="width: 55px;">
-				<option value=0>Dia:</option>
 				<?php 	for($i = 1; $i <= 9; $i++){		?>
 				<option value='<?php echo '0'.$i ?>'><?php echo $i ?></option>
 				<?php }	?>
@@ -100,7 +99,6 @@
 				<?php }	?>
 			</select>
 			<select name="txtMes"	id="txtMes" style="width: 55px;">
-				<option value=0>Mes:</option>
 				<?php 	for($i = 1; $i <= 9; $i++){		?>
 				<option value='<?php echo '0'.$i ?>'><?php echo $i ?></option>
 				<?php	}	?>
@@ -109,8 +107,7 @@
 				<?php	}	?>
 			</select>
 			<select name="txtAno"	id="txtAno" style="width: 60px;">
-				<option value=0>A&ntilde;o:</option>
-				<?php 	for($i = 2006; $i <= 2017; $i++){		?>
+				<?php 	for($i = 2006; $i <= 2018; $i++){		?>
 				<option value='<?php echo $i ?>'><?php echo $i ?></option>
 				<?php	}	?>
 			</select>
