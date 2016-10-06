@@ -1643,40 +1643,41 @@ class MCliente extends Model {
 		SELECT t_personas.documento_id AS cedula, CONCAT( primer_apellido, ' ', segundo_apellido, ' ', primer_nombre, ' ', segundo_nombre ) AS nombre, 
 		t_clientes_creditos.contrato_id, cuenta_1, nomina_procedencia, cobrado_en, nomina_procedencia, fecha_inicio_cobro, t_clientes_creditos.monto_total, t_lista_cobros_u.monto,marca_consulta,monto_cuota,
 		CASE
-		WHEN t_estadoejecucion.oide=1
-		THEN 'Creado (En Ventas)' 
-		WHEN t_estadoejecucion.oide=2
-		THEN 'Revision de Artefacto'
-		WHEN t_estadoejecucion.oide=3
-		THEN 'Por Aceptar en Ventas'
-		WHEN t_estadoejecucion.oide=4
-		THEN 'Por Depositar'
-		WHEN t_estadoejecucion.oide=5
-		THEN 'Buzon de Cobranza'
-		WHEN t_estadoejecucion.oide=6
-		THEN 'Aceptado Por Cobrar '
-		WHEN t_estadoejecucion.oide=7
-		THEN 'Cobrando Actualmente '
-		WHEN t_estadoejecucion.oide=0
-		THEN 'Rechado en Ventas '
+			WHEN t_estadoejecucion.oide=1
+			THEN 'Creado (En Ventas)' 
+			WHEN t_estadoejecucion.oide=2
+			THEN 'Revision de Artefacto'
+			WHEN t_estadoejecucion.oide=3
+			THEN 'Por Aceptar en Ventas'
+			WHEN t_estadoejecucion.oide=4
+			THEN 'Por Depositar'
+			WHEN t_estadoejecucion.oide=5
+			THEN 'Buzon de Cobranza'
+			WHEN t_estadoejecucion.oide=6
+			THEN 'Aceptado Por Cobrar '
+			WHEN t_estadoejecucion.oide=7
+			THEN 'Cobrando Actualmente '
+			WHEN t_estadoejecucion.oide=0
+			THEN 'Rechado en Ventas '
 		END as Estado,
 		CASE
-		WHEN t_clientes_creditos.estatus = 3
-		THEN 'Nulo' 
-		WHEN t_lista_cobros_u.monto IS NULL
-		THEN 'Revisar'
-		WHEN t_lista_cobros_u.monto > t_clientes_creditos.monto_total
-		THEN 'Excede'
-		WHEN t_lista_cobros_u.monto = t_clientes_creditos.monto_total
-		THEN 'Pagado'
-		WHEN t_lista_cobros_u.monto < t_clientes_creditos.monto_total
-		THEN 'Pendiente' 
+			WHEN t_clientes_creditos.estatus = 3
+			THEN 'Nulo' 
+			WHEN t_lista_cobros_u.monto IS NULL
+			THEN 'Revisar'
+			WHEN t_lista_cobros_u.monto > t_clientes_creditos.monto_total
+			THEN 'Excede'
+			WHEN t_lista_cobros_u.monto = t_clientes_creditos.monto_total
+			THEN 'Pagado'
+			WHEN t_lista_cobros_u.monto < t_clientes_creditos.monto_total
+			THEN 'Pendiente' 
 		END AS Estatus
 		FROM t_clientes_creditos
 		LEFT JOIN t_estadoejecucion ON t_estadoejecucion.oidc = t_clientes_creditos.contrato_id
 		LEFT JOIN t_personas ON t_personas.documento_id = t_clientes_creditos.documento_id
 		LEFT JOIN t_lista_cobros_u ON t_clientes_creditos.contrato_id = t_lista_cobros_u.contrato_id";
-		$donde = " WHERE t_clientes_creditos.forma_contrato=$tipo AND t_lista_cobros_u.monto < t_clientes_creditos.monto_total ";
+		$donde = " WHERE t_clientes_creditos.forma_contrato=$tipo  ";
+		//AND t_lista_cobros_u.monto > t_clientes_creditos.monto_total
 		if ($banco != "TODOS")
 			$donde .= " AND cobrado_en='$banco' ";
 		if ($nomina != "TODOS")
@@ -1686,8 +1687,8 @@ class MCliente extends Model {
 		if ($perio != 99)
 			$donde .= " AND periocidad=$perio";
 		if ($fecha != '')
-			//$donde .= " AND fecha_inicio_cobro like '$fecha%'";
-			$donde .= " AND fecha_inicio_cobro <= '$fecha'"; //Reclamando todos menor o igual a la fecha
+			$donde .= " AND fecha_inicio_cobro like '$fecha%'";
+			//$donde .= " AND fecha_inicio_cobro <= '$fecha'"; //Reclamando todos menor o igual a la fecha
 		if ($tcontrato == 6) {
 			$donde .= " AND marca_consulta=$tcontrato ";
 		} else {
