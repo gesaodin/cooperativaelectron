@@ -275,7 +275,7 @@ function Pago_Voucher(voucher,factura) {
 }
 
 function CargarNotaCredito(id){
-		alert(id);
+		//alert(id);
 	if (id == '') {
 		alert('Debe ingresar una cedula');
 		return 0;
