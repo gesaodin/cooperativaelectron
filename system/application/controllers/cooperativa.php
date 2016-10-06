@@ -7793,10 +7793,16 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
 		}
 		echo json_encode ( $valores );
 	}
-	function R_C_C() {
+	
+	/**
+	* Generar los monto totales por contratos para los reportes en lista_cobros_u
+	* @return string
+	*/
+	function GenerarMontoPorContratos() {
 		$query = 'truncate t_lista_cobros_u;';
 		$this->db->query ( $query );
-		$query = 'INSERT INTO t_lista_cobros_u (contrato_id, monto) SELECT credito_id, SUM(monto) FROM t_lista_cobros GROUP BY credito_id;';
+		$query = 'INSERT INTO t_lista_cobros_u (contrato_id, monto) 
+			SELECT credito_id, SUM(monto) FROM t_lista_cobros GROUP BY credito_id;';
 		$this->db->query ( $query );
 		echo "Se proceso con exito";
 	}
@@ -8243,6 +8249,10 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
         echo "Se exonero con exito";
     }
 
+	function CargarNotaCredito($id = ''){
+		$this->load->model("auditoria/mauditoria", "Auditoria");
+		echo $this->Auditoria->notasCreditos($id);
+	}
 
 	
 	function PagarFacturas(){
@@ -8283,6 +8293,7 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
 			$this->db->query($sActualizar);
 		}
 	}
+
 
 }
 ?>

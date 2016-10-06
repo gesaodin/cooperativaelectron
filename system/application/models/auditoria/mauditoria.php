@@ -47,6 +47,31 @@ class MAuditoria extends Model {
 		}
 		return json_encode($oTable);
 	}
+
+	public function notasCreditos($id = ''){
+		$consulta = $this -> db ->  query ("SELECT id, fecha,motivo FROM _th_sistema WHERE referencia = '$id' AND tipo=99");
+		$iCantidad = $consulta -> num_rows();
+		$Conexion = $consulta -> result();
+		$oCabezera[1] = array("titulo" => "oid", "oculto"=>TRUE);
+		$oCabezera[2] = array("titulo" => "fecha", "atributos" => "width:50px", "buscar" => 0);
+		$oCabezera[3] = array("titulo" => "Motivo", "atributos" => "width:80px", "buscar" => 0);
+		if ($iCantidad > 0) {
+			$i = 0;
+			foreach ($Conexion as $row) {
+				++$i;
+				$oFil[$i] = array(
+					"1" => $row->id, 
+					"2" => $row->fecha,
+					"3" => $row->motivo
+				);				
+			}
+			$oTable = array("Cabezera" => $oCabezera, "Cuerpo" => $oFil,  "Origen" => "json","msj" => TRUE);
+
+		} else {
+			$oTable = array("msj" => FALSE);
+		}
+		return json_encode($oTable);
+	} 
 	
 	function procesar($oid){
 		$this -> db -> query("UPDATE t_auditar_txt set estatus = 1 WHERE oid=".$oid);

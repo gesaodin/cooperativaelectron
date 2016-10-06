@@ -1676,8 +1676,7 @@ class MCliente extends Model {
 		LEFT JOIN t_estadoejecucion ON t_estadoejecucion.oidc = t_clientes_creditos.contrato_id
 		LEFT JOIN t_personas ON t_personas.documento_id = t_clientes_creditos.documento_id
 		LEFT JOIN t_lista_cobros_u ON t_clientes_creditos.contrato_id = t_lista_cobros_u.contrato_id";
-		$donde = " WHERE t_clientes_creditos.forma_contrato=$tipo  ";
-		//AND t_lista_cobros_u.monto > t_clientes_creditos.monto_total
+		$donde = " WHERE t_clientes_creditos.forma_contrato=$tipo AND t_lista_cobros_u.monto > t_clientes_creditos.monto_total ";
 		if ($banco != "TODOS")
 			$donde .= " AND cobrado_en='$banco' ";
 		if ($nomina != "TODOS")
@@ -1687,8 +1686,8 @@ class MCliente extends Model {
 		if ($perio != 99)
 			$donde .= " AND periocidad=$perio";
 		if ($fecha != '')
-			$donde .= " AND fecha_inicio_cobro like '$fecha%'";
-			//$donde .= " AND fecha_inicio_cobro <= '$fecha'"; //Reclamando todos menor o igual a la fecha
+			//$donde .= " AND fecha_inicio_cobro like '$fecha%'";
+			$donde .= " AND fecha_inicio_cobro <= '$fecha'"; //Reclamando todos menor o igual a la fecha
 		if ($tcontrato == 6) {
 			$donde .= " AND marca_consulta=$tcontrato ";
 		} else {

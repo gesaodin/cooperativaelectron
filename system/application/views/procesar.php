@@ -62,7 +62,9 @@
 			    <ul>
 			    <li><a href="#persona">Datos Cliente</a></li>
 		        <li><a href="#Procesar">Facturas Activas</a></li>
-		        <li><a href="#contado">Facturas Contado</a></li></ul>
+		        <li><a href="#contado">Facturas Contado</a></li>
+		        <li><a href="#contado">Notas de Creditos</a></li>
+		        </ul>
     		<div id="persona"></div><div id=\'contado\' style="Height:150px;overflow:auto;"></div><br><br><div id=\'Procesar\' style="Height:400px"></div>
     		</div>'; 
     	}else{

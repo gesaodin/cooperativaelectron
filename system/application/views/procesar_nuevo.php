@@ -66,11 +66,14 @@
 			    <li><a href="#Persona">Datos Cliente</a></li>
 		        <li><a href="#Procesar" onclick="activos('.$cedula.');">Facturas Activas</a></li>
 		        <li><a href="#Procesar2" onclick="cancelado('.$cedula.');">Facturas Canceladas</a></li>
-		        <li><a href="#Contado" onclick="facturas_contado('.$cedula.');">Facturas Contado</a></li></ul>
+		        <li><a href="#Contado" onclick="facturas_contado('.$cedula.');">Facturas Contado</a></li>
+		        <li><a href="#Notas" onclick="CargarNotaCredito('.$cedula.');">Notas de Crédito</a></li>
+		        </ul>
     			<div id="Persona"><div id="basico"></div><div id="historial"></div><div id="contactos"></div></div>
     			<div id=\'Procesar\' style="Height:400px"><input type="hidden" id="p_activo" value=0></><div id="activos"></div></div>
     			<div id=\'Procesar2\' style="Height:400px"><input type="hidden" id="p_cancelado" value=0></><div id="cancelado"></div></div>
     			<div id=\'Contado\' style="Height:150px;overflow:auto;"></div>
+    			<div id="Notas"><div id="notas_credito">Actualmente no posee una nota</div></div>
     		</div>'; 
     	}else{
     		echo $lista;

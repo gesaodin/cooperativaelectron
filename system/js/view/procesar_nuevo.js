@@ -273,3 +273,27 @@ function Pago_Voucher(voucher,factura) {
 		}
 	});
 }
+
+function CargarNotaCredito(id){
+		alert(id);
+	if (id == '') {
+		alert('Debe ingresar una cedula');
+		return 0;
+	}
+	strUrl_Proceso = sUrlP + "CargarNotaCredito/" + id;
+	$.ajax({
+		url : strUrl_Proceso,
+		type : 'POST',
+		data : 'id=' + id,
+		dataType : 'json',
+		success : function(json) {//alert(json);
+					
+				Grid2 = new TGrid(json, 'notas_credito', "NOTAS DE CREDITOS PENDIENTES");
+				Grid2.SetNumeracion(false);
+				Grid2.SetName("notas_credito");
+				Grid2.SetDetalle();
+				Grid2.Generar();
+					
+		}
+	});
+}

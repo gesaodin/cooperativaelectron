@@ -609,13 +609,15 @@ function BContrato() {
 		data : "nomina=" + nomina + "&banco=" + cobrado_en + "&empresa=" + empresa + "&tipo=" + tipo + "&dia=" + dia + "&mes=" + Mes + "&ano=" + ano + "&tipoContrato=" + tipoContrato+"&perio="+perio,
 		dataType : "json",
 		success : function(oEsq) {
-			//alert(oEsq.sql);
+			//alert(oEsq);
+			
 			Grid = new TGrid(oEsq, 'Reportes', titulo);
 			Grid.SetName("Contratos");
 			Grid.SetNumeracion(true);
 			Grid.SetXls(true);
 			Grid.Generar();
 			$("#carga_busqueda").dialog('close');
+			
 		}
 	});
 }
