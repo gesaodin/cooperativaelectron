@@ -41,16 +41,26 @@ class macuse extends Model {
 		$data['chequera'] = $arr['chequera'];
 		$data['cheque'] = $arr['cheque'];
 		$data['fecha'] = $arr['fecha'];
+		$data['tipo'] = $arr['pago'];
+
+		
+
 		$respuesta = $this -> db -> insert('t_acuse', $data);
-		if ($respuesta)
+		if ($respuesta){
+			if($arr['pago'] == 1){
+				$sConsulta = 'UPDATE _th_sistema SET peticion=998 WHERE id=' .$arr['pendiente'] . ' LIMIT 1;';
+				$this -> db ->query($sConsulta);
+				//echo $sConsulta;
+			}
 			return "Se registro acuse " . $arr['acuse'];
-		else
+		}else{
 			return "No se pudo registrar acuse " . $arr['acuse'];
+		}
 
 	}
 
 	public function Listar() {
-		$rConsulta = "SELECT * FROM t_acuse";
+		$rConsulta = "SELECT * FROM t_acuse WHERE modificado > '2016-10-01'";
 		
 		$oCabezera[1] = array("titulo" => "Acuse", "atributos" => "width:40px", "buscar" => 1);
 		$oCabezera[2] = array("titulo" => "Fecha", "atributos" => "width:40px", "buscar" => 1);

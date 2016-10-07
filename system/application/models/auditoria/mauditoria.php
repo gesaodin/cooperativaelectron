@@ -48,21 +48,50 @@ class MAuditoria extends Model {
 		return json_encode($oTable);
 	}
 
-	public function notasCreditos($id = ''){
-		$consulta = $this -> db ->  query ("SELECT id, fecha,motivo FROM _th_sistema WHERE referencia = '$id' AND tipo=99");
+	public function listarNotasCreditos($id = ''){
+		$oFil = array();
+		$consulta = $this -> db ->  query ("SELECT id, fecha,motivo,peticion FROM _th_sistema WHERE referencia = '$id' AND tipo=99");
 		$iCantidad = $consulta -> num_rows();
 		$Conexion = $consulta -> result();
-		$oCabezera[1] = array("titulo" => "oid", "oculto"=>TRUE);
-		$oCabezera[2] = array("titulo" => "fecha", "atributos" => "width:50px", "buscar" => 0);
-		$oCabezera[3] = array("titulo" => "Motivo", "atributos" => "width:80px", "buscar" => 0);
 		if ($iCantidad > 0) {
 			$i = 0;
 			foreach ($Conexion as $row) {
 				++$i;
+				if($row->peticion == '999') {
+					$oFil[$i] = array(
+						"oid" => $row->id,
+						"motivo" => $row->motivo
+					);	
+				}
+							
+			}
+			
+
+		} else {
+			
+		}
+		return json_encode($oFil);
+	} 
+	
+	public function notasCreditos($id = ''){
+		$consulta = $this -> db ->  query ("SELECT id, fecha,motivo,peticion FROM _th_sistema WHERE referencia = '$id' AND tipo=99");
+		$iCantidad = $consulta -> num_rows();
+		$Conexion = $consulta -> result();
+		$oCabezera[1] = array("titulo" => "oid", "oculto"=>TRUE);
+		$oCabezera[2] = array("titulo" => "fecha", "atributos" => "width:50px", "buscar" => 0);
+		$oCabezera[3] = array("titulo" => "Motivo", "atributos" => "width:300px", "buscar" => 0);
+		$oCabezera[4] = array("titulo" => "Estatus", "atributos" => "width:50px", "buscar" => 0);
+		if ($iCantidad > 0) {
+			$i = 0;
+			foreach ($Conexion as $row) {
+				++$i;
+				$estatus = 'Pendiente';
+				if($row->peticion != '999') $estatus = 'Cancelado';
 				$oFil[$i] = array(
 					"1" => $row->id, 
 					"2" => $row->fecha,
-					"3" => $row->motivo
+					"3" => $row->motivo,
+					"4" => $estatus
 				);				
 			}
 			$oTable = array("Cabezera" => $oCabezera, "Cuerpo" => $oFil,  "Origen" => "json","msj" => TRUE);
@@ -72,7 +101,7 @@ class MAuditoria extends Model {
 		}
 		return json_encode($oTable);
 	} 
-	
+
 	function procesar($oid){
 		$this -> db -> query("UPDATE t_auditar_txt set estatus = 1 WHERE oid=".$oid);
 		return "Se proceso con exito";

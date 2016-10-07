@@ -48,16 +48,24 @@ function Guardar_Recibo() {
 	var chequera = $("#txtChequera").val();
 	var cheque = $("#txtCheque").val();
 	var fecha = $("#fecha").val();
-	//alert(concepto);
+	var pago = $("#txtPago").val();
+	var pendiente = $("#cmbPendiente option:selected").val();
+
+
 	if (ced == '' || monto == '' || nombre == '' || fecha == '' || tipo == '' || concepto == '' || banco == '' || chequera == '' || cheque == '') {
-		alert("Debe Ingresar Todos los Datos");
+		alert( "Debe ingresar todos los datos");
 		return 0;
 	}
 
+	var data = 'acuse=' + acuse + '&cedula=' + ced + '&monto=' + monto + 
+		'&nombre=' + nombre + '&fecha=' + fecha + '&tipo=' + tipo + '&cheque=' + 
+		cheque + '&banco=' + banco + '&concepto=' + concepto + '&chequera=' + chequera +
+		'&pago=' + pago + '&pendiente=' + pendiente;
+	
 	$.ajax({
 		url : strUrl_Proceso,
 		type : 'POST',
-		data : 'acuse=' + acuse + '&cedula=' + ced + '&monto=' + monto + '&nombre=' + nombre + '&fecha=' + fecha + '&tipo=' + tipo + '&cheque=' + cheque + '&banco=' + banco + '&concepto=' + concepto + '&chequera=' + chequera,
+		data : data,
 		//dataType: 'json',
 		success : function(html) {
 			$("#msj_alertas").html(html);
@@ -71,12 +79,15 @@ function limpiar(){
 	
 	$("#txtMonto").val('');
 	$("#txtNombre").val('');
-	$("#txtTipo option:selected").val('');
+	
 	$("#txtCedula").val('');
 	$("#txtConcepto").val('');
 	$("#txtChequera").val('');
 	$("#txtCheque").val('');
 	$("#fecha").val('');
+	$("#opera0").hide();
+	$("#opera1").hide();
+
 	$.ajax({
 		url : sUrlP + "maximo_acuse",
 		type : 'POST',
@@ -100,4 +111,84 @@ function listar(){
 			Grid3.Generar();
 		}
 	});
+}
+
+function isNumberKey(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode;
+	if (charCode > 31 && (charCode < 48 || charCode > 57))
+		return false;
+	return true;
+}
+
+function consultarClientes() {
+
+	var id = $("#txtCedula").val();
+	if (id == '') {
+		alert('Debe ingresar una cedula');
+		return 0;
+	}
+
+	strUrl_Proceso = sUrlP + "DataSource_Cliente";
+	$.ajax({
+		url : strUrl_Proceso,
+		type : 'POST',
+		data : 'id=' + id,
+		dataType : 'json',
+		success : function(json) {
+			limpiar();
+			if (json['primer_nombre'] != null) {
+				cedula = json["documento_id"];
+				pnom = json["primer_nombre"];
+				snom = json["segundo_nombre"];
+				pape = json["primer_apellido"];
+				sape = json["segundo_apellido"];
+				sexo = json["sexo"];
+				naci = json["nacionalidad"];
+
+				$('#txtCedula').val(cedula);
+				$('#txtNombre').val(pape + ' ' + sape + ' ' + pnom + ' ' + snom);
+
+				//disponibilidad = json["disponibilidad"];
+				
+			}else{
+				//No se encontro la persona es un cliente o un proveedor (EVALUAR)
+			}
+
+		}
+	});
+	cargarNotas(id);
+	return true;
+}
+
+function cargarNotas(id) {
+
+	if (id == '') {
+		alert('Debe ingresar una cedula');
+		return 0;
+	}
+	$("#cmbPendiente").empty();
+	$("#cmbPendiente").append(new Option('SELECCIONAR OPERACIONES PENDIENTES', 0));
+	$("#opera0").hide();
+	$("#opera1").hide();
+
+	strUrl_Proceso = sUrlP + "DataSource_NotasCreditos";
+	$.ajax({
+		url : strUrl_Proceso,
+		type : 'POST',
+		data : 'id=' + id,
+		dataType : 'json',
+		success : function(json) {
+
+			val = false;
+			$.each(json, function(sId, sVal) {
+				$("#cmbPendiente").append(new Option(sVal.motivo, sVal.oid));
+				val = true;
+			});
+			if(val == true) {
+				$("#opera0").show();
+				$("#opera1").show();
+			}
+		}
+	});
+	return true;
 }

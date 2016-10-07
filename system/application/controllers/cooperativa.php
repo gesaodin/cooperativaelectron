@@ -3209,6 +3209,21 @@ class cooperativa extends Controller {
 			echo $contenido;
 		}
 	}
+	public function DataSource_NotasCreditos($sId = null) {
+		$this->load->model ( 'auditoria/MAuditoria', 'Auditoria' );
+		if (isset ( $_POST ['id'] )) {
+			$cedula = $_POST ['id'];
+			echo $this->Auditoria->listarNotasCreditos ( $cedula );
+		} else {
+			echo $this->Auditoria->listarNotasCreditos ( $sId );
+		}
+	}
+
+
+
+
+
+
 	public function Deuda_Cliente($sId = null) {
 		$this->load->model ( 'persona/MPersona', 'MPersona' );
 		if (isset ( $_POST ['id'] )) {
