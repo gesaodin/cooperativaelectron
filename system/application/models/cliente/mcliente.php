@@ -1686,8 +1686,8 @@ class MCliente extends Model {
 		if ($perio != 99)
 			$donde .= " AND periocidad=$perio";
 		if ($fecha != '')
-			//$donde .= " AND fecha_inicio_cobro like '$fecha%'";
-			$donde .= " AND fecha_inicio_cobro <= '$fecha'"; //Reclamando todos menor o igual a la fecha
+			$donde .= " AND fecha_inicio_cobro like '$fecha%'";
+			//$donde .= " AND fecha_inicio_cobro <= '$fecha'"; //Reclamando todos menor o igual a la fecha
 		if ($tcontrato == 6) {
 			$donde .= " AND marca_consulta=$tcontrato ";
 		} else {
