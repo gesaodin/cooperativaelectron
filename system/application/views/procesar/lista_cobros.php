@@ -31,9 +31,9 @@
 		</select>
 		<select name="txtAnoCobro"	id="txtAnoCobro"  style="width: 70px;">
 			<?php 
-					for($i = 2008; $i <= 2016; $i++){
+					for($i = 2008; $i <= 2018; $i++){
 			?>
-				<option value='<?php echo $i ?>' <?php if($i==2015) echo "SELECTED=SELECTED" ?> ><?php echo $i ?></option>
+				<option value='<?php echo $i ?>' <?php if($i==2016) echo "SELECTED=SELECTED" ?> ><?php echo $i ?></option>
 				
 			<?php
 					}
@@ -62,9 +62,9 @@
 		</select>
 		<select name="txtAnoDes"	id="txtAnoDes"  style="width: 70px;">
 			<?php 
-					for($i = 2008; $i <= 2016; $i++){
+					for($i = 2008; $i <= 2018; $i++){
 			?>
-				<option value='<?php echo $i ?>' <?php if($i==2015) echo "SELECTED=SELECTED" ?> ><?php echo $i ?></option>
+				<option value='<?php echo $i ?>' <?php if($i==2016) echo "SELECTED=SELECTED" ?> ><?php echo $i ?></option>
 				
 			<?php
 					}
