@@ -1731,21 +1731,21 @@ class cooperativa extends Controller {
 		$sCon = 'SELECT MAX(credito_id) AS cantidad FROM t_clientes_creditos';
 		$rs = $this->db->query ( $sCon );
 		$rCon = $rs->result ();
-		$sVal = 'N-' . $this->Completar ( $rCon [0]->cantidad + 1, 7 );
+		$sVal = 'N-' . $this->Completar ( $rCon [0]->cantidad + 1, 8 ) ;
 		return $sVal;
 	}
 	function maximo_valor_js() {
 		$sCon = 'SELECT MAX(credito_id) AS cantidad FROM t_clientes_creditos';
 		$rs = $this->db->query ( $sCon );
 		$rCon = $rs->result ();
-		$sVal = 'N-' . $this->Completar ( $rCon [0]->cantidad + 1, 7 );
+		$sVal = 'N-' . $this->Completar ( $rCon [0]->cantidad + 1, 8 );
 		echo $sVal;
 	}
 	function maximo_acuse() {
 		$sCon = 'SELECT MAX(oid) AS max FROM t_acuse';
 		$rs = $this->db->query ( $sCon );
 		$rCon = $rs->result ();
-		$sVal = 'AD-' . $this->Completar ( $rCon [0]->max + 1, 7 );
+		$sVal = 'AD-' . $this->Completar ( $rCon [0]->max + 1, 8 );
 		echo $sVal;
 	}
 	function html_valor() {
