@@ -370,6 +370,13 @@ class CPersonas extends Model {
 	 */
 	var $cargo_ocupaba = "";
 
+	/**
+	 * CARGO QUE OCUPABA ANTERIORMENTE
+	 *
+	 * @var string
+	 */
+	var $insti = "";
+
 	function __construct() {
 		parent::Model();
 

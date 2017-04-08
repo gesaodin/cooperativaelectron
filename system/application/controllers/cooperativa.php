@@ -700,7 +700,9 @@ class cooperativa extends Controller {
 		if ($this->session->userdata ( 'usuario' )) {
 			$this->load->model ( 'CNomina' );
 			$this->load->model ( 'CZonapostal' );
+			$this->load->model ( 'MInsti' );
 			$data ['lista'] = $this->CNomina->Combo ();
+			$data ['insti'] = $this->MInsti->Combo ();
 			$data ['estados'] = $this->CZonapostal->Estados ();
 			$data ['Menu'] = $this->CMenu->getHtml_Menu ( $this->session->userdata ( 'nivel' ) );
 			$data ['Nivel'] = $this->session->userdata ( 'nivel' );
@@ -1776,6 +1778,7 @@ class cooperativa extends Controller {
 		if ($_POST ['sexo'] != "MASCULINO") {
 			$sexo = "F";
 		}
+		$insti = $_POST ['insti'];
 		$nacionalidad = $_POST ['nacionalidad'];
 		$direccionH = $_POST ['direccionh'];
 		$direccionT = $_POST ['direcciont'];
@@ -1989,6 +1992,8 @@ class cooperativa extends Controller {
 		$data_u ['monto_vacaciones'] = $monto_va;
 		$CPersona->monto_aguinaldos = $monto_ag;
 		$data_u ['monto_aguinaldos'] = $monto_ag;
+		$CPersona->insti = $insti;
+		$data_u ['insti'] = $insti;
 		
 		$Consulta = $this->db->query ( "SELECT * FROM t_personas WHERE documento_id='$cedula'" );
 		
@@ -8307,6 +8312,15 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
 			echo '<br><br>';
 			$this->db->query($sActualizar);
 		}
+	}
+
+
+	/*
+	 * Crear instituciones
+	 */
+	public function Inserta_Insti() {
+		if($this->db->insert ( 't_institucion', $_POST )) echo "Se registro con exito";
+		else echo "Error al insertar";
 	}
 
 

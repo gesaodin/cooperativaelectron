@@ -1678,3 +1678,30 @@ function Modificar_EmpresaF(){
         });
     }
 }
+
+function Crear_Insti() {
+	var nombre = $("#txtNombreInsti").val();
+	var dir = $("#txtDirecInsti").val();
+	var tel = $("#txtTelInsti").val();
+	var mn = $("#cmbMinisterio").val();
+	$("#txtNombreInsti").val('');
+	$("#txtDirecInsti").val('');
+	$("#txtTelInsti").val('');
+	if (nombre != "") {
+		$.ajax({
+			url : sUrlP + 'Inserta_Insti',
+			type : "POST",
+			data : "&nombre=" + nombre + "&direccion=" + dir + "&telefono="+tel+"&mn="+mn,
+			success : function(html) {
+				$("#msj_alertas").html(html);
+				$("#msj_alertas").dialog('open');
+			},
+			error : function(html) {
+				alert('FALLO LA OPERACION');
+			},
+		});
+	} else {
+		document.getElementById("txtDirecInsti").value = "";
+		alert("Debe ingresar un Nombre");
+	}
+}

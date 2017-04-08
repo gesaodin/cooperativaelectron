@@ -29,6 +29,7 @@
 		          <li><a href="#tabs-5">Inventario</a></li>
             <?php }?>
 		        <li><a href="#tabs-6">Voucher</a></li>
+					<li><a href="#tabs-insti">Instituciones</a></li>
 		        <?php if($Nivel == 0 || $Nivel == 3){?>
 		        <li><a href="#tabs-7">Bloqueo</a></li>
 		        <?php }?>
@@ -59,6 +60,9 @@
 						<?php $this->load->view("panel/bloqueo.php");?>	
 					</div>
 					<?php } ?>
+					<div id='tabs-insti' >
+						<?php $this->load->view("panel/insti.php");?>
+					</div>
 				</div>
 				
 				

@@ -313,7 +313,7 @@ function btnGuardar() {
 			+ '&txtTlfAsociado3=' + $("#txtTlfAsociado3").val() + '&txtObserva3=' + $("#txtObserva3").val() 
 			+ '&txtEstatus3=' + $("#txtEstatus3").val() + '&txtdirecA3=' + $("#txtdirecA3").val() + '&txtdirecA2=' + $("#txtdirecA2").val()
 			+ '&txtdirecA1=' + $("#txtdirecA1").val() + '&txtNomiA3=' + $("#txtNomiA3").val() + '&txtNomiA2=' + $("#txtNomiA2").val() 
-			+ '&txtNomiA1=' + $("#txtNomiA1").val();
+			+ '&txtNomiA1=' + $("#txtNomiA1").val()+'&insti='+$("#insti").val();
 			
 			$("#msj_alertas").html("(+) POR FAVOR ESPERE MIENTRAS SE COMPLETA EL PROCESO...");
 			$("#msj_alertas").dialog("open");
@@ -398,6 +398,7 @@ function Limpiar_Cliente() {
 	$("#txtdirecA1").val("");
 	$("#txtDomiciliacionG").val("0");
 	$("#txtDomiciliacionC").val("0");
+	$("#insti").val(0);
 
 }
 
@@ -564,6 +565,7 @@ function consultar_clientes() {
 				$("#txtUrbanizacion").val(json["urbanizacion"]);
 				$("#txtCorreo").val(json["correo"]);
 				$("#txtPin").val(json["pin"]);
+				$("#insti").val(json["insti"]);
 				$("#txtDireccionH").val(json["direccion"]);
 				$("#txtDireccionT").val(json["direccion_trabajo"]);
                 $("#txtDireccionT2").val(json["direccion_trabajo2"]);
