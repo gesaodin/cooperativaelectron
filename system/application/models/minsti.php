@@ -37,7 +37,7 @@ class MInsti extends Model {
         $strQuery = $this->db->query("SELECT * FROM t_institucion order by nombre");
         if ($strQuery->num_rows() > 0)	{
             foreach ($strQuery->result() as $row){
-                $strCombo .= '<option value="' . $row->id.'" '. $row -> activo .'>'.$row->nombre.'</option>';
+                $strCombo .= '<option value="' . $row->id.'">'.$row->nombre.'</option>';
             }
         }
         return $strCombo;
