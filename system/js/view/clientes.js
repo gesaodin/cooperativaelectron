@@ -189,6 +189,11 @@ function btnGuardar() {
 	var ncuotas = $("#txtNumeroCuotas").val();
 	var mcuota = $("#txtMontoCuota").val();
 	var recalculo = monto_cargado/ncuotas;
+
+	if($("#insti").val() == '0'){
+		alert('Debe ingresar una institucion');
+		return 0;
+	}
 	
 	$("#msj_alertas").dialog({
 		buttons : {
@@ -477,6 +482,7 @@ function consultar_clientes() {
 		alert('Debe ingresar una cedula');
 		return 0;
 	}
+
 	$("#carga_busqueda").dialog('open');
 	//alert(strUrl_Proceso);
 	$.ajax({

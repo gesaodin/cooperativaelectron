@@ -1,7 +1,16 @@
 <table><tr><td><h2> Agregar nueva institucion.</h2></td></tr></table>
 <br>
 <br>
-<table width="600" border="0" cellspacing="3" cellpadding="0"class="formulario">
+<table width="600" border="0" cellspacing="3" cellpadding="0"class="formulario" >
+    <tr>
+        <td align="left" colspan="3">
+            <select id="insti" name="insti" style="width: 100%" onchange="consulInsti()">
+                <option value="0">SELECCIONE</option>
+                <?=$insti?>
+            </select>
+
+        </td>
+    </tr>
     <tr>
         <td style="width: 140px;" class="formulario">Nombre (*) :</td>
         <td style="width: 120px;" align="left" class="formulario">
@@ -33,7 +42,7 @@
 <table cellpadding='0' cellspacing='0' border='0' style='width:100%'>
     <tr>
         <td>
-            <button name='btnCrear' id='btnCrear' onclick="Crear_Insti();">Agregar Institucion</button>
+            <button name='btnCrear' id='btnCrear' onclick="Crear_Insti();">Guardar</button>
         </td>
     </tr>
 </table>

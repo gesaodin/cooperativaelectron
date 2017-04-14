@@ -1684,6 +1684,7 @@ function Crear_Insti() {
 	var dir = $("#txtDirecInsti").val();
 	var tel = $("#txtTelInsti").val();
 	var mn = $("#cmbMinisterio").val();
+	var id = $("#insti").val();
 	$("#txtNombreInsti").val('');
 	$("#txtDirecInsti").val('');
 	$("#txtTelInsti").val('');
@@ -1691,7 +1692,7 @@ function Crear_Insti() {
 		$.ajax({
 			url : sUrlP + 'Inserta_Insti',
 			type : "POST",
-			data : "&nombre=" + nombre + "&direccion=" + dir + "&telefono="+tel+"&mn="+mn,
+			data : "&nombre=" + nombre + "&direccion=" + dir + "&telefono="+tel+"&mn="+mn+"&id="+id,
 			success : function(html) {
 				$("#msj_alertas").html(html);
 				$("#msj_alertas").dialog('open');
@@ -1703,5 +1704,35 @@ function Crear_Insti() {
 	} else {
 		document.getElementById("txtDirecInsti").value = "";
 		alert("Debe ingresar un Nombre");
+	}
+}
+
+
+function consulInsti() {
+	var insti = $("#insti").val();
+	var peticion = $("#txtRPeticion_Boucher").val();
+	var motivo   = $("#txtRMotivo_Boucher").val();
+	var causa = $("#cmbCausa option:selected").val();
+	//alert(motivo);
+	if (insti != '0') {
+		$.ajax({
+			url : sUrlP + 'consulInsti',
+			type : "POST",
+			data : "id=" + insti,
+			dataType:"json",
+			success : function(json) {
+				$("#txtNombreInsti").val(json.nombre);
+				$("#txtDirecInsti").val(json.direccion);
+				$("#txtTelInsti").val(json.telefono);
+				$("#cmbMinisterio").val(json.mn);
+			},
+			error : function(html) {
+				alert('FALLO LA OPERACION'+html);
+			},
+		});
+	} else {
+		$("#txtNombreInsti").val('');
+		$("#txtDirecInsti").val('');
+		$("#txtTelInsti").val('');
 	}
 }

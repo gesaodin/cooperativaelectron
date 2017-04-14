@@ -1502,6 +1502,8 @@ class cooperativa extends Controller {
 			$this->load->model ( 'CZonapostal' );
 			$this->load->model ( 'CNomina' );
 			$this->load->model ( 'CInventario' );
+			$this->load->model ( 'MInsti' );
+			$data ['insti'] = $this->MInsti->Combo ();
 			
 			$data ['lista_artefactos'] = $this->CInventario->Combo_Artefactos ();
 			$data ['Menu'] = $this->CMenu->getHtml_Menu ( $this->session->userdata ( 'nivel' ) );
@@ -8319,8 +8321,24 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
 	 * Crear instituciones
 	 */
 	public function Inserta_Insti() {
-		if($this->db->insert ( 't_institucion', $_POST )) echo "Se registro con exito";
-		else echo "Error al insertar";
+		if($_POST['id'] == 0){
+			unset($_POST['id']);
+			if($this->db->insert ( 't_institucion', $_POST )) echo "Se registro con exito";
+			else echo "Error al insertar";
+		}else{
+			$this->db->where('id',$_POST['id']);
+			unset($_POST['id']);
+			$res = $this->db->update ( 't_institucion', $_POST );
+			if($res) echo "Se modifico con exito";
+			else echo "Error al modificar";
+
+
+		}
+	}
+
+	public function consulInsti(){
+		$resul = $this->db->query("SELECT * FROM t_institucion where id=".$_POST['id']);
+		echo json_encode($resul->row());
 	}
 
 
