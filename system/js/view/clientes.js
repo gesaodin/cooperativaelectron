@@ -1463,3 +1463,15 @@ function btnCarnet(){
 	URL = 'carnet/'+cedula;
 	window.open(URL,"ventana1","toolbar=0,location=1,menubar=0,scrollbars=1,resizable=1,width=450,height=400")	
 }
+
+function buscaDir(){
+	var strUrl_Proceso = sUrlP + "buscaDir";
+	$.ajax({
+		url : strUrl_Proceso,
+		type : "POST",
+		data:"id="+$("#insti").val(),
+		success : function(dir) {
+			$("#txtDireccionT").val(dir);
+		}
+	});
+}

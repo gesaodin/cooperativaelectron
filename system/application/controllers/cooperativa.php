@@ -8341,6 +8341,12 @@ $enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\
 		echo json_encode($resul->row());
 	}
 
+	public function buscaDir(){
+		$resul = $this->db->query("SELECT * FROM t_institucion where id=".$_POST['id']);
+		$fila = $resul->row();
+		echo $fila->direccion;
+	}
+
 
 }
 ?>

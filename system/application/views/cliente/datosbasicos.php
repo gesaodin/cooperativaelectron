@@ -172,7 +172,7 @@
     <tr>
         <td>Instucion al cual pertenece:</td>
         <td align="left" colspan="3">
-            <select id="insti" name="insti" style="width: 100%">
+            <select id="insti" name="insti" style="width: 100%" onchange="buscaDir()">
                 <option value="0">SELECCIONE</option>
                 <?=$insti?>
             </select>
