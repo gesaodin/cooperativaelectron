@@ -47,6 +47,10 @@ class PFormatosLibres extends Model {
 				$this -> f_autoriza_universal($sCedula);
 				//G=grupo , C=cooperativa
 						break;
+			case 'DOMI' :
+				$this -> domi($sCedula);
+				//G=grupo , C=cooperativa
+				break;
 			default :
 				$this -> f_autoriza_universal($sCedula);
 				//G=grupo , C=cooperativa
@@ -231,7 +235,113 @@ class PFormatosLibres extends Model {
 		$elemento = array($pagina1, $pagina2);
 		$this -> generar_formato($elemento, 'universal', 10, $img, $img2);
 	}
+	public function domi($ced , $e=null) {
+		$pagina1 = array();
+		$pagina2 = array();
+		$Consulta = $this -> db -> query("SELECT * FROM t_personas WHERE documento_id='$ced'");
+		$img = '';
+		$img2 = '';
+		$y = 0;
+		if ($e == 'C') {
+			$img = 'domi.jpg';
+		} else {
+			$img = 'domi.jpg';
+		}
+		if ($Consulta -> num_rows() > 0) {
+			foreach ($Consulta->result() as $row) {
+				$nombre_c = $row -> primer_apellido . ' ' . $row -> segundo_apellido . ' ' . $row -> primer_nombre . ' ' . $row -> segundo_nombre;
+				if ($e == 'C') {
+					$y1 = 0;
+					$y2 = 0;
+					$y3 = 0;
+					$x1 = 0;
+					$x2 = 0;
+				} else {
+					$y1 = 1;
+					$y2 = 2;
+					$y3 = 3;
+					$x1 = 1;
+					$x2 = 2;
+				}
 
+				//nombre
+				$pagina1['nombre'] = array('texto' => $nombre_c, 'ancho' => 148, 'x' => 17, 'y' =>90, 'estilo' => '');
+				//nombre
+				$pagina1['cedula'] = array('texto' => $row -> documento_id, 'ancho' => 60, 'x' => 66, 'y' => 96 + $y1, 'estilo' => '');
+				//nacionalidad
+				//$nacion = 'E-';
+				if ($row -> nacionalidad == 'E-') {
+					//if ($nacion== 'E-') {
+					$x = 57;
+				} else {
+					$x = 47;
+				}
+				//sector
+				$pagina1['cuenta_1'] = array('texto' => $row -> cuenta_1, 'ancho' => 25, 'x' => 60, 'y' => 103 + $y1, 'estilo' => '');
+				//calle
+				$pagina1['banco_1'] = array('texto' => $row -> banco_1, 'ancho' => 63, 'x' => 60, 'y' => 108 + $y2, 'estilo' => '');
+
+				$pagina1['banco_2'] = array('texto' => $row -> banco_1, 'ancho' => 63, 'x' => 62, 'y' => 122 + $y2, 'estilo' => '');
+
+				$pagina1['banco_3'] = array('texto' => $row -> banco_1, 'ancho' => 63, 'x' => 65, 'y' => 130 + $y2, 'estilo' => '');
+				$pagina1['banco_4'] = array('texto' => $row -> banco_1, 'ancho' => 63, 'x' => 65, 'y' => 136 + $y2, 'estilo' => '');
+
+//avenida
+				//edif.
+				//direccion
+				if (strlen($row -> direccion) < 10) {
+					$y = 133 + $y1;
+					if ($row -> parroquia != '') {
+						$x = 22 + $x1;
+						$a = 13;
+					} else {
+						$x = 95;
+						$a = 17;
+					}
+				} else {
+					$y = 141 + $y1;
+					$a = 97;
+					$x = 100;
+				}
+
+				//urb.
+				//estado
+				//municipio
+				//zona
+
+				//telf.
+				//cel
+				//email
+				//pin
+				//persona
+
+
+				if ($e == 'C') {
+					$y = 232;
+				} else {
+					$y = 229;
+				}
+
+				//a los
+				$fecha_actual = date('d-m-Y');
+				$fecha_actual = explode('-', $fecha_actual);
+				$mes_L = $this -> mes_letras($fecha_actual[1]);
+				$pagina1['lugar'] = array('texto' => 'Merida', 'ancho' => 50, 'x' => 95, 'y' => 81, 'estilo' => 'B');
+
+				$pagina1['dia'] = array('texto' => $fecha_actual[0], 'ancho' => 50, 'x' => 125, 'y' => 81, 'estilo' => 'B');
+				//mes
+				$pagina1['mes'] = array('texto' => $mes_L, 'ancho' => 50, 'x' => 140, 'y' => 81, 'estilo' => 'B');
+				//en
+				$pagina1['ano'] = array('texto' => $fecha_actual[2], 'ancho' => 12, 'x' => 180, 'y' => 81, 'estilo' => 'B');
+
+			}
+
+
+		}
+
+		$elemento = array($pagina1, $pagina2);
+		$this -> generar_formato($elemento, 'universal', 10, $img, $img2);
+	}
 	public function f_venezuela($ced, $e = 'C') {
 		$pagina1 = array();
 		$Consulta = $this -> db -> query("SELECT * FROM t_personas WHERE documento_id='$ced'");
