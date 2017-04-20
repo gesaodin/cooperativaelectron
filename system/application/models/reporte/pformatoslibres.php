@@ -237,7 +237,7 @@ class PFormatosLibres extends Model {
 	}
 	public function domi($ced , $e=null) {
 		$pagina1 = array();
-		$pagina2 = array();
+		
 		$Consulta = $this -> db -> query("SELECT * FROM t_personas WHERE documento_id='$ced'");
 		$img = '';
 		$img2 = '';
@@ -339,8 +339,8 @@ class PFormatosLibres extends Model {
 
 		}
 
-		$elemento = array($pagina1, $pagina2);
-		$this -> generar_formato($elemento, 'universal', 10, $img, $img2);
+		$elemento = array($pagina1);
+		$this -> generar_formato($elemento, 'domi', 10, $img, $img2);
 	}
 	public function f_venezuela($ced, $e = 'C') {
 		$pagina1 = array();
