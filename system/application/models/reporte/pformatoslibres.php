@@ -285,6 +285,8 @@ class PFormatosLibres extends Model {
 
 				$pagina1['banco_3'] = array('texto' => $row -> banco_1, 'ancho' => 63, 'x' => 65, 'y' => 130 + $y2, 'estilo' => '');
 				$pagina1['banco_4'] = array('texto' => $row -> banco_1, 'ancho' => 63, 'x' => 65, 'y' => 136 + $y2, 'estilo' => '');
+				$pagina1['banco_5'] = array('texto' => $row -> banco_1, 'ancho' => 63, 'x' => 100, 'y' => 222 + $y2, 'estilo' => '');
+				
 
 //avenida
 				//edif.
