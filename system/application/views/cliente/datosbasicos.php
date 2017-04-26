@@ -307,6 +307,16 @@
         </td>
     </tr>
     <tr>
+        <td>Otra Instucion al cual pertenece:</td>
+        <td align="left" colspan="3">
+            <select id="insti2" name="insti2" style="width: 100%" onchange="buscaDir2()">
+                <option value="0">SELECCIONE</option>
+                <?=$insti?>
+            </select>
+
+        </td>
+    </tr>
+    <tr>
         <td>Direcci&oacute;n Trabajo 2:</td>
         <td align="left" colspan="3">
             <input name="txtDireccionT2" id="txtDireccionT2" type="text" style="width: 490px;">

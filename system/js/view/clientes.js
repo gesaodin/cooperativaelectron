@@ -1475,3 +1475,15 @@ function buscaDir(){
 		}
 	});
 }
+
+function buscaDir2(){
+	var strUrl_Proceso = sUrlP + "buscaDir";
+	$.ajax({
+		url : strUrl_Proceso,
+		type : "POST",
+		data:"id="+$("#insti2").val(),
+		success : function(dir) {
+			$("#txtDireccionT2").val(dir);
+		}
+	});
+}
