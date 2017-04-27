@@ -41,14 +41,22 @@ class PFormatosLibres extends Model {
 				break;
 			case 'UNIVERSAL' :
 				$this -> f_autoriza_universal($sCedula,$emp);
-					//G=grupo , C=cooperativa
-					break;
+				//G=grupo , C=cooperativa
+				break;
 			case 'INTERBANCARIO' :
 				$this -> f_autoriza_universal($sCedula);
 				//G=grupo , C=cooperativa
-						break;
+				break;
 			case 'DOMI' :
 				$this -> domi($sCedula);
+				//G=grupo , C=cooperativa
+				break;
+			case 'CONVE' :
+				$this -> conve($sCedula);
+				//G=grupo , C=cooperativa
+				break;
+			case 'CONTRA' :
+				$this -> contra($sCedula);
 				//G=grupo , C=cooperativa
 				break;
 			default :
@@ -57,7 +65,7 @@ class PFormatosLibres extends Model {
 				break;
 		}
 	}
-	
+
 	public function Completar($strCadena = '', $intLongitud = '') {
 		$strContenido = '';
 		$strAux = '';
@@ -71,7 +79,7 @@ class PFormatosLibres extends Model {
 		}
 		return $strContenido;
 	}
-	
+
 	public function f_autoriza_gob($cedula) {
 		$pagina1 = array();
 		$nombre='';
@@ -80,31 +88,31 @@ class PFormatosLibres extends Model {
 			$Consulta = $this -> db -> query($query);
 			foreach ($Consulta->result() as $row) {
 				$nombre = $row -> nombre;
-			}	
+			}
 		}
-		
-		
+
+
 		$img = '';
-		
+
 		$absisas = NULL;
 		$ordenadas = NULL;
-		
-		
+
+
 		$absisas[2] = 18;//yo
 		$absisas[3] = 45;//cedula
 		$absisas[21] = 53;//dia
 		$absisas[22] = 117;//mes
 		$absisas[23] = 175;//ano
-	
+
 		$ordenadas[2] = 82;//yo
 		$ordenadas[3] = 89;//cedula, com_de
 		$ordenadas[17] = 219;//lugar,dia,mes,ano
 		$img = 'gobernacion.jpg';
-		
+
 
 		$pagina1['yo'] = array('texto' => $nombre, 'ancho' => 165, 'x' => $absisas[2], 'y' => $ordenadas[2], 'estilo' => '');
 		$pagina1['cedula'] = array('texto' => $cedula, 'ancho' => 43, 'x' => $absisas[3], 'y' => $ordenadas[3], 'estilo' => '');
-				
+
 		$fecha_actual = date('d-m-Y');
 		$fecha_actual = explode('-', $fecha_actual);
 		$mes_L = $this -> mes_letras($fecha_actual[1]);
@@ -113,7 +121,7 @@ class PFormatosLibres extends Model {
 			$pagina1['mes'] = array('texto' => $mes_L, 'ancho' => 52, 'x' => $absisas[22], 'y' => $ordenadas[17], 'estilo' => 'B');
 			$pagina1['ano'] = array('texto' => $fecha_actual[2], 'ancho' => 25, 'x' => $absisas[23], 'y' => $ordenadas[17], 'estilo' => 'B');
 		}
-		
+
 		$img = 'gobernacion.jpg';
 		$elemento = array($pagina1);
 		$this -> generar_formato($elemento, 'Gobernacion', 10, $img);
@@ -149,7 +157,7 @@ class PFormatosLibres extends Model {
 					$x1 = 1;
 					$x2 = 2;
 				}
-				
+
 				//nombre
 				$pagina1['nombre'] = array('texto' => $nombre_c, 'ancho' => 148, 'x' => 17, 'y' => 111, 'estilo' => '');
 				//nombre
@@ -196,7 +204,7 @@ class PFormatosLibres extends Model {
 				$pagina1['municipio'] = array('texto' => $row -> municipio, 'ancho' => 35, 'x' => 165 + $x1, 'y' => 133 + $y1, 'estilo' => '');
 				//zona
 				$pagina1['zona'] = array('texto' => $row -> gaceta, 'ancho' => 28, 'x' => 29, 'y' => 141 + $y1, 'estilo' => '');
-				
+
 				//telf.
 				$pagina1['telf'] = array('texto' => $row -> telefono, 'ancho' => 63, 'x' => 133, 'y' => 157, 'estilo' => '');
 				//cel
@@ -208,7 +216,7 @@ class PFormatosLibres extends Model {
 				//persona
 				$pagina1['per'] = array('texto' => $nombre_c, 'ancho' => 128, 'x' => 48, 'y' => 172 + $y1, 'estilo' => '');
 
-				
+
 				if ($e == 'C') {
 					$y = 232;
 				} else {
@@ -229,12 +237,237 @@ class PFormatosLibres extends Model {
 
 			}
 
-			
+
 		}
 
 		$elemento = array($pagina1, $pagina2);
 		$this -> generar_formato($elemento, 'universal', 10, $img, $img2);
 	}
+
+	/*maURICIO*/
+	public function conve($ced=null ,  $e=null) {
+		$pagina1 = array();
+		$pagina2 = array();
+		$Consulta = $this -> db -> query("SELECT * FROM t_personas WHERE documento_id='$ced'");
+		$img = 'conveniopago.jpg';
+		$img2 = 'conveniopago.jpg';
+		$y = 0;
+
+		/*if ($Consulta -> num_rows() > 0) {
+			foreach ($Consulta->result() as $row) {
+				$nombre_c = $row -> primer_apellido . ' ' . $row -> segundo_apellido . ' ' . $row -> primer_nombre . ' ' . $row -> segundo_nombre;
+				if ($e == 'C') {
+					$y1 = 0;
+					$y2 = 0;
+					$y3 = 0;
+					$x1 = 0;
+					$x2 = 0;
+				} else {
+					$y1 = 1;
+					$y2 = 2;
+					$y3 = 3;
+					$x1 = 1;
+					$x2 = 2;
+				}
+
+				//nombre
+				$pagina1['nombre'] = array('texto' => $nombre_c, 'ancho' => 148, 'x' => 17, 'y' => 111, 'estilo' => '');
+				//nombre
+				$pagina1['cedula'] = array('texto' => $row -> documento_id, 'ancho' => 60, 'x' => 66, 'y' => 118 + $y1, 'estilo' => '');
+				//nacionalidad
+				//$nacion = 'E-';
+				if ($row -> nacionalidad == 'E-') {
+					//if ($nacion== 'E-') {
+					$x = 57;
+				} else {
+					$x = 47;
+				}
+				$pagina1['nacionalidad'] = array('texto' => 'X', 'ancho' => 5, 'x' => $x + $x1, 'y' => 118 + $y1, 'estilo' => '');
+				//sector
+				$pagina1['sector'] = array('texto' => $row -> sector, 'ancho' => 25, 'x' => 174, 'y' => 118 + $y1, 'estilo' => '');
+				//calle
+				$pagina1['calle'] = array('texto' => $row -> calle, 'ancho' => 63, 'x' => 20, 'y' => 125 + $y2, 'estilo' => '');
+				//avenida
+				$pagina1['avenida'] = array('texto' => $row -> avenida, 'ancho' => 69, 'x' => 89, 'y' => 125 + $y2, 'estilo' => '');
+				//edif.
+				$pagina1['edificio'] = array('texto' => $row -> parroquia, 'ancho' => 33, 'x' => 165, 'y' => 125 + $y2, 'estilo' => '');
+				//direccion
+				if (strlen($row -> direccion) < 10) {
+					$y = 133 + $y1;
+					if ($row -> parroquia != '') {
+						$x = 22 + $x1;
+						$a = 13;
+					} else {
+						$x = 95;
+						$a = 17;
+					}
+				} else {
+					$y = 141 + $y1;
+					$a = 97;
+					$x = 100;
+				}
+
+				$pagina1['direccion'] = array('texto' => $row -> direccion, 'ancho' => $a, 'x' => $x, 'y' => $y, 'estilo' => '');
+				//urb.
+				$pagina1['urb'] = array('texto' => $row -> urbanizacion, 'ancho' => 39, 'x' => 41 + $x1, 'y' => 133 + $y1, 'estilo' => '');
+				//estado
+				$pagina1['estado'] = array('texto' => $row -> ubicacion, 'ancho' => 27, 'x' => 123 + $x1, 'y' => 133 + $y1, 'estilo' => '');
+				//municipio
+				$pagina1['municipio'] = array('texto' => $row -> municipio, 'ancho' => 35, 'x' => 165 + $x1, 'y' => 133 + $y1, 'estilo' => '');
+				//zona
+				$pagina1['zona'] = array('texto' => $row -> gaceta, 'ancho' => 28, 'x' => 29, 'y' => 141 + $y1, 'estilo' => '');
+
+				//telf.
+				$pagina1['telf'] = array('texto' => $row -> telefono, 'ancho' => 63, 'x' => 133, 'y' => 157, 'estilo' => '');
+				//cel
+				$pagina1['cel'] = array('texto' => $row -> celular, 'ancho' => 45, 'x' => 30, 'y' => 164, 'estilo' => '');
+				//email
+				$pagina1['email'] = array('texto' => $row -> correo, 'ancho' => 70, 'x' => 86, 'y' => 164, 'estilo' => '');
+				//pin
+				$pagina1['pin'] = array('texto' => $row -> pin, 'ancho' => 33, 'x' => 165, 'y' => 164, 'estilo' => '');
+				//persona
+				$pagina1['per'] = array('texto' => $nombre_c, 'ancho' => 128, 'x' => 48, 'y' => 172 + $y1, 'estilo' => '');
+
+
+				if ($e == 'C') {
+					$y = 232;
+				} else {
+					$y = 229;
+				}
+
+				//a los
+				$fecha_actual = date('d-m-Y');
+				$fecha_actual = explode('-', $fecha_actual);
+				$mes_L = $this -> mes_letras($fecha_actual[1]);
+
+				//dia
+				$pagina2['dia'] = array('texto' => $fecha_actual[0], 'ancho' => 17, 'x' => 60, 'y' => $y, 'estilo' => 'B');
+				//mes
+				$pagina2['mes'] = array('texto' => $mes_L, 'ancho' => 50, 'x' => 99, 'y' => $y, 'estilo' => 'B');
+				//en
+				$pagina2['ano'] = array('texto' => $fecha_actual[2], 'ancho' => 12, 'x' => 157, 'y' => $y, 'estilo' => 'B');
+
+			}
+
+
+		}*/
+
+		$elemento = array($pagina1);
+		$this -> generar_formato($elemento, 'conve', 10, $img, $img2);
+	}
+
+	public function contra($ced=null ,  $e=null) {
+		$pagina1 = array();
+		$pagina2 = array();
+		$Consulta = $this -> db -> query("SELECT * FROM t_personas WHERE documento_id='$ced'");
+		$img = 'contrato.jpeg';
+		$img2 = 'contratodos.jpeg';
+		$y = 0;
+
+		/*if ($Consulta -> num_rows() > 0) {
+			foreach ($Consulta->result() as $row) {
+				$nombre_c = $row -> primer_apellido . ' ' . $row -> segundo_apellido . ' ' . $row -> primer_nombre . ' ' . $row -> segundo_nombre;
+				if ($e == 'C') {
+					$y1 = 0;
+					$y2 = 0;
+					$y3 = 0;
+					$x1 = 0;
+					$x2 = 0;
+				} else {
+					$y1 = 1;
+					$y2 = 2;
+					$y3 = 3;
+					$x1 = 1;
+					$x2 = 2;
+				}
+
+				//nombre
+				$pagina1['nombre'] = array('texto' => $nombre_c, 'ancho' => 148, 'x' => 17, 'y' => 111, 'estilo' => '');
+				//nombre
+				$pagina1['cedula'] = array('texto' => $row -> documento_id, 'ancho' => 60, 'x' => 66, 'y' => 118 + $y1, 'estilo' => '');
+				//nacionalidad
+				//$nacion = 'E-';
+				if ($row -> nacionalidad == 'E-') {
+					//if ($nacion== 'E-') {
+					$x = 57;
+				} else {
+					$x = 47;
+				}
+				$pagina1['nacionalidad'] = array('texto' => 'X', 'ancho' => 5, 'x' => $x + $x1, 'y' => 118 + $y1, 'estilo' => '');
+				//sector
+				$pagina1['sector'] = array('texto' => $row -> sector, 'ancho' => 25, 'x' => 174, 'y' => 118 + $y1, 'estilo' => '');
+				//calle
+				$pagina1['calle'] = array('texto' => $row -> calle, 'ancho' => 63, 'x' => 20, 'y' => 125 + $y2, 'estilo' => '');
+				//avenida
+				$pagina1['avenida'] = array('texto' => $row -> avenida, 'ancho' => 69, 'x' => 89, 'y' => 125 + $y2, 'estilo' => '');
+				//edif.
+				$pagina1['edificio'] = array('texto' => $row -> parroquia, 'ancho' => 33, 'x' => 165, 'y' => 125 + $y2, 'estilo' => '');
+				//direccion
+				if (strlen($row -> direccion) < 10) {
+					$y = 133 + $y1;
+					if ($row -> parroquia != '') {
+						$x = 22 + $x1;
+						$a = 13;
+					} else {
+						$x = 95;
+						$a = 17;
+					}
+				} else {
+					$y = 141 + $y1;
+					$a = 97;
+					$x = 100;
+				}
+
+				$pagina1['direccion'] = array('texto' => $row -> direccion, 'ancho' => $a, 'x' => $x, 'y' => $y, 'estilo' => '');
+				//urb.
+				$pagina1['urb'] = array('texto' => $row -> urbanizacion, 'ancho' => 39, 'x' => 41 + $x1, 'y' => 133 + $y1, 'estilo' => '');
+				//estado
+				$pagina1['estado'] = array('texto' => $row -> ubicacion, 'ancho' => 27, 'x' => 123 + $x1, 'y' => 133 + $y1, 'estilo' => '');
+				//municipio
+				$pagina1['municipio'] = array('texto' => $row -> municipio, 'ancho' => 35, 'x' => 165 + $x1, 'y' => 133 + $y1, 'estilo' => '');
+				//zona
+				$pagina1['zona'] = array('texto' => $row -> gaceta, 'ancho' => 28, 'x' => 29, 'y' => 141 + $y1, 'estilo' => '');
+
+				//telf.
+				$pagina1['telf'] = array('texto' => $row -> telefono, 'ancho' => 63, 'x' => 133, 'y' => 157, 'estilo' => '');
+				//cel
+				$pagina1['cel'] = array('texto' => $row -> celular, 'ancho' => 45, 'x' => 30, 'y' => 164, 'estilo' => '');
+				//email
+				$pagina1['email'] = array('texto' => $row -> correo, 'ancho' => 70, 'x' => 86, 'y' => 164, 'estilo' => '');
+				//pin
+				$pagina1['pin'] = array('texto' => $row -> pin, 'ancho' => 33, 'x' => 165, 'y' => 164, 'estilo' => '');
+				//persona
+				$pagina1['per'] = array('texto' => $nombre_c, 'ancho' => 128, 'x' => 48, 'y' => 172 + $y1, 'estilo' => '');
+
+
+				if ($e == 'C') {
+					$y = 232;
+				} else {
+					$y = 229;
+				}
+
+				//a los
+				$fecha_actual = date('d-m-Y');
+				$fecha_actual = explode('-', $fecha_actual);
+				$mes_L = $this -> mes_letras($fecha_actual[1]);
+
+				//dia
+				$pagina2['dia'] = array('texto' => $fecha_actual[0], 'ancho' => 17, 'x' => 60, 'y' => $y, 'estilo' => 'B');
+				//mes
+				$pagina2['mes'] = array('texto' => $mes_L, 'ancho' => 50, 'x' => 99, 'y' => $y, 'estilo' => 'B');
+				//en
+				$pagina2['ano'] = array('texto' => $fecha_actual[2], 'ancho' => 12, 'x' => 157, 'y' => $y, 'estilo' => 'B');
+
+			}
+
+
+		}*/
+
+		$elemento = array($pagina1,$pagina2);
+		$this -> generar_formato($elemento, 'conve', 10, $img, $img2);
+	}
+
+
 	public function domi($ced , $e=null) {
 		$pagina1 = array();
 		

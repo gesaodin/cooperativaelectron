@@ -6279,9 +6279,11 @@ class cooperativa extends Controller {
 		$enlaces .= '<td><a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/Formatos_Libres/' . $ced . '/VENEZUELA/C \' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>VENEZUELA COOPERATIVA</a></td>';
 		$enlaces .= '<td><a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/Formatos_Libres/' . $ced . '/UNIVERSAL/G \' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>UNIVERSAL GRUPO</a></td>';
 		$enlaces .= '<td><a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/Formatos_Libres/' . $ced . '/UNIVERSAL/C \' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>UNIVERSAL COOPERATIVA</a></td></tr>';
-        $enlaces .= '<tr><td><a href=\'' . __IMG__ . 'AutorizaDesNom.docx\' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>Autorizacion Descuento Nomina</a></td>';
+		$enlaces .= '<tr><td><a href=\'' . __IMG__ . 'AutorizaDesNom.docx\' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>Autorizacion Descuento Nomina</a></td>';
 		$enlaces .= '<td><a href=\'' . __IMG__ . 'AutorizaDesDom.xls\' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>Autorizacion Descuento Domilizacion</a></td>';
-		$enlaces .= '<td><<a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/Formatos_Libres/' . $ced . '/DOMI/C \' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>DOMICILIACION DE PAGO N</a></td></tr>';
+		$enlaces .= '<td><a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/Formatos_Libres/' . $ced . '/DOMI/C \' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>DOMICILIACION DE PAGO N</a></td></tr>';
+		$enlaces .= '<td><a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/Formatos_Libres/' . $ced . '/CONVE/C \' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>Convenio de Pago</a></td>';
+		$enlaces .= '<td><a href=\'' . __LOCALWWW__ . '/index.php/cooperativa/Formatos_Libres/' . $ced . '/CONTRA/C \' border=0 target=\'top\'><center><img src=\'' . __IMG__ . 'pdf.png\'>Contrato</a></td></tr>';
 
 		$enlaces .= '</tbody></table>';
 		echo $enlaces;
@@ -6292,8 +6294,7 @@ class cooperativa extends Controller {
 		$this->load->model ( 'reporte/pformatoslibres', 'PFormatoLibre' );
 		$this->PFormatoLibre->Formato_Libre ( $formato, $cedula, $emp );
 	}
-	
-	// Interfaz
+// Interfaz
 	function Crear_Txt() {
 		$this->load->model ( 'CNomina' );
 		if ($this->session->userdata ( 'usuario' )) {
