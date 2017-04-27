@@ -821,6 +821,10 @@ class MCliente extends Model {
 		$signo = "=";
 		$banco = "";
 		$deposito = "";
+		$nom = '';
+		if($dtd_nomina != 'TODOS'){
+			$nom = ' AND nomina_procedencia="'.$dtd_nomina.'" ';
+		}
 		if ($cobrado_en != "TODOS") {
 			$banco = " AND cobrado_en = '" . strtoupper($cobrado_en) . "' ";
 		}
@@ -876,7 +880,7 @@ class MCliente extends Model {
 			JOIN t_personas ON t_clientes_creditos.documento_id=t_personas.documento_id
 			WHERE " . $Arr['lista'] . "
 			fecha_solicitud >= '" . $Arr['desde'] . "' AND fecha_solicitud <= '" . $Arr['hasta'] . "' 
-			AND t_estadoejecucion.oide" . $signo . $iEstado . $banco . $deposito . " 
+			AND t_estadoejecucion.oide" . $signo . $iEstado . $banco . $deposito . $nom." 
 			GROUP BY t_clientes_creditos.numero_factura ";
 		} else {
 			$strQuery = "SELECT $set FROM t_estadoejecucion
@@ -884,13 +888,13 @@ class MCliente extends Model {
 			JOIN t_personas ON t_personas.documento_id=t_clientes_creditos.documento_id
 			WHERE t_clientes_creditos.$sCam='" . $strDependencia . "' 
 			AND fecha_solicitud >= '" . $Arr['desde'] . "' AND fecha_solicitud <= '" . $Arr['hasta'] . "' 
-			AND t_estadoejecucion.oide" . $signo . $iEstado . $deposito . $banco . " 
+			AND t_estadoejecucion.oide" . $signo . $iEstado . $deposito . $banco . $nom." 
 			GROUP BY t_clientes_creditos.numero_factura " ;
 			if ($iEstado == 4) {
 				$strQuery = "SELECT $set FROM t_estadoejecucion
 				JOIN t_clientes_creditos ON t_estadoejecucion.oidc=t_clientes_creditos.contrato_id
 				JOIN t_personas ON t_personas.documento_id=t_clientes_creditos.documento_id
-				WHERE t_clientes_creditos.$sCam='" . $strDependencia . "' AND fecha_solicitud >= '" . $Arr['desde'] . "' AND fecha_solicitud <= '" . $Arr['hasta'] . "' AND t_estadoejecucion.oide" . $signo . $iEstado . $banco . " AND t_clientes_creditos.condicion=0 GROUP BY t_clientes_creditos.numero_factura ";
+				WHERE t_clientes_creditos.$sCam='" . $strDependencia . "' AND fecha_solicitud >= '" . $Arr['desde'] . "' AND fecha_solicitud <= '" . $Arr['hasta'] . "' AND t_estadoejecucion.oide" . $signo . $iEstado . $banco . $nom." AND t_clientes_creditos.condicion=0 GROUP BY t_clientes_creditos.numero_factura ";
 			}
 		}
 

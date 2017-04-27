@@ -91,6 +91,7 @@
 		<td style="width:150px">Inicio del Descuento <font color='#B70000'>(*)</font> :</td>
 			<td align="left"  style="width:210px" colspan=3>	
 			<select name="txtDia" id="txtDia" style="width: 55px;">
+                <option value=''>Seleccione</option>
 				<?php 	for($i = 1; $i <= 9; $i++){		?>
 				<option value='<?php echo '0'.$i ?>'><?php echo $i ?></option>
 				<?php }	?>
