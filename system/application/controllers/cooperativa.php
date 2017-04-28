@@ -8350,6 +8350,41 @@ class cooperativa extends Controller {
 		echo $fila->direccion;
 	}
 
+	public function modificaciones(){
+        $this->load->model ( 'CNomina' );
+        if ($this->session->userdata ( 'usuario' )) {
+            $data ['Menu'] = $this->CMenu->getHtml_Menu ( $this->session->userdata ( 'nivel' ) );
+            $data ['Nivel'] = $this->session->userdata ( 'nivel' );
+            $rs = $this->db->query("SELECT * FROM t_estatus_sistema");
+            $opt = '';
+            foreach ($rs->result() as $fila){
+            	$opt .= '<option value="'.$fila->oid.'">'.$fila->nombre.'</option>';
+			}
+			$data['tipo'] = $opt;
+            $this->load->view ( "reportes/rep_modificaciones", $data );
+        } else {
+            $this->login ();
+        }
+	}
+
+	public function listaModificaciones(){
+		$query = "select nombre as tipo,referencia,fecha,motivo,peticion,usuario from _th_sistema 
+join t_estatus_sistema as a on a.oid = _th_sistema.tipo WHERE fecha BETWEEN '".$_POST['desde']."' AND '".$_POST['hasta']."' ";
+		if($_POST['tipo'] != 0) $query .= " AND tipo=".$_POST['tipo'];
+        $Consulta = $this -> db -> query($query);
+        $Cabezera = $Consulta -> list_fields();
+        $iCantidad = $Consulta -> num_rows();
+        $Conexion = $Consulta -> result();
+
+        $oCabezera = $Cabezera;
+        $oFil = $Conexion;
+        $Origen = 'Mysql';
+
+        $oTable = array("Cabezera" => $oCabezera, "Cuerpo" => $oFil, "Paginador" => 10, "Origen" => $Origen);
+        echo json_encode($oTable);
+
+	}
+
 
 }
 ?>

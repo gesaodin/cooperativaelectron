@@ -166,6 +166,9 @@ class CMenu extends Model {
 		if ($intNivel == 0 || $intNivel == 2 || $intNivel == 3 || $intNivel == 8 || $intNivel == 9) {
 			$sPendientes .= '<li class="active" ><a href="Reporte_General"><span>Reportes Generales</span></a></li>';
 		}
+        if ($intNivel == 0 || $usu='judelvis') {
+            $sPendientes .= '<li class="active" ><a href="modificaciones"><span>Modificaciones</span></a></li>';
+        }
 		$Menu_B .= '	</ul>
 		   </li>
 		   <li id="mreporte"><a href="factura_control"><span>Factura Control</span></a>		     
