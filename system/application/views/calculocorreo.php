@@ -75,7 +75,7 @@
                         <select onchange="crea_combos(this.value);Asignar(this.value);Calcular_Total();" id="cmbMeses" name="cmbMeses">
 
                             <?php
-                            for ($i = 4; $i <= 24; $i++) {
+                            for ($i = 1; $i <= 24; $i++) {
                                 echo '<option value=' . $i . '>' . $i . ' MESES</option>';
                             }
                             ?>
