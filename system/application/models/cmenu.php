@@ -85,6 +85,12 @@ class CMenu extends Model {
                         <li class="active" ><a href="estatusDocumentosRecibidos"><span>Estatus Documentos</span></a></li>
 			';
         }
+
+		if($usu == "sbarinas"){
+			$Menu_B .= '<li class="active" ><a href="#" Onclick="N_Ventana(\'ccalculosCorreo\')"><span>Calculo Correo</span></a></li>
+                        <li class="active" ><a href="#" Onclick="N_Ventana(\'presupuestoCorreo\')"><span>Presupuesto Correo</span></a></li>
+			';
+		}
         if ($usu == 'alvaro' || $usu == 'carlos' || $usu == 'dmarisol' || $usu == 'judelvis' ) {
             $Menu_B .= '<li class="active" ><a href="recepcionDocumento"><span>Recep. Documentos</span></a></li>
 
