@@ -37,6 +37,7 @@
                         <select id='plan' name='plan' >
                             <option value=12 selected="selected">Basico 12%</option>
                             <option value=15 selected="selected">Basico 15%</option>
+                            <option value=20 selected="selected">Basico 20%</option>
                             <option value=10>Especial</option>
                             <option value=9>Super Especial</option>
                             <option value=8>Coorporativo</option>
