@@ -110,8 +110,9 @@ function CContrato(){
 	var cond = $("#ccond option:selected").val();
 	var tipo = $("#ctipo option:selected").val();
 	var empr = $("#cempresa option:selected").val();
+	var peri = $("#cperi option:selected").val();
 	
-	var datos = "banco="+banco+"&condicion="+cond+"&tipo="+tipo+"&empr="+empr;
+	var datos = "banco="+banco+"&condicion="+cond+"&tipo="+tipo+"&empr="+empr+"&peri="+peri;
 	//alert(datos)
 	$("#carga_busqueda").dialog('open');
 	$.ajax({

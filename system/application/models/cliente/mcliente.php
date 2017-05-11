@@ -2049,6 +2049,10 @@ class MCliente extends Model {
 		$lin = '';
 		$condicion = '';
 		$empresa = '';
+		$peri = '';
+		if($arr['peri'] != ""){
+			$peri = ' AND t_clientes_creditos.periocidad = '.$arr['peri']. ' ';
+		}
 		if($arr['banco']!='0')$lin = " AND t_clientes_creditos.cobrado_en='".$arr['banco']."' ";
 		switch ($arr['condicion']){
 			case 1:
@@ -2112,7 +2116,7 @@ class MCliente extends Model {
 		LEFT JOIN t_estadoejecucion ON t_estadoejecucion.oidc = t_clientes_creditos.contrato_id
 		LEFT JOIN t_personas ON t_personas.documento_id = t_clientes_creditos.documento_id
 		LEFT JOIN t_lista_cobros_u ON t_clientes_creditos.contrato_id = t_lista_cobros_u.contrato_id";
-		$donde = " WHERE t_clientes_creditos.marca_consulta != 6 AND t_clientes_creditos.cantidad!=0 AND t_clientes_creditos.forma_contrato=".$arr['tipo'].$lin.$empresa.$condicion;
+		$donde = " WHERE t_clientes_creditos.marca_consulta != 6 AND t_clientes_creditos.cantidad!=0 AND t_clientes_creditos.forma_contrato=".$arr['tipo'].$lin.$empresa.$condicion.$peri;
 		
 		$query .= $donde . " order by t_clientes_creditos.contrato_id";
 		//return $query;

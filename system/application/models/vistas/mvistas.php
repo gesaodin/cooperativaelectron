@@ -532,12 +532,14 @@ class MVistas extends Model {
 		foreach ($banco -> result() as $ban) {
 			$valores2[$ban -> cobrado_en] = $ban -> cobrado_en;
 		}
+		$peri = array(""=>"SELECCIONE","4"=>"MENSUAL","9"=>"BONO EXPRESS","0"=>"SEMANAL","1"=>"CATORCENAL","2"=>"QUINCENAL 15-30","3"=>"QUINCENAL 10-25","5"=>"TRIMESTRAL","6"=>"SEMESTRAL","8"=>"MENSUAL 10","9"=>"MESUAL 25");
 		$condicion=array('0'=>'TODOS','1'=>'EN COBRANZA','2'=>'POR INICIAR COBRO');
 		$empresa = array('3'=>'Todas','0'=>'Cooperativa','1'=>'Grupo');
 		$formulario[1] = array('etiqueta' => 'Banco','label'=>"Banco", 'id' => 'cbanco', 'tipo' => 'combo', 'elementos' => $valores2,'multicelda' => 1,"atributos"=>"width:50%;");
 		$formulario[2] = array('etiqueta' => 'Tipo Contrato','label'=>"Tipo Contrato", 'id' => 'ctipo', 'tipo' => 'combo', 'elementos' => $tipo_c,'multicelda' => 1,"atributos"=>"width:50%;");
 		$formulario[3] = array('etiqueta' => 'Empresa','label'=>'Empresa', 'id' => 'cempresa', 'tipo' => 'combo', 'elementos' => $empresa,'multicelda' => 1 );
 		$formulario[4] = array('etiqueta' => 'Condicion','label'=>'Condicion', 'id' => 'ccond', 'tipo' => 'combo' , 'elementos' => $condicion,'multicelda' => 1 );
+		$formulario[5] = array('etiqueta' => 'Periodicidad','label'=>'Periodicidad', 'id' => 'cperi', 'tipo' => 'combo' , 'elementos' => $peri,'multicelda' => 1 );
 	
 		$objeto = array('campos' => $formulario ,'titulo'=>'Filtro General De Facturas');
 		return json_encode($objeto);
