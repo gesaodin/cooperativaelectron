@@ -100,6 +100,7 @@
 				<?php }	?>
 			</select>
 			<select name="txtMes"	id="txtMes" style="width: 55px;">
+				<option value=''>Seleccione</option>
 				<?php 	for($i = 1; $i <= 9; $i++){		?>
 				<option value='<?php echo '0'.$i ?>'><?php echo $i ?></option>
 				<?php	}	?>

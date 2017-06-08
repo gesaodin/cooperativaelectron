@@ -662,7 +662,7 @@ function GControlMensual() {
   var desde = $("#fecha_desde_controlmensual").val();
   var mesp = $("#mespcontrolmensual option:selected").val();
   var anop = $("#anopcontrolmensual option:selected").val();
-  
+  var perio = $("#diapcontrolmensual option:selected").val();
   if (desde == '' ) {
     alert("Debe especificar desde que fecha desea hacer el cuadre...");
     return 0;
@@ -675,7 +675,7 @@ function GControlMensual() {
   $.ajax({
     url : sUrlP + "GenerarControlPagos",
     type : "POST",
-    data : "banco=" + cobrado_en + "&empresa=" + empresa + "&forma=" + forma + "&desde=" + desde + "&mesp=" + mesp  + "&anop=" + anop,
+    data : "banco=" + cobrado_en + "&empresa=" + empresa + "&forma=" + forma + "&desde=" + desde + "&mesp=" + mesp  + "&anop=" + anop + "&perio="+perio,
     dataType : "json",
     success : function(oEsq) {
       //$("#msj_alertas").html(oEsq);

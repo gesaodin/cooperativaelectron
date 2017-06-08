@@ -1664,7 +1664,7 @@ class cooperativa extends Controller {
 			$fecha = "";
 			if ($ano != 0) {
 				$fecha .= $ano . '-';
-				if ($mes != 0) {
+				if ($mes != 0 && $mes != '') {
 					$fecha .= $mes . '-';
 					if ($dia != 0) {
 						$fecha .= $dia;
@@ -7268,8 +7268,8 @@ class cooperativa extends Controller {
 		$this->load->model ( 'cobranza/mcobranza', 'MCobranza' );
 		
 		$this->MCobranza->empresa = $_POST ['empresa'];
-		$this->MCobranza->periocidad = 9;
-		
+		//$this->MCobranza->periocidad = 9;
+		$this->MCobranza->periocidad = $_POST["perio"];
 		$this->MCobranza->fecha = $_POST ['desde'];
 		$this->MCobranza->anop = $_POST ['anop'];
 		$this->MCobranza->mesp = $_POST ['mesp'];

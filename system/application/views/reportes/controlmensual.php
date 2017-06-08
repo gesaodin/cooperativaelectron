@@ -46,10 +46,10 @@
     <td >Día Operación:</td>
     <td align="left" class="formulario">
       <select name="diapcontrolmensual" id="diapcontrolmensual" style="width: 400px;" >
-        <option value='01'>01</option>
-        <option value='10'>10 </option>
-        <option value='15'>15</option> 
-        <option value='25'>25</option>
+        <option value='4'>01</option>
+        <option value='8'>10 </option>
+        <option value='2'>15</option> 
+        <option value='9'>25</option>
         <option value='30'>30</option>
       </select>
     </td>
