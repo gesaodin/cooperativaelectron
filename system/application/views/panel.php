@@ -41,7 +41,7 @@
 						<?php $this->load->view("panel/nomina.php");?>
 					</div>
 					<div id='tabs-3' >																		
-						<?php $this->load->view("panel/contrato.php");?>
+						<?php $this->load->view("panel/ccontrato.php");?>
 					</div>
 					<div id='tabs-4' >																		
 						<?php $this->load->view("panel/factura.php");?>

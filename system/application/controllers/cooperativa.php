@@ -6,7 +6,7 @@
  * @version 2.0.0
  */
 date_default_timezone_set ( 'America/Caracas' );
-session_start ();
+if(!isset($_SESSION)) session_start ();
 class cooperativa extends Controller {
 	public function __construct() {
 		parent::__construct ();
