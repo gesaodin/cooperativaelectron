@@ -64,6 +64,7 @@
 				<option value=4>UNICO - EXTRA</option>
 				<option value=5>ESPECIAL - EXTRA</option>
 				<option value=6>UNICO - PRONTO PAGO</option>
+                <option value=11>TARJETA-ALIMENTACION</option>
 			</select>
 		</td>
 	</tr>

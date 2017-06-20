@@ -28,6 +28,8 @@ function consultar(){
 function llenar(dat){
     jQuery("#contratos").val(dat.contratos);
     jQuery("#MFactura").val(dat.monto);
+
+    jQuery("#LMFactura").val(dat.monto*0.3);
 }
 
 function limpiar(dat){

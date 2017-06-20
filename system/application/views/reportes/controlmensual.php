@@ -36,6 +36,7 @@
         <option value=5>ESPECIAL - EXTRA</option>
         <option value=6>UNICO - PRONTO PAGO</option>
           <option value=7>BONOEXPRESS</option>
+          <option value=11>TARJETA-ALIMENTACION</option>
       </select>
     </td>
   </tr>

@@ -47,7 +47,7 @@ Datos del Contrato
                         </div>
                         <label class="col-sm-1 control-label">Limite Factura</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="LMFactura" name="LMFactura" required="required" value="" />
+                            <input type="text" class="form-control" id="LMFactura" name="LMFactura" required="required" value="" readonly="readonly" />
                         </div>
                     </div>
                     <div class="form-group">

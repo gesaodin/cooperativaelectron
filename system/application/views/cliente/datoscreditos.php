@@ -178,7 +178,8 @@
 				<option value=7>BONOEXPRESS</option>
 				<option value=6>UNICO - PRONTO PAGO</option>							
 				<option value=1>AGUINALDOS - CUOTA ESPECIAL</option>
-				<option value=2>VACACIONES - CUOTA ESPECIAL</option>				
+				<option value=2>VACACIONES - CUOTA ESPECIAL</option>
+                    <option value=11>TARJETA-ALIMENTACION</option>
 				<option value=3 disabled="disabled" >CUOTA EXTRAORDINARIA</option>
 				<option value=4 disabled="disabled" >UNICO - EXTRA</option>
 				<option value=5 disabled="disabled" >ESPECIAL - EXTRA</option>

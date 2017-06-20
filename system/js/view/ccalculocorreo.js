@@ -341,3 +341,28 @@ function Calcular_Fin_Descuento(cuotas, periodo, dia_inicio, mes_inicio, ano_ini
     return ano_t + '-' + mes_t + '-' + dia_t;
 
 }
+
+
+function buscaCed(){
+    var id = $("#txtCed").val();
+    strUrl_Proceso = sUrlP + "DataSource_Cliente";
+
+    //alert(strUrl_Proceso);
+    $.ajax({
+        url: strUrl_Proceso,
+        type: 'POST',
+        data: 'id=' + id,
+        dataType: 'json',
+        success: function (json) {//alert(json);
+            if (json['documento_id'] == "NULL" || json['documento_id'] == "0") {
+                $("#encontrado").html("NR");
+                $("#txtNom").val("");
+                $("#txtNom").attr("readonly",FALSE);
+            } else {
+                $("#txtNom").val(json["primer_nombre"]+" "+json["segundo_nombre"]+" "+json["primer_apellido"]);
+                $("#encontrado").html("");
+                $("#txtNom").attr("readonly","true");
+            }
+        }
+    });
+}
