@@ -15,6 +15,7 @@ include("ip_local.php");
 
 //$config['base_url']	= $IP_SERVER_DYNAMIC."/cooperativa-electron";
 $config['base_url']="http://200.8.101.27/cooperativa-electron";
+$config['base_url2']="http://200.8.101.27/cooperativaelectron";
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -316,6 +317,8 @@ define("__LIBRARY__", $config['base_url'] . "/system/application/libraries/");
 define("__NFORMULARIOS__", "nomina/includes/formulario/");
 define("__RFORMULARIOS__", "registrar/includes/formulario/");
 define("__LOCALWWW__", $config['base_url']);
+define("__MAQ__", $config['base_url2'] . "/system/assets/");
+define("__BASE2__", $config['base_url2'].'/index.php/sumi/');
 
 /*
 |--------------------------------------------------------------------------

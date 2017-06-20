@@ -74,6 +74,7 @@ class CMenu extends Model {
 		<ul>
 		   <li class="active" id="mbuzon"><span><a href="buzon"><span id="iContador">Lo Nuevo (0)</span></a>
 		   	<ul>
+		   		<li class="active" ><a href="'.__BASE2__.'" target="_blank"><span>Asociar Entrega</span></a></li>
 		   		<li class="active" ><a href="Sugerencia"><span>Sugerencias</span></a></li>
 		   		<li class="active" ><a href="Solicitud"><span>Solicitud</span></a></li>';
 		if ($intNivel == 0 || $usu == 'carlos') {

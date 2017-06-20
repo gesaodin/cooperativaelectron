@@ -8,6 +8,7 @@
 date_default_timezone_set ( 'America/Caracas' );
 session_start ();
 class sumi extends Controller {
+	
     public function __construct() {
         parent::__construct ();
         $this->load->database ();
@@ -23,6 +24,10 @@ class sumi extends Controller {
         $this->load->model ( 'usuario/mmenu', 'MMenu' );
         $this->load->library ( 'session' );
     }
+	
+	public function index(){
+		$this->entregar();
+	}
 
     public function crear(){
         if ($this->session->userdata ( 'usuario' )) {
