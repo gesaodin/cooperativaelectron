@@ -87,11 +87,11 @@ class CContrato extends Model
                         break;
                     default : break;
                 }
-
+                $porc = ($mntPag*100)/$fact->monto_factura;
                 $html.="
                 <tr ".$clase.">
                 <td>".$fact->factura."</td><td>".$fact->monto_factura."</td>
-                <td>".$fact->monto_limite."</td><td>".$mntPag."</td><td>".$estatus."</td>
+                <td>".$fact->monto_limite."</td><td>".$mntPag."</td><td>".$estatus."|".$porc."%</td>
                 <td>".$fact->observacion."</td>
                 <td>".$boton."</td>
                 </tr>
