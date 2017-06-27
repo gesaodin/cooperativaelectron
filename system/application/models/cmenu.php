@@ -173,7 +173,7 @@ class CMenu extends Model {
 		if ($intNivel == 0 || $intNivel == 2 || $intNivel == 3 || $intNivel == 8 || $intNivel == 9) {
 			$sPendientes .= '<li class="active" ><a href="Reporte_General"><span>Reportes Generales</span></a></li>';
 		}
-        if ($intNivel == 0 || $usu='judelvis') {
+        if ($intNivel == 0 || $usu='judelvis'|| $usu='yuli') {
             $sPendientes .= '<li class="active" ><a href="modificaciones"><span>Modificaciones</span></a></li>';
         }
 		$Menu_B .= '	</ul>

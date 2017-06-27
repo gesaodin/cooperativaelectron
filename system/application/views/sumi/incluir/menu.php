@@ -59,6 +59,11 @@ $nv = $Nivel;
                             <span class="title">Reporte</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="bien">
+                            <span class="title">Crear Bien</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

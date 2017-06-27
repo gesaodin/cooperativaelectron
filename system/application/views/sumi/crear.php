@@ -54,18 +54,7 @@ Datos del Contrato
                         <label for="monto" class="col-sm-1 control-label">Producto:</label>
                         <div class="col-sm-3">
                             <select class="form-control" id="producto" name="producto">
-                                <option value="Telefono Android" selected="selected">Telefono Android</option>
-                                <option value="Nevera 12 pies">Nevera 12 pies</option>
-                                <option value="Nevera 14 pies">Nevera 14 pies</option>
-                                <option value="Cocina 4 Hornillas">Cocina 4 Hornillas</option>
-                                <option value="Cocina 6 Hornillas">Cocina 6 Hornillas</option>
-                                <option value="Televisor Pantalla Plana 24">Televisor Pantalla Plana 24</option>
-                                <option value="Televisor Pantalla Plana 30">Televisor Pantalla Plana 20</option>
-                                <option value="Aire Acondicionado 12000 BTU">Aire Acondicionado 12000 BTU</option>
-                                <option value="Aire Acondicionado 14000 BTU">Aire Acondicionado 14000 BTU</option>
-                                <option value="Aire Acondicionado 16000 BTU">Aire Acondicionado 16000 BTU</option>
-                                <option value="Aire Acondicionado 18000 BTU">Aire Acondicionado 18000 BTU</option>
-                                <option value="Portatil I3">Portatil I3</option>
+                            	<?php echo $cmb;?>
                             </select>                     </div>
                         <div class="col-sm-offset-3 col-sm-5">
                             <button type="submit" class="btn btn-green btn-icon" id="btnGuardar">Guardar <i class="fa fa-save"></i></button>

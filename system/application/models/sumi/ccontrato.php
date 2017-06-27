@@ -91,7 +91,7 @@ class CContrato extends Model
                 $html.="
                 <tr ".$clase.">
                 <td>".$fact->factura."</td><td>".$fact->monto_factura."</td>
-                <td>".$fact->monto_limite."</td><td>".$mntPag."</td><td>".$estatus."|".$porc."%</td>
+                <td>".$fact->monto_limite."</td><td>".$mntPag."</td><td>".$estatus."|".number_format($porc,2)."%</td>
                 <td>".$fact->observacion."</td>
                 <td>".$boton."</td>
                 </tr>
@@ -119,6 +119,25 @@ class CContrato extends Model
         return $datos;
 
     }
+	
+	function guardarBien($datos)
+    {
+       
+        if($this -> db -> insert("t_sumi_bien", $datos)) return 'Se Registro con Exito';
+        else return "Error al insertar.";
+        
+
+    }
+	
+	function cmbBien(){
+		$datos = $this -> db ->query("SELECT * FROM t_sumi_bien");
+		$rs = $datos->result();
+		$cmb='';
+		foreach ($rs as $row) {
+			$cmb .= '<option value="'.$row->nombre.'">'.$row->nombre.'</option>';
+		}
+		return $cmb;
+	}
 
 
 }

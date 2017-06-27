@@ -31,6 +31,8 @@ class sumi extends Controller {
 
     public function crear(){
         if ($this->session->userdata ( 'usuario' )) {
+        	$this->load->model("sumi/ccontrato","CContrato");
+			$data ['cmb'] = $this->CContrato->cmbBien();
             $data ['Nivel'] = $this->session->userdata ( 'nivel' );
             $data['vista'] = 'crear';
             $_SESSION ['usuario'] = $this->session->userdata ( 'usuario' );
@@ -123,6 +125,27 @@ class sumi extends Controller {
             //$this->login();
             redirect(base_url());
         }
+    }
+	
+	public function bien(){
+        if ($this->session->userdata ( 'usuario' )) {
+            $data ['Nivel'] = $this->session->userdata ( 'nivel' );
+            $data['vista'] = 'bien';
+            $_SESSION ['usuario'] = $this->session->userdata ( 'usuario' );
+            $this->load->view ( "sumi/incluir/cab", $data );
+            $this->load->view ( "sumi/dashboart", $data );
+            $js["vista"] = "bien.js";
+            $this->load->view ( "sumi/incluir/script", $js );
+        } else {
+            $this->logout();
+        }
+
+    }
+	
+	public function guardarBien(){
+        $this->load->model("sumi/ccontrato","CContrato");
+        $msj = $this->CContrato->guardarBien($_POST);
+        echo $msj;
     }
 
 }

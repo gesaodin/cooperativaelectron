@@ -14,8 +14,8 @@ include("ip_local.php");
 */
 
 //$config['base_url']	= $IP_SERVER_DYNAMIC."/cooperativa-electron";
-$config['base_url']="http://200.8.101.27/cooperativa-electron";
-$config['base_url2']="http://200.8.101.27/cooperativaelectron";
+$config['base_url']="http://200.82.139.180/cooperativa-electron";
+$config['base_url2']="http://200.82.139.180/cooperativaelectron";
 /*
 |--------------------------------------------------------------------------
 | Index File
