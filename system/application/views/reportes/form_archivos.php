@@ -142,6 +142,8 @@
 	<option value=9000>9000 Bs.</option>
 	<option value=9500>9500 Bs.</option>
 	<option value=10000>10000 Bs.</option>
+          <option value=15000>15000 Bs.</option>
+          <option value=20000>20000 Bs.</option>
       </select>
     </td>
   </tr>
