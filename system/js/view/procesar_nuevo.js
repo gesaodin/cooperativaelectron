@@ -36,6 +36,27 @@ $(function() {
 			}
 		}
 	});
+	
+	$("#Suspender").button({
+				icons : {
+					primary : 'ui-icon ui-icon-locked'
+				}
+			});
+			
+	$('#r_suspender').dialog({
+		modal : true,
+		autoOpen : false,
+		width : 450,
+		height : 300,
+		buttons : {
+			"Aceptar" : function() {
+				btnDBaja2();
+			},
+			"Cerrar" : function() {
+				$(this).dialog("close");
+			}
+		}
+	});
 	Modalidad();
 });
 
@@ -121,11 +142,12 @@ function consulta_cliente(id) {
 				nombre = pnom+' '+snom+' '+pape+' '+sape;
 				foto = json['fotoc'];
 				naci = json["nacionalidad"];
+				var btnSusp = "<button class='btn' onclick='btnDBaja("+cedula+")'>Suspender</button><input type='hidden' value='"+cedula+"' id='txtCedula' />";
 				var htmlDatos = '<table class="tgrid"><tr><td style="height: 100px;width: 110px;"rowspan="3"><img id="foto" name="foto" src="' + foto + '" style="height: 100px;width: 110px;"/></td>';
-				htmlDatos += '<th>CEDULA</th><td><h2>'+naci+cedula+'</h2></td></tr><tr><th>NOMBRE Y APELLIDOS</th><td>'+nombre+'</td></tr>';
-				htmlDatos +='<tr><th>CODIGO CLIENTE</th><td>'+json['nro_documento']+'</td></tr></table><br><br>';
+				htmlDatos += '<th>CEDULA</th><td><h2>'+naci+cedula+'</h2></td><td>'+btnSusp+'</td></tr><tr><th>NOMBRE Y APELLIDOS</th><td colspan=2>'+nombre+'</td></tr>';
+				htmlDatos +='<tr><th>CODIGO CLIENTE</th><td colspan=2>'+json['nro_documento']+'</td></tr></table><br><br>';
 				$('#Datos_Basicos').html(htmlDatos);
-				
+				$("button").button();
 				var htmlPersona = '<h2>DATOS PERSONALES</h2><br><table class="tgrid"><tr>';
 				htmlPersona += '<th>Telefonos</th><td>'+json['telefono']+'</td><th>Correo</th><td>'+json['correo']+'</td><th>Cargo</th><td>'+json['cargo_actual']+'</td></tr>';
 				htmlPersona +='<tr><th>Banco1</th><td>'+json['banco_1']+'</td><th>Cuenta1</th><td>'+json['cuenta_1']+'</td><th>Tipo</th><td>'+json['tipo_cuenta_1']+'</td></tr>';
@@ -296,4 +318,45 @@ function CargarNotaCredito(id){
 					
 		}
 	});
+}
+
+function btnDBaja(cedula) {
+	if (cedula != '') {
+		$("#r_suspender").dialog("open");
+	} else {
+		$("#msj_alertas").html("DEBE INGRESAR LA CEDULA");
+		$("#msj_alertas").dialog('open');
+	}
+}
+
+function btnDBaja2() {
+	var strUrl_Proceso = sUrlP + "DBaja";
+	var peticion = $("#txtRPeticion_Ced").val();
+	var motivo = $("#txtRMotivo_Ced").val();
+	var cedula = $("#txtCedula").val();
+
+	if (motivo == '' || peticion == '') {
+		$("#msj_alertas").html("<h2>DEBE INGRESAR<BR>-MOTIVO POR EL CUAL SE VA A SUSPENDER LA PERSONA<BR>-NOMBRE DE LA PERSONA QUE SOLICITO LA SUSPENCI&Oacute;N</h2> ");
+		$("#msj_alertas").dialog({
+			width : 500,
+			height : 200,
+		});
+		$("#msj_alertas").dialog('open');
+	} else {
+		$("#txtRMotivo_Ced").val('');
+		$("#txtRPeticion_Ced").val('');
+		$.ajax({
+			url : strUrl_Proceso,
+			type : "POST",
+			data : "cedula=" + cedula + "&val=1" + "&peticion=" + peticion + "&motivo=" + motivo,
+			success : function(msg) {
+				$("#r_suspender").dialog("close");
+				//msg = 'El usuario ha sido suspendido';
+				$('#msj_alertas').html(msg);
+				$('#msj_alertas').dialog("open");
+			}
+		});
+		Limpiar_Cliente();
+		Limpiar_Credito();
+	}
 }
