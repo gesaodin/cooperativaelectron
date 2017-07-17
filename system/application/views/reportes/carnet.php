@@ -14,7 +14,7 @@
 			
 			<table border="0">
 				<tr ><br></tr>
-				<tr style="height: 60px"><td valign="top" align="center"><img src="<?php echo __LOCALWWW__ . '/system/repository/expedientes/fotos/'.$documento_id.'.jpg'?>" style='width: 60%;'></img></td></tr>
+
 				<tr style="height: 150px"><td valign="top" align="center">
 						<font style="font-size: 11px; font-family: Arial, Helvetica, sans-serif">
 						<b>Usuario Titular</b><br>
