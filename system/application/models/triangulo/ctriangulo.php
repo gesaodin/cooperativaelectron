@@ -62,53 +62,37 @@ class CTriangulo extends Model
         return $datos;
     }
 
-    public function ficha($tipo){
+    public function lista_triangulo($tipo){
         $est = $tipo;
         //if($tipo == 1) $est = 0;
-        $query = "select * FROM t_sumi where estatus={$est} ";
+        $query = "select * FROM t_triangulo where estatus={$est} ";
         $dat = $this->db->query($query);
         $datos=array("filas"=>0,"datos"=>"No se encontraron registros");
         if($dat->num_rows()>0){
             $rs = $dat->result();
-            $html="<table border='1' class='table table-bordered'><thead><tr><td>Factura</td><td>M.factura</td><td>M.Limite</td><td>M.Pagado</td><td>Estatus</td>
-                <td>D.Entrega</td><td>Accion</td>
+            $html="<table border='1' class='table table-bordered'><thead><tr><td>Grupo</td><td>Creado</td><td>Estatus</td>
+                <td>Accion</td>
                 </tr></thead><tbody>";
             foreach($rs as $fact){
-
-                $cont = explode('|',$fact->contratos);
-                $mntPag = 0;
-                foreach ($cont as $con){
-                    $q2 = $this->db->query("SELECT * FROM t_lista_cobros_u where contrato_id='{$con}'");
-                    foreach ($q2->result() as $mmt){
-                        $mntPag += $mmt->monto;
-                    }
-                }
-
+                
                 $estatus = $est;
                 $boton = '';
                 $clase = '';
                 switch ($est){
                     case 0:
-                        $estatus = "Pendiente de pagos";
-                        if($fact->monto_limite <= $mntPag) {
-                            $boton ="<button onclick='entregar(\"".$fact->factura."\")' class='btn btn-info' >Entregar</button>";
-                            $estatus = "Pendiente de entrega";
-                            $clase = "class='bg-warning'";
-                        }
-                        else $boton = "Pagos pendientes";
+                        $estatus = "Triangulo Activo";
                         break;
                     case 1:
-                        $estatus = "Entregado";
-                        $boton ="<button onclick='detalle(\"".$fact->factura."\")' class='btn btn-info fa fa-print' >Entregado</button>";
+                        $estatus = "Triangulo Finalizado";
                         break;
                     default : break;
                 }
-                $porc = ($mntPag*100)/$fact->monto_factura;
+                $boton ="<a href='detalle/".$fact->id."' class='btn btn-info fa fa-print' >Ver</button>";
+                
                 $html.="
                 <tr ".$clase.">
-                <td>".$fact->factura."</td><td>".$fact->monto_factura."</td>
-                <td>".$fact->monto_limite."</td><td>".$mntPag."</td><td>".$estatus."|".number_format($porc,2)."%</td>
-                <td>".$fact->observacion."</td>
+                <td>".$fact->id."</td><td>".$fact->creado."</td>
+                <td>".$estatus."</td>
                 <td>".$boton."</td>
                 </tr>
                 ";
@@ -119,41 +103,36 @@ class CTriangulo extends Model
         return $datos;
     }
 
-    function guardarEntrega($dat){
-        if($this -> db -> query("UPDATE t_sumi set observacion='".$dat['obs']."',estatus=1 WHERE factura='".$dat['factura']."'")) return 'Se Registro Entrega con Exito';
-        else return "Error al insertar.";
-    }
+   
 
-
-    function reporte($tipo){
-        $query="SELECT *,monto_limite as monto_pagado FROM t_sumi WHERE estatus=".$tipo;
+    function detalle($id){
+        $query="SELECT * FROM t_triangulo_a 
+        join t_personas on t_personas.documento_id = t_triangulo_a.cedula
+        join t_clientes_creditos on t_clientes_creditos.numero_factura = t_triangulo_a.factura
+        WHERE id_g=".$id;
         $dat = $this->db->query($query);
-        $datos=array("filas"=>0,"datos"=>"No se encontraron datos para el dia seleccionado");
-        if($dat->num_rows()>0){
-            $datos=array("filas"=>$dat->num_rows(),"datos"=>$dat->result());
-        }
-        return $datos;
-
-    }
-	
-	function guardarBien($datos)
-    {
-       
-        if($this -> db -> insert("t_sumi_bien", $datos)) return 'Se Registro con Exito';
-        else return "Error al insertar.";
-        
-
-    }
-	
-	function cmbBien(){
-		$datos = $this -> db ->query("SELECT * FROM t_sumi_bien");
-		$rs = $datos->result();
-		$cmb='';
-		foreach ($rs as $row) {
-			$cmb .= '<option value="'.$row->nombre.'">'.$row->nombre.'</option>';
+        $per = array();
+		$rsQ = $dat->result();
+		foreach ($rsQ as $pers) {
+			$html = "
+			<b>Cedula:</b>".$pers->cedula."<br>
+			<b>Nombre:</b>".$pers->primer_nombre." ".$pers->primer_apellido."<br>
+			<b>Nomina:</b>".$pers->nomina_procedencia."<br>
+			<b>Banco 1:</b>".$pers->banco_1."<br>
+			<b>Cuenta1:</b>".$pers->cuenta_1."<br>
+			<b>Banco 2:</b>".$pers->banco_2."<br>
+			<b>Cuenta2:</b>".$pers->cuenta_2."<br>
+			<b>Factura:</b>".$pers->factura."<br>
+			
+			
+			
+			";
+			$per[] = $html;
 		}
-		return $cmb;
-	}
+		return $per;
+    }
+	
+	
 
 
 }
