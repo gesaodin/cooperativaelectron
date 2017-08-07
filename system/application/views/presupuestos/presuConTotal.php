@@ -17,6 +17,25 @@
         <form action="#" method="POST" onsubmit="return enviar();">
             <table>
                 <tr>
+                    <td align="left"><label>Cedula</label></td>
+                    <td align="left" colspan="3"><label> Nombre</label></td>
+
+                </tr>
+                <tr>
+                    <td >
+                        <div class="ui-widget">
+                            <input  type="text" value="" name="txtCed" id="txtCed" class="inputxt" style="width: 150px;" onblur="buscaCed();" />
+                        </div>
+                    </td>
+
+                    <td colspan="3">
+                        <div class="ui-widget">
+                            <input  type="text" value="" name="txtNom" id="txtNom" class="inputxt" style="width: 90%;"  />
+                            <laber id="encontrado"></laber>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
                     <td align="left"><label id="lblPresupuesto"> Monto total</label></td>
                 </tr>
                 <tr>
