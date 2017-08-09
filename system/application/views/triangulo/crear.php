@@ -1,5 +1,5 @@
 <h2>
-    <span class="label label-success"><i class="fa fa-file"></i></span> &nbsp; Asociacion de Triangulo de Pago
+    <span class="label"><i class="fa fa-file"></i></span> &nbsp; Asociacion de Triangulo de Pago
 </h2>
 <br/>
 
@@ -25,7 +25,7 @@
 <input type="hidden" id="unidad" value="">
 <div class="row fila-datos" id="fila-agregar">
     <div class="col-md-12">
-        <div class="panel panel-dark" data-collapsed="0">
+        <div class="panel panel-grey" data-collapsed="0">
             <div class="panel-heading">
                 <div class="panel-title">
 Afiliaci&oacute;n de Triangulo

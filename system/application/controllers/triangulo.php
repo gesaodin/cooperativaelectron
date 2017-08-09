@@ -74,38 +74,35 @@ class triangulo extends Controller {
 
     }
 
-    public function reporte(){
+    public function detalle($id){
         if ($this->session->userdata ( 'usuario' )) {
             $data ['Nivel'] = $this->session->userdata ( 'nivel' );
-            $data['vista'] = 'reporte';
+            $data['vista'] = 'detalle';
+            $this->load->model("triangulo/ctriangulo","CTriangulo");
+			$data["datos"] = $this->CTriangulo->detalle($id);
             $_SESSION ['usuario'] = $this->session->userdata ( 'usuario' );
-            $this->load->view ( "sumi/incluir/cab", $data );
-            $this->load->view ( "sumi/dashboart", $data );
-            $js["vista"] = "reporte.js";
-            $this->load->view ( "sumi/incluir/script", $js );
+            $this->load->view ( "triangulo/incluir/cab", $data );
+            $this->load->view ( "triangulo/dashboart", $data );
+            $js["vista"] = "detalle.js";
+            $this->load->view ( "triangulo/incluir/script", $js );
         } else {
             $this->logout();
         }
 
     }
 
-    public function BuscaContratos(){
-        $this->load->model("sumi/ccontrato","CContrato");
+    public function BuscaLista(){
+        $this->load->model("triangulo/ctriangulo","CTriangulo");
         $html = "";
         if($_POST['tipo'] != ""){
-            $html = $this->CContrato->ficha($_POST["tipo"]);
+            $html = $this->CTriangulo->lista_triangulo($_POST["tipo"]);
         }
         echo json_encode($html);
     }
+	
     public function guardar(){
         $this->load->model("triangulo/ctriangulo","CTriangulo");
         $msj = $this->CTriangulo->guardar($_POST);
-        echo $msj;
-    }
-
-    public function guardarEntrega(){
-        $this->load->model("sumi/ccontrato","CContrato");
-        $msj = $this->CContrato->guardarEntrega($_POST);
         echo $msj;
     }
 
@@ -113,18 +110,6 @@ class triangulo extends Controller {
         $this->load->model("triangulo/ctriangulo","CTriangulo");
         $msj = $this->CTriangulo->factura($_POST["fact"]);
         echo json_encode($msj);
-    }
-
-    function listarep($est){
-        $this->load->model("sumi/ccontrato","CContrato");
-        $res = $this->CContrato->reporte($est);
-        if ($res['filas'] != 0) {
-            $data['data'] = $res['datos'];
-        } else {
-            $data['data'] = array();
-        }
-        //$data['data'] = array();
-        echo json_encode($data);
     }
 
     public function logout() {
@@ -139,27 +124,6 @@ class triangulo extends Controller {
             //$this->login();
             redirect(base_url());
         }
-    }
-
-    public function bien(){
-        if ($this->session->userdata ( 'usuario' )) {
-            $data ['Nivel'] = $this->session->userdata ( 'nivel' );
-            $data['vista'] = 'bien';
-            $_SESSION ['usuario'] = $this->session->userdata ( 'usuario' );
-            $this->load->view ( "sumi/incluir/cab", $data );
-            $this->load->view ( "sumi/dashboart", $data );
-            $js["vista"] = "bien.js";
-            $this->load->view ( "sumi/incluir/script", $js );
-        } else {
-            $this->logout();
-        }
-
-    }
-
-    public function guardarBien(){
-        $this->load->model("sumi/ccontrato","CContrato");
-        $msj = $this->CContrato->guardarBien($_POST);
-        echo $msj;
     }
 
 }
