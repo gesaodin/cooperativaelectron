@@ -319,6 +319,7 @@ define("__RFORMULARIOS__", "registrar/includes/formulario/");
 define("__LOCALWWW__", $config['base_url']);
 define("__MAQ__", $config['base_url2'] . "/system/assets/");
 define("__BASE2__", $config['base_url2'].'/index.php/sumi/');
+define("__BASE3__", $config['base_url2'].'/index.php/triangulo/');
 
 /*
 |--------------------------------------------------------------------------
