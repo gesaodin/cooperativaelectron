@@ -8385,6 +8385,28 @@ join t_estatus_sistema as a on a.oid = _th_sistema.tipo WHERE fecha BETWEEN '".$
 
 	}
 
+	public function usuariosActivos(){
+		$query = "SELECT * FROM t_usuario where clave != ''";
+        $Consulta = $this -> db -> query($query);
+        $lista = $Consulta->result();
+        $html="";
+        foreach ($lista as $usu){
+        	$html .= "<option value='".$usu->oid."'>".$usu->seudonimo." | ".$usu->descripcion."</option>";
+		}
+        $html .= "<option value='' seledted='selected'>SELECCIONES</option>";
+		echo $html;
+	}
+
+	public function inactivarUsuario($id=null){
+		if(isset($_POST['id'])) $id = $_POST['id'];
+		$query = "UPDATE t_usuario SET clave='' WHERE oid=".$id;
+		if($this->db->query($query)){
+			echo "Se inactivo el usuario con exito";
+		}else{
+			echo "Error al inactivar";
+		}
+	}
+
 
 }
 ?>

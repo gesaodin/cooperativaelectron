@@ -1,5 +1,6 @@
 $(function() {
 	Crear();
+    usuariosActivos();
 	//alert(sUrlP);
 	/*$("#documento_id").autocomplete({
 		source : function(request, response) {
@@ -42,6 +43,27 @@ function Crear() {
 	vis.Generar();
 	return 0;
 }
+
+function Crear2() {
+	/*strUrl_Proceso = sUrlP + "GV_Usuario";
+	 $.ajax({
+	 url : strUrl_Proceso,
+	 dataType : "json",
+	 success : function(oBj) {//alert(oBj);
+	 vis = new GVista(oBj, 'formulario', 'Usuarios');
+	 vis.AsignarNombre("Usuarios");
+	 vis.AsignarCeldas(3);
+	 vis.AsignarBotones(1);
+	 vis.Generar();
+	 }
+	 });*/
+    vis = new GVista(Esq_gv_usuario, 'formulario', 'Usuarios');
+    vis.AsignarNombre("Usuarios");
+    vis.AsignarCeldas(3);
+    vis.AsignarBotones(1);
+    vis.Generar();
+    return 0;
+}
 function soloNumeros(e) {
 	key = e.keyCode || e.which;
 	tecla = String.fromCharCode(key).toLowerCase();
@@ -77,4 +99,41 @@ function busca_ciu(){
 			
 		}
 	});
+}
+
+function usuariosActivos(){
+    $.ajax({
+        url : sUrlP + 'usuariosActivos',
+        type : 'GET',
+        success : function(usu) {
+            $('#usuinac').html(usu);
+        },
+        error : function(error) {
+            var er = JSON.stringify(error);
+            alert(er);
+
+        }
+    });
+}
+
+function inactivarUsuario(){
+	var id = $("#usuinac option:selected").val();
+	if(id == ""){
+		alert("Debe seleccionar el usuario a inactivar");
+	}else{
+        $.ajax({
+            url : sUrlP + 'inactivarUsuario',
+			data : "id="+id,
+            type : 'POST',
+            success : function(msj) {
+                alert(msj);
+                if(msj == "Se inactivo el usuario con exito") usuariosActivos();
+            },
+            error : function(error) {
+                var er = JSON.stringify(error);
+                alert(er);
+
+            }
+        });
+	}
 }

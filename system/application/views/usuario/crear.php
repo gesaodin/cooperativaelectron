@@ -26,6 +26,17 @@
 		<br><br>
 		
 			<div id="formulario" style="width: 100%"></div>
+        <br><br>
+        <div id="formulario2" style="width: 100%">
+            <h2>Desactivar Usuario</h2><br>
+            <table>
+                <tr>
+                    <td><select id="usuinac"></select></td><td><button onclick="inactivarUsuario()">Inactivar</button></td>
+                </tr>
+            </table>
+
+
+        </div>
 		
 	</div>
 </body>
