@@ -2989,7 +2989,8 @@ class cooperativa extends Controller {
 	}
 	public function Eliminar_ReciboE() {
 		$Nivel = $this->session->userdata ( 'nivel' );
-		if ($Nivel == 0 || $Nivel == 3 || $Nivel == 9 || $Nivel == 8 || $Nivel == 10) {
+		$usu =$this->session->userdata ( 'usuario' );
+		if ($Nivel == 0 || $Nivel == 3 || $Nivel == 9 || $Nivel == 8 || $Nivel == 10 || strtolower($usu)=="alvaroz") {
 			$sRecibo = json_decode ( $_POST ['objeto'], true );
 			$this->load->model ( 'recibo/mreciboegreso', 'MReciboE' );
 			$this->MReciboE->Eliminar_ReciboE ( $sRecibo [0] );

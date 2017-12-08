@@ -8,8 +8,7 @@
 	<script type="text/javascript" src="<?php echo __JSVIEW__ ?>view/reportes.js"></script>
 	<script type="text/javascript" src="<?php echo __JSVIEW__ ?>tgrid/func.js"></script>
 	<script type="text/javascript" src="<?php echo __JSVIEW__ ?>tgrid/tgrid.js"></script>
-	<script type="text/javascript" src="<?php echo __JSVIEW__ ?>tgrid/pag
-		inador.js"></script>
+	<script type="text/javascript" src="<?php echo __JSVIEW__ ?>tgrid/paginador.js"></script>
 	<script type="text/javascript" src="<?php echo __JSVIEW__ ?>tgrid/xls.js"></script>	
 </head>
 <body>

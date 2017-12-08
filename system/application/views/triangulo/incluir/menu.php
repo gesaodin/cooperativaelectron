@@ -45,12 +45,12 @@ $nv = $Nivel;
                 </a>
                 <ul>
                     <li>
-                        <a href="<?= __BASE3__?>crear">
+                        <a href="crear">
                             <span class="title">Crear</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?= __BASE3__?>lista">
+                        <a href="lista">
                             <span class="title">Lista</span>
                         </a>
                     </li>
